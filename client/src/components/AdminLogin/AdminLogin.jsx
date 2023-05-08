@@ -1,0 +1,34 @@
+import React,{useState} from 'react'
+import { loginImage } from '../images/Images'
+import './adminLogin.css';
+function AdminLogin() {
+const [email,setEmail]=useState("");
+const [password,setPassword]=useState("");
+const handleSubmit=()=>{
+}
+
+  return (
+    <section className='d-flex justify-content-evenly align-items-center loginSection '>
+    <div className="login row w-75 ">
+    <div className="image col-md-7">
+    <h3>Admin Login </h3>
+    <img src={loginImage} alt="" srcset="" />
+    </div>
+    <form onSubmit={handleSubmit} className="form col-md-4">
+    <div className="email">
+    <label htmlFor=""><p> email</p></label>
+    <input type="text"  value={email} onChange={(e)=>setEmail(e.target.value)}/>
+    </div>
+    <div className="password">
+    <label htmlFor=""><p> password</p></label>
+    <input type="password"  value={password} onChange={(e)=>setPassword(e.target.value)} />
+    </div>
+    <button type='submit' className='loginSubmit'>Submit</button>
+
+    </form>
+    </div>
+    </section>
+  )
+}
+
+export default AdminLogin
