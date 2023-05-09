@@ -8,6 +8,7 @@ var salt = bcrypt.genSaltSync(10);
 
 export async function adminLogin(req,res){
     try{
+        console.log(req.body)
     const {email,password}=req.body;
     const admin=await UserModel.findOne({email,admin:true});
     if(!admin){

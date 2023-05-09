@@ -5,7 +5,7 @@ import crypto from 'crypto'
 
 var salt=bcrypt.genSaltSync(10);
 
-export async function userSignup(){
+export async function userSignup(req,res){
     try{
         const {name,email,password,mobileNo}=req.body;
         const hashPassword=bcrypt.hashSync(password,salt)
@@ -14,7 +14,7 @@ export async function userSignup(){
             return res.json({error:true,message:"user already exist"})
         }
         const newUser= new UserModel({
-            name,email,password,mobileNo
+            name,email,password:hashPassword,mobileNo
         })
         await newUser.save()
         const token = jwt.sign(
@@ -32,7 +32,27 @@ export async function userSignup(){
       })
       .json({ error: false });
     }
-    catch{
-        res.json({error:false})
+    catch(err){
+      console.log(err)
+        res.json({error:true, err})
     }
+}
+
+export const checkUserLoggedIn=async(req,res)=>{
+  try{
+    const token=req.cookies.token;
+    if(!token){
+      return res.json({loggedIn:false,error:true,message:"no token"})
+
+    }
+    const verifiedJWT=jwt.verify(token,"myjwtsecretkey")
+    const user=await UserModel.findById(verifiedJWT.id,{password:0});
+    if(!user){
+      return res.json({loggedIn:false})
+    }
+    return res.json({loggedIn:true})
+  }catch(err){
+    console.log(err);
+    return res.json({loggedIn:false,error:err})
+  }
 }
