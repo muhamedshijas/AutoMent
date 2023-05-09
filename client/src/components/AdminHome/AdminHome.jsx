@@ -1,6 +1,8 @@
 import axios from 'axios';
 import React from 'react'
 import { useDispatch } from 'react-redux'
+import AdminSideBar from '../AdminSideBar/AdminSideBar';
+import './AdminHome.css'
 
 function AdminHome() {
   const dispatch=useDispatch();
@@ -12,8 +14,12 @@ function AdminHome() {
   }
   return (
     <div className="app">
-    <h1>Admin Home</h1>
-    <h1 onClick={handleLogout}>Logout</h1>
+    <section className="row">
+  
+    <AdminSideBar/>
+    
+    </section>
+    
     </div>
   ) 
 }

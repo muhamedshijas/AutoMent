@@ -10,24 +10,28 @@ const [password,setPassword]=useState("");
 const [errMessage,setErrmessage]=useState("");
 const [logo,setLogo]=useState("");
 const [place ,setPlace]=useState("");
-const [district ,setDistrict]=useState("")
-const [certificate,setCertificate]=useState("")
+const [district ,setDistrict]=useState(null)
+const [certificate,setCertificate]=useState(null)
 const dispatch=useDispatch();
 const navigate =useNavigate();
 
-function validationErr(){
-  
-  if(email.replaceAll(' ', "")==="" || password.replaceAll(' ',"")===""|| place.replaceAll('',"")==""||district.replaceAll('',"")==""){
-      return true
+const validForm = () => {
+  if (place.trim() === "" || password.trim() === "" || email.trim() === "" || district.trim()==="") {
+      return false
   }
-  return false
+  return true
 }
 async function handleSubmit(e){
-  console.log("hii")
+  console.log(email,password,place,district,logo,certificate)
+
   e.preventDefault();
-  if(!validationErr()){
-    let {data}=await axios.post('/serviceCenter/auth/signup',{email,password})
-    console.log(data);
+
+  
+  if(validForm()){
+    let {data}=await axios.post("/serviceCenter/auth/signUp",{
+      email,password,place,district,logo,certificate
+  })
+    
     if(!data.error){
       dispatch({type:"refresh"})
       alert("logged in")
@@ -67,11 +71,11 @@ async function handleSubmit(e){
     <div className="logos">
     <div className="logo">
     <label htmlFor=""> Add Logo</label>
-    <input type="file" value={logo} onChange={(e)=>setLogo(e.target.value)} className="chooseImage"/>
+    <input type="file"  onChange={(e)=>setLogo(e.target.files[0])} className="chooseImage"/>
     </div>
     <div className="certificate">
     <label htmlFor=""> Add Certificate</label>
-    <input type="file" value={certificate} onChange={(e)=>setCertificate(e.target.value)} className="chooseImage"/>
+    <input type="file"  onChange={(e)=>setCertificate(e.target.files[0])} className="chooseImage"/>
     </div>
     </div>
     <button type='submit' className='loginSubmit'>Submit</button>

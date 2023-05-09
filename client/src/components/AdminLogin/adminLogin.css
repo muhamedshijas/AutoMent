@@ -18,11 +18,11 @@ body{
     height: 460px;
 }
 .form input{
-    height: 50px;
+    height: 45px;
     border-radius: 3px;
     width: 300px;
     border: 1px solid  #2C457E ;
-
+    padding: 10px;
     outline: none;
 
 }
@@ -67,11 +67,20 @@ body{
 
 .logos{
     display: flex;
+    margin-top: 10px;
 }
 .serviceCenterSignUp{
     height:600px !important;
    
 
+}
+
+.logo,.certificate{
+    width:200px;
+}
+
+.logo input,.certificate input{
+    width: 180px;
 }
 @media(max-width:800px){
     .image img{

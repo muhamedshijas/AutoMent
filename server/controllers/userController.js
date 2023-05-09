@@ -24,7 +24,7 @@ export async function userSignup(req,res){
       "myjwtsecretkey"
     );
     return res
-      .cookie("token", token, {
+      .cookie("userToken", token, {
         httpOnly: true,
         secure: true,
         maxAge: 1000 * 60 * 60 * 24 * 7,
@@ -38,12 +38,41 @@ export async function userSignup(req,res){
     }
 }
 
+export async function userLogin(req,res){
+  try{
+    const {email,password}=req.body;
+    const user=await UserModel.findOne({email})
+    if(!user){
+      return res.json({error:true,message:"No such user found"})
+    }
+    const validUser=bcrypt.compareSync(password,user.password)
+  if(!validUser){
+    return res.json({error:true,message:"Wrong Password"})
+  }
+  console.log(user)
+  const token=jwt.sign({
+    id:user._id
+  },"myjwtsecretkey"
+  )
+
+
+  return res.cookie("userToken",token,{
+        httpOnly: true,
+                secure: true,
+                maxAge: 1000 * 60 * 60 * 24 * 7,
+                sameSite: "none",
+    }).json({error:false})
+}catch(err){
+  return res.json({error:true,error:err})
+  console.log(err)
+}
+}
+
 export const checkUserLoggedIn=async(req,res)=>{
   try{
-    const token=req.cookies.token;
+    const token=req.cookies.userToken;
     if(!token){
-      return res.json({loggedIn:false,error:true,message:"no token"})
-
+      return res.json({loggedIn:false,error:true,message:"no fgfdjk"})
     }
     const verifiedJWT=jwt.verify(token,"myjwtsecretkey")
     const user=await UserModel.findById(verifiedJWT.id,{password:0});
@@ -55,4 +84,14 @@ export const checkUserLoggedIn=async(req,res)=>{
     console.log(err);
     return res.json({loggedIn:false,error:err})
   }
+}
+
+export async function userLogout(req,res){
+    res.cookie("userToken", "", {
+        httpOnly: true,
+        expires: new Date(0),
+        secure: true,
+        sameSite: "none",
+    }).json({ message: "logged out", error: false });
+    console.log("logged in");
 }

@@ -42,6 +42,7 @@ export async function adminLogout(req,res){
         secure: true,
         sameSite: "none",
     }).json({ message: "logged out", error: false });
+    console.log("logged in");
 }
 
 export async function checkAdminLoggedIn(req,res){
