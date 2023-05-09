@@ -10,7 +10,7 @@ export async function adminLogin(req,res){
     try{
         console.log(req.body)
     const {email,password}=req.body;
-    const admin=await UserModel.findOne({email,admin:true});
+    const admin=await AdminModel.findOne({email,admin:true});
     if(!admin){
         return res.json({error:true,message:"no access to this page"})
     }
@@ -32,6 +32,25 @@ export async function adminLogin(req,res){
     }
     catch{
         res.json({message:"server error",error:err})
+        console.log(err)
+    }
+}
+
+export async function checkAdminLoggedIn(req,res){
+    try{
+        const token=req.cookies.token;
+        if(!token){
+            return res.json({loggedIn:false,error:true,message:"No Token"})
+        }
+        const verifiedJWT=jwt.verify(token,"myjwtsecretkey")
+        const admin=await AdminModel.findById(verifiedJWT.id,{password:0})
+        console.log(admin)
+        if(!admin){
+            return res.json({loggedIn:false})
+        }
+        return res.json({admin,loggedIn:true})
+    }catch(err){
+        res.json({loggedIn:false ,error:err})
         console.log(err)
     }
 }

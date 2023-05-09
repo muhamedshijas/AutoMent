@@ -17,22 +17,32 @@ const dispatch=useDispatch();
 useEffect(()=>{
   (async function(){
     let {data}=await axios.get("user/auth/check")
-    dispatch({type:user,payload:{login:data.loggedIn,detials:data.user}})
+    dispatch({type:"user",payload:{login:data.loggedIn,detials:data.user}})
     let {data:adminData}=await axios.get("/admin/auth/check")
-    dispatch({type:admin,payload:{login:data.loggedIn,detials:adminData.admin}})
+    dispatch({type:"admin",payload:{login:adminData.loggedIn,detials:adminData.admin}})
+    
   })()
 },[refresh])
   return (
 
     <div className="App">
-    <Routes>
+    <Routes>   
     {
-      <div>
-      <Route path='/signup' element={<UserRegisterPage/>}/>
+      admin.login&&
+      <>
       <Route path='/admin/' element={<AdminHomePage/>}/>
-      <Route path='/admin/login' element={<AdminLoginPage/>}/>
+      <Route path='/admin/login' element={<Navigate to="/admin/" />}/>
+      </>
 
-      </div>
+
+    }
+    {
+      admin.login==false&&
+      
+      <>
+      <Route path='/admin/login' element={<AdminLoginPage/>}/>
+      <Route path='/admin' element={<Navigate to="/admin/login"/>}/>
+      </>
     }
     </Routes>
     </div>
