@@ -10,7 +10,7 @@ export async function adminLogin(req,res){
     try{
         console.log(req.body)
     const {email,password}=req.body;
-    const admin=await AdminModel.findOne({email,admin:true});
+    const admin=await AdminModel.findOne({email});
     if(!admin){
         return res.json({error:true,message:"no access to this page"})
     }
@@ -35,10 +35,18 @@ export async function adminLogin(req,res){
         console.log(err)
     }
 }
+export async function adminLogout(req,res){
+    res.cookie("adminToken", "", {
+        httpOnly: true,
+        expires: new Date(0),
+        secure: true,
+        sameSite: "none",
+    }).json({ message: "logged out", error: false });
+}
 
 export async function checkAdminLoggedIn(req,res){
     try{
-        const token=req.cookies.token;
+        const token=req.cookies.adminToken;
         if(!token){
             return res.json({loggedIn:false,error:true,message:"No Token"})
         }
@@ -54,3 +62,4 @@ export async function checkAdminLoggedIn(req,res){
         console.log(err)
     }
 }
+

@@ -57,6 +57,22 @@ body{
    font-size: 42px;
    margin-left: 60px; 
 }
+
+.chooseImage{
+    background: none;
+    border:none !important;
+    outline: none !important;
+    
+}
+
+.logos{
+    display: flex;
+}
+.serviceCenterSignUp{
+    height:600px !important;
+   
+
+}
 @media(max-width:800px){
     .image img{
         width: 300px;

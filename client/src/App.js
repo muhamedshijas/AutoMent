@@ -7,6 +7,9 @@ import './App.css';
 import axios from 'axios'
 import { useDispatch, useSelector } from 'react-redux';
 import AdminHomePage from './pages/admin/AdminHomePage.js';
+import ServiceCenterLoginPage from './pages/ServiceCenter/ServiceCenterLoginPage.js';
+import ServiceCenterSignUpPage from './pages/ServiceCenter/ServiceCenterSignUpPage.js';
+import VerifyOtpPage from './pages/ServiceCenter/VerifyOtpPage.js';
 function App() {
 axios.defaults.withCredentials=true;
 axios.defaults.baseURL="http://localhost:5000/"
@@ -20,7 +23,7 @@ useEffect(()=>{
     dispatch({type:"user",payload:{login:data.loggedIn,detials:data.user}})
     let {data:adminData}=await axios.get("/admin/auth/check")
     dispatch({type:"admin",payload:{login:adminData.loggedIn,detials:adminData.admin}})
-    
+    console.log(adminData)
   })()
 },[refresh])
   return (
@@ -38,10 +41,18 @@ useEffect(()=>{
     }
     {
       admin.login==false&&
-      
       <>
       <Route path='/admin/login' element={<AdminLoginPage/>}/>
       <Route path='/admin' element={<Navigate to="/admin/login"/>}/>
+      </>
+    }
+
+    {
+      <>
+      <Route path='/serviceCenter/login' element={<ServiceCenterLoginPage/>} />
+      <Route path='/serviceCenter/signUp' element={<ServiceCenterSignUpPage/>} />
+      <Route path='/verifyOtp' element={<VerifyOtpPage/>}/>
+
       </>
     }
     </Routes>

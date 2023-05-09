@@ -11,7 +11,8 @@ const AdminSchema = new mongoose.Schema({
     password :{
         type:String,
         required:true
-    }
+    },
+    
 })
 
 const AdminModel=mongoose.model("Admin", AdminSchema)

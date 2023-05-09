@@ -1,11 +1,11 @@
 import express from 'express';
-import { adminLogin, checkAdminLoggedIn } from '../controllers/adminController.js';
+import { adminLogin, adminLogout, checkAdminLoggedIn } from '../controllers/adminController.js';
 
 
 const router=express.Router();
 
 router.post("/login",adminLogin)
 router.get("/check", checkAdminLoggedIn)
-router.get("/logout", )
+router.get("/logout",adminLogout)
 
 export default router
