@@ -80,8 +80,20 @@ function App() {
         }
        
       {
+        serviceCenter.login &&
         <>
-        <Route path='/serviceCenter/Signup' element={<ServiceCenterSignUpPage/>}/>
+        <Route path='/servicecenter' element={<ServiceCenterHomePage/>}/>
+        <Route path='/servicecenter/login' element={<Navigate to='/servicecenter'/>}/>
+        <Route path='/servicecenter/signup' element={<Navigate to='/servicecenter'/>}/>
+        </>
+      }
+
+      {
+        serviceCenter.login===false &&
+        <>
+        <Route path='/servicecenter/login' element={<ServiceCenterLoginPage/>}/>
+        <Route path='/servicecenter/signup' element={<ServiceCenterSignUpPage/>}/>
+        <Route path='/servicecenter' element={<Navigate to='/servicecenter/login'/>}/>
         </>
       }
         

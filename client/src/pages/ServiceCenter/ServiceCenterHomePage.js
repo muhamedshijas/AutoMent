@@ -1,9 +1,10 @@
 import React from 'react'
+import ServiceCenterHome from '../../components/ServiceCenterHome/ServiceCenterHome'
 
 function ServiceCenterHomePage() {
   return (
     <div>
-    <ServiceCenterHomePage/>
+    <ServiceCenterHome/>
     </div>
   )
 }

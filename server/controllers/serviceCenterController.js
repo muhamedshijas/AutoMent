@@ -89,5 +89,15 @@ export async function serviceCenterSignUp(req,res){
         res.json({loggedIn:false ,error:err})
     }
 }
-    
+
+
+export async function serviceCenterLogout(req,res){
+    res.cookie("serviceCenterToken", "", {
+        httpOnly: true,
+        expires: new Date(0),
+        secure: true,
+        sameSite: "none",
+    }).json({ message: "logged out", error: false });
+    console.log("logged in");
+}
         

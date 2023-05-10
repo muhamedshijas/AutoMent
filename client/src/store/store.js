@@ -2,6 +2,7 @@ import {createStore} from 'redux';
 const initialState={
     user:{login:null},
     admin:{login:null},
+    serviceCenter:{login:null},
     refresh:true
     
 }
