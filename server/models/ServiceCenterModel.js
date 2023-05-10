@@ -2,17 +2,11 @@ import mongoose from "mongoose"
 const ServiceCenterSchema = new mongoose.Schema({
     name:{
         type: String,
-        required:true
     },
     email:{
         type: String,
-        required:true
     },
     password :{
-        type:String,
-        required:true
-    },
-    logo:{
         type:String,
     },
    place:{
@@ -21,8 +15,8 @@ const ServiceCenterSchema = new mongoose.Schema({
    district:{
     type:String,
    },
-    certificate:{
-        type:String,
+    certificate:{    
+        type:Object,
         required:true
     },
     permission:{
@@ -32,5 +26,5 @@ const ServiceCenterSchema = new mongoose.Schema({
 
 })
 
-const ServiceCenterModel=mongoose.model("User", ServiceCenterSchema)
+const ServiceCenterModel=mongoose.model("ServiceCenter", ServiceCenterSchema)
 export default ServiceCenterModel

@@ -13,10 +13,13 @@ import VerifyOtpPage from './pages/ServiceCenter/VerifyOtpPage.js';
 import UserHomePage from './pages/user/UserHomePage.js';
 import UserLoginPage from './pages/user/UserLoginPage.js';
 import AdminUserPage from './pages/admin/AdminUserPage.js';
+import ServiceCenterHomePage from './pages/ServiceCenter/ServiceCenterHomePage.js';
+import AdminServiceCenterPage from './pages/admin/AdminServiceCenterPage.js';
+import ServiceCenterRequestPage from './pages/admin/ServiceCenterRequestPage.js';
 function App() {
   axios.defaults.withCredentials = true;
   axios.defaults.baseURL = "http://localhost:5000/"
-  const { user, admin, refresh } = useSelector((state) => {
+  const { user, admin, refresh,serviceCenter} = useSelector((state) => {
     return state;
   });
   const dispatch = useDispatch();
@@ -24,10 +27,12 @@ function App() {
     (async function () {
       let { data } = await axios.get("user/auth/check")
       dispatch({ type: "user", payload: { login: data.loggedIn, detials: data.user } })
-      console.log(data)
+    
       let { data: adminData } = await axios.get("/admin/auth/check")
       dispatch({ type: "admin", payload: { login: adminData.loggedIn, detials: adminData.admin } })
-      console.log(adminData)
+     
+      let { data: serviceCenterData } = await axios.get("/serviceCenter/auth/check");
+      dispatch({ type: "serviceCenter", payload: { login: serviceCenterData.loggedIn, details: serviceCenterData.serviceCenter} })
     })()
   }, [refresh])
   return(
@@ -40,8 +45,10 @@ function App() {
             <Route path='/admin/' element={<AdminHomePage />} />
             <Route path='/admin/login' element={<Navigate to="/admin/" />} />
             <Route path='/admin/users' element={<AdminUserPage/>}/>
+            <Route path='/admin/serviceCenter' element={<AdminServiceCenterPage/>}/>
+            <Route path='/admin/requests' element={<ServiceCenterRequestPage/>}/>
           </>
-
+ 
         }
 
 
@@ -53,14 +60,6 @@ function App() {
           </>
         }
 
-        {
-          <>
-            <Route path='/serviceCenter/login' element={<ServiceCenterLoginPage />} />
-            <Route path='/serviceCenter/signUp' element={<ServiceCenterSignUpPage />} />
-            <Route path='/verifyOtp' element={<VerifyOtpPage />} />
-
-          </>
-        }
 
         {
           user.login &&
@@ -79,7 +78,13 @@ function App() {
           <Route path='/signUp' element={<UserRegisterPage/>}/>
           </>
         }
-
+       
+      {
+        <>
+        <Route path='/serviceCenter/Signup' element={<ServiceCenterSignUpPage/>}/>
+        </>
+      }
+        
       </Routes>
     </div>
 

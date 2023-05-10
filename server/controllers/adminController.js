@@ -2,6 +2,7 @@ import AdminModel from "../models/AdminModel.js";
 import UserModel from "../models/UserModel.js";
 import bcrypt from 'bcryptjs'
 import jwt from 'jsonwebtoken'
+import ServiceCenterModel from "../models/ServiceCenterModel.js";
 
 
 var salt = bcrypt.genSaltSync(10);
@@ -53,7 +54,6 @@ export async function checkAdminLoggedIn(req,res){
         }
         const verifiedJWT=jwt.verify(token,"myjwtsecretkey")
         const admin=await AdminModel.findById(verifiedJWT.id,{password:0})
-        console.log(admin)
         if(!admin){
             return res.json({loggedIn:false})
         }
@@ -89,4 +89,37 @@ export async function getunBlockUser(req,res){
     await UserModel.findByIdAndUpdate(id,{$set:{block:false}}).lean()
     res.json({err:false})
 
+}
+
+export async function getAdminServiceCenter(req,res){
+    try{
+       
+        const name=req.query.name?? ""
+        let serviceCenters=await ServiceCenterModel.find({name:new RegExp(name, 'i'),permission:true}).lean()
+        console.log(serviceCenters)
+        res.json(serviceCenters)
+
+    }catch(err){
+        return res.json({err:true,message:"Something went wrong" ,error:err})
+
+    }
+
+    
+
+
+}
+
+
+export async function getAdminRequests(req,res){
+    try{
+       
+        const name=req.query.name?? ""
+        let serviceCenters=await ServiceCenterModel.find({name:new RegExp(name, 'i'),permission:false}).lean()
+        console.log(serviceCenters)
+        res.json(serviceCenters)
+
+    }catch(err){
+        return res.json({err:true,message:"Something went wrong" ,error:err})
+
+    }
 }

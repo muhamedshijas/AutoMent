@@ -11,8 +11,13 @@ function AdminSideBar() {
  <Link to='/admin/users'>
  <b>users</b>
  </Link>
+
+ <Link to='/admin/servicecenter'>
  <b>Service Centers</b>
- <b>Requests</b>
+ </Link>
+ <Link to='/admin/requests'>
+ <b> Requests</b>
+ </Link>
  </div>
   )
 }

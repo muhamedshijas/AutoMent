@@ -76,7 +76,12 @@ body{
 }
 
 .logo,.certificate{
-    width:200px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    gap: 5px;
+    align-items: center;
+    width:100%;
 }
 
 .logo input,.certificate input{

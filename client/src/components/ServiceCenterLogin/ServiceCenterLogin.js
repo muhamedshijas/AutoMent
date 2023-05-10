@@ -16,16 +16,16 @@ function validationErr(){
   return false
 }
 async function handleSubmit(e){
-  console.log("hii")
   e.preventDefault();
   if(!validationErr()){
-    let {data}=await axios.post('/admin/auth/login',{email,password})
+    let {data}=await axios.post('/serviceCenter/auth/login',{email,password})
     console.log(data);
-    if(!data.error){
+    if(!data.err){
       dispatch({type:"refresh"})
-      alert("logged in")
     }else{
+      console.log(data.message)
       setErrmessage(data.message)
+
     }
   }
 }
