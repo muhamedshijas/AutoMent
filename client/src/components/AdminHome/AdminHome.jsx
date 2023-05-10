@@ -15,9 +15,9 @@ function AdminHome() {
   return (
     <div className="app">
     <section className="row">
-  
-    <AdminSideBar/>
     
+    <AdminSideBar/>
+    h1
     </section>
     
     </div>

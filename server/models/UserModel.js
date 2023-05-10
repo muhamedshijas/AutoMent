@@ -19,6 +19,10 @@ const UserSchema = new mongoose.Schema({
     mobileNo:{
         type:Number,
         required:true
+    },
+    block:{
+        type:Boolean,
+        default:false
     }
 
 })

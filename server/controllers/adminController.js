@@ -66,13 +66,27 @@ export async function checkAdminLoggedIn(req,res){
 
 export async function getAdminUsers(req,res){
     try{
-        const name=req.query.name ?? ""
+        const name=req.query.name?? ""
         let users=await UserModel.find({name:new RegExp(name, 'i') }).lean()
-        console.log(users)
+        res.json(users)
 
     }catch(err){
         return res.json({err:true,message:"Something went wrong" ,error:err})
 
     }
+
+
 }
 
+export async function getBlockUser(req,res){
+    const id=req.body.id
+    await UserModel.findByIdAndUpdate(id,{$set:{block:true}}).lean()
+    res.json({err:false})
+
+}
+export async function getunBlockUser(req,res){
+    const id=req.body.id
+    await UserModel.findByIdAndUpdate(id,{$set:{block:false}}).lean()
+    res.json({err:false})
+
+}

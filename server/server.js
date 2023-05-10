@@ -23,7 +23,7 @@ app.use(
 dbConnect()
 
 app.use("/admin/auth/",adminAuthRouter)
-app.use("/admin/",adminRouter)
+app.use("/admin",adminRouter)
 app.use("/user/auth/",userAuthRouter)
 app.use('/serviceCenter/auth',serviceCenterRouter)
 app.listen(5000, ()=>{

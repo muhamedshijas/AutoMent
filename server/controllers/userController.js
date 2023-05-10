@@ -45,6 +45,11 @@ export async function userLogin(req,res){
     if(!user){
       return res.json({error:true,message:"No such user found"})
     }
+
+    if (user.block){
+      return res.json({ error: true, message: "You are blocked" })
+      }
+            
     const validUser=bcrypt.compareSync(password,user.password)
   if(!validUser){
     return res.json({error:true,message:"Wrong Password"})
