@@ -12,6 +12,7 @@ import ServiceCenterSignUpPage from './pages/ServiceCenter/ServiceCenterSignUpPa
 import VerifyOtpPage from './pages/ServiceCenter/VerifyOtpPage.js';
 import UserHomePage from './pages/user/UserHomePage.js';
 import UserLoginPage from './pages/user/UserLoginPage.js';
+import AdminUserPage from './pages/admin/AdminUserPage.js';
 function App() {
   axios.defaults.withCredentials = true;
   axios.defaults.baseURL = "http://localhost:5000/"
@@ -38,6 +39,7 @@ function App() {
           <>
             <Route path='/admin/' element={<AdminHomePage />} />
             <Route path='/admin/login' element={<Navigate to="/admin/" />} />
+            <Route path='/admin/users' element={<AdminUserPage/>}/>
           </>
 
         }

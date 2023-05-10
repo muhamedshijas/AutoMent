@@ -64,3 +64,15 @@ export async function checkAdminLoggedIn(req,res){
     }
 }
 
+export async function getAdminUsers(req,res){
+    try{
+        const name=req.query.name ?? ""
+        let users=await UserModel.find({name:new RegExp(name, 'i') }).lean()
+        console.log(users)
+
+    }catch(err){
+        return res.json({err:true,message:"Something went wrong" ,error:err})
+
+    }
+}
+
