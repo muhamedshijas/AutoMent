@@ -103,6 +103,8 @@ function App() {
         <Route path='/servicecenter/login' element={<ServiceCenterLoginPage/>}/>
         <Route path='/servicecenter/signup' element={<ServiceCenterSignUpPage/>}/>
         <Route path='/servicecenter' element={<Navigate to='/servicecenter/login'/>}/>
+        <Route path='/servicecenter/workers' element={<Navigate to='/servicecenter/login'/>}/> 
+        <Route path='/servicecenter/addworkers' element={<Navigate to='/servicecenter/login'/>}/>
         </>
       }
         

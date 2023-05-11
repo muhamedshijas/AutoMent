@@ -2,6 +2,7 @@ import bcrypt from 'bcryptjs'
 import jwt from 'jsonwebtoken'
 import  cloudinary from '../config/cloudinary.js'
 import ServiceCenterModel from '../models/ServiceCenterModel.js'
+import WorkerModel from '../models/WorkerModel.js';
 
 
 var salt = bcrypt.genSaltSync(10);
@@ -40,8 +41,8 @@ export async function serviceCenterSignUp(req,res){
         const {email,password}=req.body;
         const serviceCenter=await ServiceCenterModel.findOne({email})
         if(!serviceCenter){
-            return res.json({err:true,message:"no servie center found"})
             console.log("no email")
+            return res.json({err:true,message:"no servie center found"})
         }
         if(!serviceCenter.permission){
             return res.json({err:true,message:"you have no permission check after some time"})
@@ -103,4 +104,67 @@ export async function serviceCenterLogout(req,res){
 
 export async function getAddWorker(req,res){
     console.log(req.body)
+    
+    try{
+        const {name,email,_id,mobileNo,password}=req.body
+        console.log(_id)
+        const hashPassword=bcrypt.hashSync(password,salt)
+        const worker=await WorkerModel.findOne({email}).lean()
+        if(worker){
+            return res.json({error:true,message:"worker already exist"})
+        }
+        const newWorker= new WorkerModel({
+            name,email,serviceCenterId:_id,mobileNo,password:hashPassword
+        })
+        await newWorker.save()
+        console.log("saved")
+
+   const token = jwt.sign(
+      {
+        id: newWorker._id,
+      },
+      "myjwtsecretkey"
+    );
+    return res
+      .cookie("workerToken", token, {
+        httpOnly: true,
+        secure: true,
+        maxAge: 1000 * 60 * 60 * 24 * 7,
+        sameSite: "none",
+      })
+      .json({ error: false });
+    }
+    catch(err){
+      console.log(err)
+        res.json({error:true, err})
+    }
+}
+export async function getServiceCenterWorkers(req,res){
+
+        try{
+            const  token=req.cookies.serviceCenterToken
+            const verifiedJWT = jwt.verify(token, "myjwtsecretkey");
+            console.log(verifiedJWT.id)
+            const  id=verifiedJWT.id;
+            const name=req.query.name?? ""
+            let workers = await WorkerModel.find({ serviceCenterId: id, name: new RegExp(name, 'i') }).lean()
+            console.log(workers)
+        res.json(workers)
+        }
+        catch(err){
+            console.log(err)
+        }
+}
+
+export async function getBlockWorker(req,res){
+    const id=req.body.id
+    await WorkerModel.findByIdAndUpdate(id,{$set:{block:true}}).lean()
+    res.json({err:false})
+
+}
+export async function getunBlockWorker(req,res){
+    const id=req.body.id
+    await WorkerModel.findByIdAndUpdate(id,{$set:{block:false}}).lean()
+    res.json({err:false})
+
 }

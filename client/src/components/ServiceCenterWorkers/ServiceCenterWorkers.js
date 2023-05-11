@@ -1,9 +1,45 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './ServiceCenterWorkers.css'
 import ServiceCenterSideBar from '../ServiceCenterSideBar/ServiceCenterSideBar'
 import { Link } from 'react-router-dom'
+import axios from 'axios'
 
 function ServiceCenterWorkers() {
+  const [workersList, setWorkersList] = useState([""])
+  const [refresh, setRefresh] = useState(false)
+  const [name, setName] = useState("")
+
+  React.useEffect(()=>{
+    (
+        async function(){
+            try{
+                const {data}=await axios.get("/servicecenter/workers?name="+name)
+                console.log(data)
+                if(!data.err){
+                    console.log(data)
+                    setWorkersList(data)
+                }
+            }
+            catch(err){   
+                console.log(err)
+        }
+        }
+    )()
+  },[refresh,name])
+
+  async function blockWorker(id){
+    if(window.confirm("are You sure")){
+      await axios.patch("/servicecenter/workers/block",{id})
+      setRefresh(!refresh)
+    }
+   }
+
+   async function unBlockWorker(id){
+    if(window.confirm("are You sure")){
+      await axios.patch("/servicecenter/workers/unblock",{id})
+      setRefresh(!refresh)
+    }
+   }
   return (
     <div className="app d-flex">
     <ServiceCenterSideBar/>
@@ -16,8 +52,22 @@ function ServiceCenterWorkers() {
       <th scope="col">Email</th>
       <th scope="col">Action</th>
     </tr>
-  </thead>
 
+
+  </thead>
+  <tbody>
+    {
+        workersList.map((item,index)=>{
+            return <tr key={index} className={item.block?"blocked":""}>
+            <td>{index+1}</td>
+            <td>{item.name}</td>
+            <td>{item.email}</td>
+            <td>{item.block? <button className="blockButton" onClick={()=>unBlockWorker(item._id)}>UnBlock</button>: <button onClick={()=>blockWorker(item._id)}>Block</button>}</td>
+            </tr>
+        })
+    }
+  </tbody>
+  
 </table>
 
 <div className="addWorkers d-flex justify-content-center align-items-center">
