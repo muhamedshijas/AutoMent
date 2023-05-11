@@ -19,10 +19,12 @@ import ServiceCenterRequestPage from './pages/admin/ServiceCenterRequestPage.js'
 import ViewServiceCenterPage from './pages/admin/ViewServiceCenterPage.js';
 import ServiceCenterWorkerPage from './pages/ServiceCenter/ServiceCenterWorkerPage.js';
 import ServiceCenterAddWorkerPage from './pages/ServiceCenter/ServiceCenterAddWorkerPage.js';
+import WorkerLoginpage from './pages/Worker/WorkerLoginpage.js';
+import WorkerHomePage from './pages/Worker/WorkerHomePage.js';
 function App() {
   axios.defaults.withCredentials = true;
   axios.defaults.baseURL = "http://localhost:5000/"
-  const { user, admin, refresh,serviceCenter} = useSelector((state) => {
+  const { user, admin, refresh,serviceCenter,worker} = useSelector((state) => {
     return state;
   });
   const dispatch = useDispatch();
@@ -35,8 +37,12 @@ function App() {
       dispatch({ type: "admin", payload: { login: adminData.loggedIn, detials: adminData.admin } })
      
       let { data: serviceCenterData } = await axios.get("/serviceCenter/auth/check");
-     
       dispatch({ type: "serviceCenter", payload: { login: serviceCenterData.loggedIn, details: serviceCenterData.serviceCenter} })
+      
+      let { data: workerData } = await axios.get("/worker/auth/check")
+      console.log(workerData)
+      dispatch({ type: "worker", payload: { login: workerData.loggedIn, detials: workerData.admin } })
+    
     })()
   }, [refresh])
   return(
@@ -108,6 +114,23 @@ function App() {
         </>
       }
         
+
+      {
+        worker.login &&
+        <>
+        <Route path='/worker' element={<WorkerHomePage/>}/>
+        <Route path='/worker/login' element={ <Navigate to ='/worker/'/>}/>
+        </>
+
+      }
+
+      {
+        worker.login===false &&
+        <>
+        <Route path='/worker' element={<Navigate to='/worker/login'/>}/>
+        <Route path='/worker/login' element={<WorkerLoginpage/>}/>
+        </>
+      }
       </Routes>
     </div>
 
