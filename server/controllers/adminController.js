@@ -103,10 +103,6 @@ export async function getAdminServiceCenter(req,res){
         return res.json({err:true,message:"Something went wrong" ,error:err})
 
     }
-
-    
-
-
 }
 
 
@@ -120,6 +116,16 @@ export async function getAdminRequests(req,res){
 
     }catch(err){
         return res.json({err:true,message:"Something went wrong" ,error:err})
+
+    }
+}
+
+export async function getViewServiceCenter(req,res){
+    try{
+        const serviceCenter=await ServiceCenterModel.findById(req.params.id).lean();
+        console.log(serviceCenter)
+        res.json(serviceCenter)
+    }catch(err){
 
     }
 }

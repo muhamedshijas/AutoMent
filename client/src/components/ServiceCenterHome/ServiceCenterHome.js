@@ -1,21 +1,25 @@
 import axios from 'axios';
-import React from 'react'
-import { useDispatch } from 'react-redux';
+import React, { useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux';
+import ServiceCenterHeader from '../ServiceCenterHeader/ServiceCenterHeader';
+import ServiceCenterSideBar from '../ServiceCenterSideBar/ServiceCenterSideBar';
 
 function ServiceCenterHome() {
-  const dispatch=useDispatch();
-    
-  async function handleLogout(id){
-    if(window.confirm("are You sure")){
-      await axios.get("/servicecenter/auth/logout")
-      dispatch({type:"refresh"})
-    }
-  }
+  const dispatch=useDispatch()
+  const serviceCenter=useSelector((state)=>{
+    return state.serviceCenter
+  });
+  console.log(serviceCenter.details)
+
+  
+
   return (
-    <div>
-    <h1 onClick={handleLogout} >
-    ServiceCenterHome
-    </h1>
+    <div className="app">
+    <section className="row">
+    
+    <ServiceCenterSideBar/>
+    h1
+    </section>
     </div>
   )
 }

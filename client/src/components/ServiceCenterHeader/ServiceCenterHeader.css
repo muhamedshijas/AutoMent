@@ -1,0 +1,22 @@
+header{
+    height:40px;
+    display: flex;
+    justify-content:space-between;
+
+    align-items: center;
+    margin-top: 10px;
+    padding: 20px;
+}
+
+header h3{
+    margin-left: 40px;
+    font-weight: 500 !important;
+}
+
+header button{
+    height: 40px;
+    width:180px;
+    background-color:#212A3E ;
+    color:white;
+    border-radius: 5px;
+}

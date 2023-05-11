@@ -1,6 +1,7 @@
 import axios from 'axios'
 import React, { useState } from 'react'
 import AdminHeader from '../AdminHeader/AdminHeader'
+import { Link } from 'react-router-dom'
 import AdminSideBar from '../AdminSideBar/AdminSideBar'
 
 function ServiceCenterRequests() {
@@ -53,7 +54,9 @@ function ServiceCenterRequests() {
             <td>{index+1}</td>
             <td>{item.place}</td>
             <td>{item.email}</td>
-            
+            <Link to={'/admin/servicecenterdetials/'+item._id}>
+            <td>view detials</td>
+            </Link>
             </tr>
         })
     }

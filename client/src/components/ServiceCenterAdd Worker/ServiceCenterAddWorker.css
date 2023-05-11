@@ -1,0 +1,15 @@
+form{
+    display: flex;
+    flex-direction: column;
+    height: 700px;
+    width: 450px;
+}
+
+.field{
+    display: flex !important;
+    flex-direction: column !important; 
+}
+.servicecenterId{
+    height: 0px;
+    visibility: hidden;
+}

@@ -50,7 +50,6 @@ export async function serviceCenterSignUp(req,res){
         const serviceCenterValid=bcrypt.compareSync(password,serviceCenter.password)
         if(!serviceCenterValid){
             return res.json({err:true,message:"wrong password"})
-            console.log("no password")
         }
         const token = jwt.sign(
             {
@@ -58,13 +57,14 @@ export async function serviceCenterSignUp(req,res){
             },"myjwtsecretkey"
             
         ) 
+
+        
         return res.cookie("serviceCenterToken", token, {
             httpOnly: true,
             secure: true,
             maxAge: 1000 * 60 * 60 * 24 * 7,
             sameSite: "none",
         }).json({ err: false })
-        console.log("success")
     }
     catch (err) {
         console.log(err)
@@ -76,7 +76,7 @@ export async function serviceCenterSignUp(req,res){
         try{
             const token=req.cookies.serviceCenterToken
             if(!token){
-                return res,json({err:true,message:"No token"})
+                return res.json({err:true,message:"No token",loggedIn:false})
             }
             const verifiedJWT=jwt.verify(token,"myjwtsecretkey") 
             const serviceCenter=await ServiceCenterModel.findById(verifiedJWT.id,{password:0})
@@ -100,4 +100,7 @@ export async function serviceCenterLogout(req,res){
     }).json({ message: "logged out", error: false });
     console.log("logged in");
 }
-        
+
+export async function getAddWorker(req,res){
+    console.log(req.body)
+}

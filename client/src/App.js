@@ -16,6 +16,9 @@ import AdminUserPage from './pages/admin/AdminUserPage.js';
 import ServiceCenterHomePage from './pages/ServiceCenter/ServiceCenterHomePage.js';
 import AdminServiceCenterPage from './pages/admin/AdminServiceCenterPage.js';
 import ServiceCenterRequestPage from './pages/admin/ServiceCenterRequestPage.js';
+import ViewServiceCenterPage from './pages/admin/ViewServiceCenterPage.js';
+import ServiceCenterWorkerPage from './pages/ServiceCenter/ServiceCenterWorkerPage.js';
+import ServiceCenterAddWorkerPage from './pages/ServiceCenter/ServiceCenterAddWorkerPage.js';
 function App() {
   axios.defaults.withCredentials = true;
   axios.defaults.baseURL = "http://localhost:5000/"
@@ -32,6 +35,7 @@ function App() {
       dispatch({ type: "admin", payload: { login: adminData.loggedIn, detials: adminData.admin } })
      
       let { data: serviceCenterData } = await axios.get("/serviceCenter/auth/check");
+     
       dispatch({ type: "serviceCenter", payload: { login: serviceCenterData.loggedIn, details: serviceCenterData.serviceCenter} })
     })()
   }, [refresh])
@@ -47,6 +51,7 @@ function App() {
             <Route path='/admin/users' element={<AdminUserPage/>}/>
             <Route path='/admin/serviceCenter' element={<AdminServiceCenterPage/>}/>
             <Route path='/admin/requests' element={<ServiceCenterRequestPage/>}/>
+            <Route path='/admin/servicecenterdetials/:id' element={<ViewServiceCenterPage/>}/>
           </>
  
         }
@@ -57,6 +62,8 @@ function App() {
           <>
             <Route path='/admin/login' element={<AdminLoginPage />} />
             <Route path='/admin' element={<Navigate to="/admin/login" />} />
+
+            <Route path='/admin/servicecenterdetials/:id' element={<Navigate to="/admin/login" />}/>
           </>
         }
 
@@ -85,6 +92,8 @@ function App() {
         <Route path='/servicecenter' element={<ServiceCenterHomePage/>}/>
         <Route path='/servicecenter/login' element={<Navigate to='/servicecenter'/>}/>
         <Route path='/servicecenter/signup' element={<Navigate to='/servicecenter'/>}/>
+        <Route path='/servicecenter/workers' element={<ServiceCenterWorkerPage/>}/> 
+        <Route path='/servicecenter/addworkers' element={<ServiceCenterAddWorkerPage/>}/>
         </>
       }
 
