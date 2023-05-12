@@ -1,15 +1,15 @@
 import React from 'react'
 import UserHeader from '../../components/UserHeader/UserHeader'
-import UserHome from '../../components/UserHome/UserHome'
+import UserProfile from '../../components/UserProfile/UserProfile'
 
-function UserHomePage() {
+function UserProfilePage() {
   return (
     <div>
     <UserHeader/>
-    <UserHome/>
-    
+    <UserProfile/>
     </div>
   )
 }
 
-export default UserHomePage
+
+export default UserProfilePage

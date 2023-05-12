@@ -45,8 +45,8 @@ export async function serviceCenterSignUp(req,res){
             return res.json({err:true,message:"no servie center found"})
         }
         if(!serviceCenter.permission){
-            return res.json({err:true,message:"you have no permission check after some time"})
             console.log("no acces")
+            return res.json({err:true,message:"you have no permission check after some time"})
         }
         const serviceCenterValid=bcrypt.compareSync(password,serviceCenter.password)
         if(!serviceCenterValid){

@@ -21,6 +21,7 @@ import ServiceCenterWorkerPage from './pages/ServiceCenter/ServiceCenterWorkerPa
 import ServiceCenterAddWorkerPage from './pages/ServiceCenter/ServiceCenterAddWorkerPage.js';
 import WorkerLoginpage from './pages/Worker/WorkerLoginpage.js';
 import WorkerHomePage from './pages/Worker/WorkerHomePage.js';
+import UserProfilePage from './pages/user/UserProfilePage.js';
 function App() {
   axios.defaults.withCredentials = true;
   axios.defaults.baseURL = "http://localhost:5000/"
@@ -32,7 +33,6 @@ function App() {
     (async function () {
       let { data } = await axios.get("user/auth/check")
       dispatch({ type: "user", payload: { login: data.loggedIn, detials: data.user } })
-    
       let { data: adminData } = await axios.get("/admin/auth/check")
       dispatch({ type: "admin", payload: { login: adminData.loggedIn, detials: adminData.admin } })
      
@@ -40,7 +40,6 @@ function App() {
       dispatch({ type: "serviceCenter", payload: { login: serviceCenterData.loggedIn, details: serviceCenterData.serviceCenter} })
       
       let { data: workerData } = await axios.get("/worker/auth/check")
-      console.log(workerData)
       dispatch({ type: "worker", payload: { login: workerData.loggedIn, detials: workerData.admin } })
     
     })()
@@ -68,7 +67,6 @@ function App() {
           <>
             <Route path='/admin/login' element={<AdminLoginPage />} />
             <Route path='/admin' element={<Navigate to="/admin/login" />} />
-
             <Route path='/admin/servicecenterdetials/:id' element={<Navigate to="/admin/login" />}/>
           </>
         }
@@ -80,6 +78,7 @@ function App() {
             <Route path='/' element={<UserHomePage />} />
             <Route path='/login' element={<Navigate to="/" />} />
             <Route path='/signUp' element={<Navigate to='/' />}/>
+            <Route path='/profile' element={<UserProfilePage/>}/>
           </>
         }
         {
@@ -89,6 +88,7 @@ function App() {
           <Route path='/' element={<Navigate to='/login'/>}/>
           <Route path='/login' element={<UserLoginPage/>} />
           <Route path='/signUp' element={<UserRegisterPage/>}/>
+          <Route path='/profile' element={<Navigate to='/login'/>}/>
           </>
         }
        

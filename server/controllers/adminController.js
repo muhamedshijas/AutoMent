@@ -123,9 +123,10 @@ export async function getAdminRequests(req,res){
 export async function getViewServiceCenter(req,res){
     try{
         const serviceCenter=await ServiceCenterModel.findById(req.params.id).lean();
+
         console.log(serviceCenter)
         res.json(serviceCenter)
     }catch(err){
 
     }
-}
+}    

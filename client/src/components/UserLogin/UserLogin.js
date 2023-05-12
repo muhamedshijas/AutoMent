@@ -3,6 +3,7 @@ import React,{useState} from 'react'
 import { useDispatch } from 'react-redux';
 import { loginImage } from '../images/Images'
 import '../AdminLogin/adminLogin.css';
+import { Link } from 'react-router-dom';
 function UserLogin() {
 const [email,setEmail]=useState("");
 const [password,setPassword]=useState("");
@@ -49,9 +50,11 @@ async function handleSubmit(e){
     <label htmlFor=""><p> password</p></label>
     <input type="password"  value={password} onChange={(e)=>setPassword(e.target.value)} />
     </div>
-    <button type='submit' className='loginSubmit'>Submit</button>
-
+    <button type='submit' disabled={validationErr()} className='loginSubmit'>Submit</button>
+      <p>Don't you have an account </p>
+      <Link to='/signup'>Signup here</Link>
     </form>
+
     </div>
     </section>
   )

@@ -1,0 +1,98 @@
+.profile{
+    height: 500px;
+    width: 350px;
+    color:#2C457E;
+    background-color:#f1f6f9;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-evenly;
+    box-shadow: 0px 0px 100px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+
+}
+.profile .img{
+    background: none;
+}
+
+.profile .img img{
+    border-radius: 68px;
+}
+.profile h1{
+    background: none;
+    text-align: center;
+}
+.profile b{
+    background:none;
+    text-align: center !important;
+}
+.profile button{
+    border: none;
+    width:250px !important;
+    height: 45px !important;
+    border-radius: 5px;
+}
+.edit-profile{
+    background-color: #9BA4B5 !important;
+    color: white;
+}
+
+.user{
+    display: flex;
+    flex-direction: column;
+}
+.userProfile{
+    display: flex;
+    justify-content: space-around;
+    
+}
+
+.card{
+    height: 180px;
+    width: 800px;
+    box-shadow: 0px 0px 100px rgba(0, 0, 0, 0.1);
+    border: none;
+    background-color:#f1f6f9;
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: space-between;
+    padding: 10px;
+
+}
+.serviceHistory h4{
+    background: none;
+    text-align: center;
+}
+.serviceHistory .detials{
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    height: 160px;
+}
+.detials p{
+    background: none;
+}
+
+.serviceHistory{
+    display: flex;
+    flex-direction: column;
+    gap:10px;
+}
+
+.status{
+    display: flex;
+    align-items: center;
+    font-weight: 600;
+    flex-direction:column;
+    justify-content: center;
+    text-decoration: none;
+}
+
+.status a{
+    text-decoration: none;
+    font-weight: 300;
+}
+.userProfile button{
+    background-color:#2C457E; ;
+    color:white;
+}

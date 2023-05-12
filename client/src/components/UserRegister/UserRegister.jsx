@@ -53,7 +53,8 @@ async function handleSubmit(e){
     </div>
     <div className="phone">
     <label htmlFor=""><p> Phone No</p></label>
-    <input type="text"  value={mobileNo} onChange={(e)=>setMobileNo(e.target.value)} />
+    <input type="tel" pattern='[0-9]{3}[0-9]{3}[0-9]{4}'  value={mobileNo} onChange={(e)=>setMobileNo(e.target.value)} />
+    <p className='text-success text-center' style={{fontWeight:'400',fontSize:'12px'}}>(Phone number must contain 10 numbers)</p>
     </div>
     <div className="name">
     <label htmlFor=""><p> name</p></label>
@@ -67,7 +68,7 @@ async function handleSubmit(e){
     <label htmlFor=""><p> Confirm password</p></label>
     <input type="password"  value={confirmPassword} onChange={(e)=>setconfirmPassword(e.target.value)} />
     </div>
-    <button type='submit' className='loginSubmit'>Submit</button>
+    <button type='submit' disabled={!validForm()} className='loginSubmit'>Submit</button>
 
     </form>
     </div>

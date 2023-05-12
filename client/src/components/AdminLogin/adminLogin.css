@@ -83,7 +83,9 @@ body{
     align-items: center;
     width:100%;
 }
-
+button:disabled{
+    opacity: 50%;
+}
 .logo input,.certificate input{
     width: 180px;
 }
