@@ -1,0 +1,9 @@
+.edit-form{
+    display: flex;
+    justify-content: space-around;
+}
+
+.edit-form input{
+    padding: 10px !important;
+    font-size: 18px !important;
+}

@@ -48,7 +48,7 @@ export const checkWorkerLoggedIn=async(req,res)=>{
     if(!worker){
       return res.json({loggedIn:false})
     }
-    return res.json({loggedIn:true})
+    return res.json({worker,loggedIn:true})
   }catch(err){
     console.log(err);
     return res.json({loggedIn:false,error:err})

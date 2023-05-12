@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import './userProfile.css'
@@ -9,6 +9,9 @@ function UserProfile() {
     return state.user.detials
 
   });
+
+ 
+
   console.log(user)
   const dispatch=useDispatch();
   async function handleLogout(){

@@ -22,6 +22,8 @@ import ServiceCenterAddWorkerPage from './pages/ServiceCenter/ServiceCenterAddWo
 import WorkerLoginpage from './pages/Worker/WorkerLoginpage.js';
 import WorkerHomePage from './pages/Worker/WorkerHomePage.js';
 import UserProfilePage from './pages/user/UserProfilePage.js';
+import EditProfilePage from './pages/user/EditProfilePage.js';
+import WorkerProfilePage from './pages/Worker/WorkerProfilePage.js';
 function App() {
   axios.defaults.withCredentials = true;
   axios.defaults.baseURL = "http://localhost:5000/"
@@ -35,12 +37,10 @@ function App() {
       dispatch({ type: "user", payload: { login: data.loggedIn, detials: data.user } })
       let { data: adminData } = await axios.get("/admin/auth/check")
       dispatch({ type: "admin", payload: { login: adminData.loggedIn, detials: adminData.admin } })
-     
       let { data: serviceCenterData } = await axios.get("/serviceCenter/auth/check");
       dispatch({ type: "serviceCenter", payload: { login: serviceCenterData.loggedIn, details: serviceCenterData.serviceCenter} })
-      
       let { data: workerData } = await axios.get("/worker/auth/check")
-      dispatch({ type: "worker", payload: { login: workerData.loggedIn, detials: workerData.admin } })
+      dispatch({ type: "worker", payload: { login: workerData.loggedIn, detials: workerData.worker } })
     
     })()
   }, [refresh])
@@ -79,6 +79,7 @@ function App() {
             <Route path='/login' element={<Navigate to="/" />} />
             <Route path='/signUp' element={<Navigate to='/' />}/>
             <Route path='/profile' element={<UserProfilePage/>}/>
+            <Route path='/edit-profile/:id' element={<EditProfilePage/>}/>
           </>
         }
         {
@@ -120,6 +121,7 @@ function App() {
         <>
         <Route path='/worker' element={<WorkerHomePage/>}/>
         <Route path='/worker/login' element={ <Navigate to ='/worker/'/>}/>
+        <Route path='/worker/profile' element={<WorkerProfilePage/>}/>
         </>
 
       }

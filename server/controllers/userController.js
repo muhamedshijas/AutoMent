@@ -100,3 +100,19 @@ export async function userLogout(req,res){
     }).json({ message: "logged out", error: false });
     console.log("logged in");
 }
+
+export async function getUserProfileEdit(req,res){
+  const id=req.params.id
+
+  const user=await UserModel.findById(id).lean()
+  res.json(user)
+}
+
+export async function userEditProfile(req,res){
+  const id=req.body.id
+  const {name,email,mobileNo}=req.body
+  await UserModel.findByIdAndUpdate(id,{$set:{
+    name,email,mobileNo
+  }})
+  return res.json({error:false})
+}

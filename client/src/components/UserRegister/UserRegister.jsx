@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { loginImage } from '../images/Images'
 import '../AdminLogin/adminLogin.css'
+import './UserRegister.css'
 import { useDispatch } from 'react-redux';
 import axios from 'axios';
 

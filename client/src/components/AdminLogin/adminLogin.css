@@ -14,8 +14,8 @@ body{
     justify-content: center;
 }
 .image img{
-    width: 600px;
-    height: 460px;
+    width: 600px !important;
+    height: 500px !important;
 }
 .form input{
     height: 45px;
@@ -24,6 +24,7 @@ body{
     border: 1px solid  #2C457E ;
     padding: 10px;
     outline: none;
+    background: none;
 
 }
 .loginSubmit{
