@@ -11,6 +11,7 @@ import adminRouter from './routers/adminRouter.js'
 import serviceCenterRouter from './routers/serviceCenterRouter.js'
 import workerAuthRouter from './routers/workerAuthRouter.js'
 import userRouter from './routers/userRouter.js'
+import WorkerRouter from './routers/WorkerRouter.js'
 
 
 app.use(cookieParser())
@@ -34,6 +35,7 @@ app.use('/serviceCenter/auth',serviceCenterAuthRouter)
 app.use('/servicecenter',serviceCenterRouter)
 app.use('/worker/auth/',workerAuthRouter)
 app.use('/',userRouter)
+app.use('/worker',WorkerRouter)
 app.listen(5000, ()=>{
     console.log("started on  port 5000");
 })    

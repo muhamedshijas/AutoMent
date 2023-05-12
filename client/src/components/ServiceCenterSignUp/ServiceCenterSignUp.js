@@ -3,6 +3,7 @@ import React, { useState } from 'react'
 import { useDispatch } from 'react-redux';
 import { loginImage } from '../images/Images'
 import '../AdminLogin/adminLogin.css'
+import './ServiceCenterSignUp.css'
 import { useNavigate } from 'react-router-dom';
 function ServiceCenterSignUp() {
   const [email, setEmail] = useState("");

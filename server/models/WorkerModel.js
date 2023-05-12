@@ -22,6 +22,8 @@ const WorkerSchema = new mongoose.Schema({
     },
     serviceCenterId:{
         type:String
+    },serviceCenter:{
+        type:String
     }
 
 })

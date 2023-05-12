@@ -53,7 +53,7 @@ function ServiceCenterRequests() {
         serviceCenterList.map((item,index)=>{
             return <tr key={index}>
             <td>{index+1}</td>
-            <td>{item.place}</td>
+            <td>{item.name}</td>
             <td>{item.email}</td>
             <Link to={'/admin/servicecenterdetials/'+item._id}>
             <td>view detials</td>

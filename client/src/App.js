@@ -24,6 +24,7 @@ import WorkerHomePage from './pages/Worker/WorkerHomePage.js';
 import UserProfilePage from './pages/user/UserProfilePage.js';
 import EditProfilePage from './pages/user/EditProfilePage.js';
 import WorkerProfilePage from './pages/Worker/WorkerProfilePage.js';
+import WokerEditProfilePage from './pages/Worker/WokerEditProfilePage.js';
 function App() {
   axios.defaults.withCredentials = true;
   axios.defaults.baseURL = "http://localhost:5000/"
@@ -122,6 +123,7 @@ function App() {
         <Route path='/worker' element={<WorkerHomePage/>}/>
         <Route path='/worker/login' element={ <Navigate to ='/worker/'/>}/>
         <Route path='/worker/profile' element={<WorkerProfilePage/>}/>
+        <Route path='/worker/profile/worker/edit-profile/:id' element={<WokerEditProfilePage/>}/>
         </>
 
       }
@@ -131,6 +133,7 @@ function App() {
         <>
         <Route path='/worker' element={<Navigate to='/worker/login'/>}/>
         <Route path='/worker/login' element={<WorkerLoginpage/>}/>
+        <Route path='/worker/profile'element={<Navigate to='/worker/login'/>}/>
         </>
       }
       </Routes>

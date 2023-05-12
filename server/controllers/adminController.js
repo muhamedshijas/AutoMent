@@ -3,6 +3,7 @@ import UserModel from "../models/UserModel.js";
 import bcrypt from 'bcryptjs'
 import jwt from 'jsonwebtoken'
 import ServiceCenterModel from "../models/ServiceCenterModel.js";
+import { createCipheriv } from "crypto";
 
 
 var salt = bcrypt.genSaltSync(10);
@@ -130,3 +131,21 @@ export async function getViewServiceCenter(req,res){
 
     }
 }    
+
+export async function getAcceptRequest(req,res){
+    try{
+        const id=req.body.id
+    await ServiceCenterModel.findByIdAndUpdate(id,{$set:{permission:true}}).lean()
+    res.json({err:false})
+    }catch{
+        
+    }
+}
+
+
+export async function getBlockServiceCenter(req,res){
+    const id=req.body.id
+    await ServiceCenterModel.findByIdAndUpdate(id,{$set:{permission:false}}).lean()
+    res.json({err:false})
+
+}

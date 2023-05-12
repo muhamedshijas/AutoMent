@@ -7,6 +7,13 @@ function AdminServiceCenter() {
   const [refresh, setRefresh] = useState(false)
   const [name, setName] = useState("")
 
+  async function blockServiceCenter(id){
+    if(window.confirm("are You sure")){
+      await axios.patch("/admin/servicecenter/block",{id})
+      setRefresh(!refresh)
+    }
+   }
+
   React.useEffect(()=>{
     (
         async function(){
@@ -49,9 +56,9 @@ function AdminServiceCenter() {
         serviceCenterList.map((item,index)=>{
             return <tr key={index}>
             <td>{index+1}</td>
-            <td>{item.place}</td>
+            <td>{item.name}</td>
             <td>{item.email}</td>
-            
+            <td> <button   onClick={()=>blockServiceCenter(item._id)}>Block</button> </td>
             </tr>
         })
     }

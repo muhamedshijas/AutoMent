@@ -1,5 +1,5 @@
 import express from 'express';
-import { getAdminRequests, getAdminServiceCenter, getAdminUsers, getBlockUser, getunBlockUser, getViewServiceCenter } from '../controllers/adminController.js';
+import { getAcceptRequest, getAdminRequests, getAdminServiceCenter, getAdminUsers, getBlockServiceCenter, getBlockUser, getunBlockUser, getViewServiceCenter } from '../controllers/adminController.js';
 
 const router=express.Router();
 
@@ -9,4 +9,6 @@ router.patch('/users/unblock',getunBlockUser)
 router.get('/serviceCenter',getAdminServiceCenter)
 router.get('/requests',getAdminRequests)
 router.get('/viewservicecenter/:id',getViewServiceCenter)
+router.patch('/serviceCenter/acceptrequest',getAcceptRequest)
+router.patch("/servicecenter/block",getBlockServiceCenter)
 export default router

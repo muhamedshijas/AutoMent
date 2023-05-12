@@ -64,3 +64,18 @@ export async function getWorkerLogout(req,res){
     }).json({ message: "logged out", error: false });
     console.log("logged in");
 }
+
+export async function getWorkerProfileEdit(req,res){
+  const id=req.params.id
+  const worker=await WorkerModel.findById(id).lean()
+  res.json(worker)
+}
+
+export async function workerEditProfile(req,res){
+  const id=req.body.id
+  const {name,email}=req.body
+  await WorkerModel.findByIdAndUpdate(id,{$set:{
+    name,email
+  }})
+  return res.json({error:false})
+}

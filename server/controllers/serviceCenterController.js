@@ -113,8 +113,11 @@ export async function getAddWorker(req,res){
         if(worker){
             return res.json({error:true,message:"worker already exist"})
         }
+        const serviceCenter=await ServiceCenterModel.findById(_id).lean()
+        const serviceCenterName=serviceCenter.name
         const newWorker= new WorkerModel({
-            name,email,serviceCenterId:_id,mobileNo,password:hashPassword
+            name,email,serviceCenterId:_id,mobileNo,password:hashPassword,
+            serviceCenter:serviceCenterName
         })
         await newWorker.save()
         console.log("saved")
