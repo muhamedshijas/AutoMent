@@ -49,7 +49,7 @@ async function handleSubmit(e){
     <label htmlFor=""><p> password</p></label>
     <input type="password"  value={password} onChange={(e)=>setPassword(e.target.value)} />
     </div>
-    <button type='submit'   className='loginSubmit'>Login</button>
+    <button type='submit' disabled={validationErr()}   className='loginSubmit'>Login</button>
 
     </form>
     </div>

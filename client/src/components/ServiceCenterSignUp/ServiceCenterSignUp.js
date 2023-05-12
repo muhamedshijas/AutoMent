@@ -103,7 +103,7 @@ function ServiceCenterSignUp() {
               <input type="file" className="chooseImage" onChange={handleImage} />
             </div>
           </div>
-          <button type='submit' className='loginSubmit'>Submit</button>
+          <button type='submit' disabled={!validForm()} className='loginSubmit'>Submit</button>
 
         </form>
       </div>

@@ -120,22 +120,8 @@ export async function getAddWorker(req,res){
             serviceCenter:serviceCenterName
         })
         await newWorker.save()
-        console.log("saved")
-
-   const token = jwt.sign(
-      {
-        id: newWorker._id,
-      },
-      "myjwtsecretkey"
-    );
-    return res
-      .cookie("workerToken", token, {
-        httpOnly: true,
-        secure: true,
-        maxAge: 1000 * 60 * 60 * 24 * 7,
-        sameSite: "none",
-      })
-      .json({ error: false });
+        console.log("saved")   
+      res.json({ error: false });
     }
     catch(err){
       console.log(err)

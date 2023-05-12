@@ -38,7 +38,9 @@ function AdminViewServiceCenter({id}) {
     <p>District:{serviceCenter.district}</p>
     <p>PhoneNo</p>
     <p>Certificate</p>
-    <img src="https://res.cloudinary.com/dv5bvojzi/image/upload/v1683726867/Automent/xgcucze6dtbiipj193uo.png" alt="" />
+    <div className="images">
+    {serviceCenter.certificate && <img src={serviceCenter.certificate.url} alt="" />}
+    </div>
     <div className="permission">
     <button onClick={()=>acceptRequest(serviceCenter._id)}>Accept</button>
     <Link to='/admin/requests'>
