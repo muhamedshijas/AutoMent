@@ -2,6 +2,7 @@
     display: flex;
     background-color:#212A3E;
     color:white;
+    height: 300px;
     align-items: center;
     justify-content: space-around;
     padding: 20px;

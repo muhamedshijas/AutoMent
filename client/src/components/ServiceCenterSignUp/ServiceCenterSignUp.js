@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 import { loginImage } from '../images/Images'
 import '../AdminLogin/adminLogin.css'
 import './ServiceCenterSignUp.css'
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 function ServiceCenterSignUp() {
   const [email, setEmail] = useState("");
   const [name,setName]=useState("");
@@ -99,12 +99,14 @@ function ServiceCenterSignUp() {
           </div>
           <div className="logos">
             <div className="certificate">
-              <label htmlFor=""> Add Certificate of your service Center</label>
+              <label htmlFor=""> Add Reg Certificate of your service Center</label>
               <input type="file" className="chooseImage" onChange={handleImage} />
+              <p className='text-success text-center' style={{fontWeight:'400',fontSize:'12px'}}>(This is for your permission purpose)</p>
             </div>
           </div>
           <button type='submit' disabled={!validForm()} className='loginSubmit'>Submit</button>
-
+   <p>Do you have an account </p>
+      <Link to='/servicecenter/login'>Login here</Link>
         </form>
       </div>
     </section>

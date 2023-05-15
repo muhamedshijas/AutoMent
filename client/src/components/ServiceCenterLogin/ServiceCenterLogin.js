@@ -3,6 +3,7 @@ import React,{useState} from 'react'
 import { useDispatch } from 'react-redux';
 import { loginImage } from '../images/Images'
 import '../AdminLogin/adminLogin.css'
+import { Link } from 'react-router-dom';
 function ServiceCenterLogin() {
 const [email,setEmail]=useState("");
 const [password,setPassword]=useState("");
@@ -50,7 +51,8 @@ async function handleSubmit(e){
     <input type="password"  value={password} onChange={(e)=>setPassword(e.target.value)} />
     </div>
     <button type='submit' disabled={validationErr()} className='loginSubmit'>Submit</button>
-
+    <p>Don't you have an account </p>
+      <Link to='/servicecenter/signup'>Signup here</Link>
     </form>
     </div>
     </section>

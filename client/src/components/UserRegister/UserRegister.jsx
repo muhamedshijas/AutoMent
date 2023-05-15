@@ -4,6 +4,7 @@ import '../AdminLogin/adminLogin.css'
 import './UserRegister.css'
 import { useDispatch } from 'react-redux';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 function UserRegister() {
     
@@ -70,7 +71,8 @@ async function handleSubmit(e){
     <input type="password"  value={confirmPassword} onChange={(e)=>setconfirmPassword(e.target.value)} />
     </div>
     <button type='submit' disabled={!validForm()} className='loginSubmit'>Submit</button>
-
+    <p>Do you have an account </p>
+      <Link to='/login'>Login here</Link>
     </form>
     </div>
     </section>

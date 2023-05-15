@@ -3,11 +3,11 @@ import { Link } from 'react-router-dom'
 function ServiceCenterSideBar() {
   return (
     <div className="sidebar">
- <Link to='/admin/'>
+ <Link to='/servicecenter'>
  <b>Dash board</b>
  </Link>
  
- <Link to='/admin/users'>
+ <Link to='/servicecenter'>
  <b>Bookings</b>
  </Link>
 

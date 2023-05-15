@@ -3,7 +3,22 @@ import React from 'react'
 import { useDispatch } from 'react-redux'
 import UserBanner from '../UserBanner/UserBanner';
 import './userHome.css'
-
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import oil from '../../assets/images/oil.png'
+import washing from '../../assets/images/washing.png'
+import painting from '../../assets/images/painting.png'
+import wheelAlignment from '../../assets/images/wheelAlignment.png'
+import AutoDiagnosis from '../../assets/images/AutoDiagnosis.png'
+import repair from '../../assets/images/repair.png'
+import BMW from '../../assets/images/BMW.png'
+import Benz from '../../assets/images/Benz.png'
+import Audi from '../../assets/images/Audi.png'
+import Jaguar from '../../assets/images/jaguar.png'
+import Mini from '../../assets/images/Mini.png'
+import RR from '../../assets/images/RR.png'
+ 
 function UserHome() {
   const dispatch=useDispatch();
   
@@ -13,7 +28,62 @@ function UserHome() {
     
     <UserBanner/>
     </div>
-    <h1>user Home</h1>
+
+    <section className='userSection'>
+    <h1>Our services</h1>
+    
+    <Row className='service'>
+    <Col className="service-cards">
+    <img src={wheelAlignment} alt="" />
+    <b>Wheel Alignment</b>
+    </Col>
+    <Col className="service-cards">
+    <img src={repair} alt="" srcset="" />
+    <b>Full Repair</b>
+    </Col>
+    <Col className="service-cards">
+    <img src={washing} alt="" />
+    <b>washing</b>
+    </Col>
+    </Row>
+
+    <Row  className='service'>
+    <Col className="service-cards">
+    <img src={painting} alt="" />
+    <b>Painting</b>
+    </Col>
+    <Col className="service-cards">
+    <img src={oil} alt="" />
+    <b>Oil Change</b>
+    </Col>
+    <Col className="service-cards">
+      <img src={AutoDiagnosis} alt="" />
+      <b>Auto Diagnosis</b>
+    </Col>
+    </Row>
+    
+    <Row className="brands">
+    <h1>Top Brands With Us</h1>
+    <Col className='brand-card'>
+    <img src={RR}/>
+    </Col>
+    <Col className='brand-card'>
+    <img src={BMW}/>
+    </Col>
+    <Col className='brand-card'>
+    <img src={Benz}/>
+    </Col>
+    <Col className='brand-card'>
+    <img src={Audi}/>
+    </Col>
+    <Col className='brand-card'>
+    <img src={Mini}/>
+    </Col>
+    <Col className='brand-card'>
+    <img src={Jaguar}/>
+    </Col>
+    </Row>
+    </section>
     </div>
   )
 }
