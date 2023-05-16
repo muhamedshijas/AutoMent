@@ -15,8 +15,11 @@ export async function serviceCenterSignUp(req,res){
         const certificate=await cloudinary.uploader.upload(req.body.certificate,{
             folder:'Automent'
         })
+        const logo=await cloudinary.uploader.upload(req.body.logo,{
+            folder:'Automent'
+        })
         const hashPassword = bcrypt.hashSync(password, salt);
-        const serviceCenter = await ServiceCenterModel.create({...req.body,password:hashPassword, certificate});
+        const serviceCenter = await ServiceCenterModel.create({...req.body,password:hashPassword, certificate,logo});
         console.log("saved");
         const token = jwt.sign(
             {

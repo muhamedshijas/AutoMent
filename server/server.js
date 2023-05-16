@@ -34,7 +34,7 @@ app.use("/user/auth/",userAuthRouter)
 app.use('/serviceCenter/auth',serviceCenterAuthRouter)
 app.use('/servicecenter',serviceCenterRouter)
 app.use('/worker/auth/',workerAuthRouter)
-app.use('/',userRouter)
+app.use('/user',userRouter)
 app.use('/worker',WorkerRouter)
 app.listen(5000, ()=>{
     console.log("started on  port 5000");

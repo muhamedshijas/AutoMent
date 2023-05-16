@@ -2,6 +2,8 @@ import UserModel from '../models/UserModel.js'
 import bcrypt from "bcryptjs"
 import jwt from 'jsonwebtoken'
 import crypto from 'crypto'
+import { log } from 'console';
+import ServiceCenterModel from '../models/ServiceCenterModel.js';
 
 var salt=bcrypt.genSaltSync(10);
 
@@ -116,3 +118,20 @@ export async function userEditProfile(req,res){
   }})
   return res.json({error:false})
 }
+
+export async function getUserServiceCenterList(req,res){
+
+  try{
+        const name=req.query.name?? ""
+        let servicecenter=await ServiceCenterModel.find({district:new RegExp(name, 'i'),permission:true }).lean()
+        console.log(servicecenter)
+        res.json(servicecenter)
+
+    }catch(err){
+        return res.json({err:true,message:"Something went wrong" ,error:err})
+
+    }
+
+}
+
+

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './UserServiceCenterChoose.css'
 import logo1 from '../../assets/images/logo1.png'
 import logo2 from '../../assets/images/logo2.png'
@@ -10,9 +10,32 @@ import logo7 from '../../assets/images/logo7.png'
 import logo8 from '../../assets/images/logo8.png'
 import Row from 'react-bootstrap/esm/Row'
 import Col from 'react-bootstrap/esm/Col'
+import { ImSearch } from "react-icons/im";
 import { Link } from 'react-router-dom'
+import axios from 'axios'
 
 function UserServiceCenterSelection() {
+  const [serviceCenterList,setServiceCenterList]=useState([""])
+  const [name,setName]=useState("")
+  const[refresh,setRefresh]=useState(false)
+  React.useEffect(()=>{
+    (
+        async function(){
+            try{
+                const {data}=await axios.get("/user/servicecenter?name="+name)
+                
+                if(!data.err){     
+                  console.log(data)
+                    setServiceCenterList(data)
+                }
+            }
+            
+            catch(err){   
+                console.log(err)
+        }
+        }
+    )()
+  },[refresh,name])
   return (
     <div>
     
@@ -20,99 +43,39 @@ function UserServiceCenterSelection() {
     <div className="servicecenter-choosing-banner">
     <h3>Where you want your Service center</h3>
     <div className="choose-input">
-    <input type="text" name="" id="" placeholder="Choose your district" />
-     
-    search
+    <input type="text" name="" id="" placeholder="Choose your district"  value={name} onChange={(e) => setName(e.target.value)} />
+    <ImSearch/>
     </div>
     </div>
 
-    <Row className="service-centers">
-    <Col className="service-center-cards">
-    <Link to ='/choosepackage'>
-    <div className="service-center-images">
-    <img src={logo1} alt="" srcset="" />
-    </div>
-    <div className="service-center-detials">
-    <b>name</b>
-    <p>place</p>
-    <p>District</p>
-    </div>
-    </Link>
-    </Col>
-    <Col className="service-center-cards">
-    <div className="service-center-images">
-    <img src={logo2} alt="" srcset="" />
-    </div>
-    <div className="service-center-detials">
-    <b>name</b>
-    <p>place</p>
-    <p>District</p>
-    </div>
-    </Col>
-    <Col className="service-center-cards">
-    <div className="service-center-images">
-    <img src={logo3} alt="" srcset="" />
-    </div>
-    <div className="service-center-detials">
-    <b>name</b>
-    <p>place</p>
-    <p>District</p>
-    </div>
-    </Col>
-    <Col className="service-center-cards">
-    <div className="service-center-images">
-    <img src={logo4} alt="" srcset="" />
-    </div>
-    <div className="service-center-detials">
-    <b>name</b>
-    <p>place</p>
-    <p>District</p>
-    </div>
-    </Col>
-    </Row>
-    <Row className="service-centers">
+    <div className="service-centers">
+    <Row>
+    {
+      serviceCenterList.map((item,index)=>{
+        return <Col md={3} >
+        <div className="service-center-cards mt-5">
+        <Link to ='/choosepackage'>
+        <div className="service-center-images">
+        {item.logo && <img src={item.logo.url} alt="" />}
+        </div>
+        <div className="service-center-detials">
+        <b>{item.name}</b>
+        <p>{item.place}</p>
+        <p>{item.district}</p>
+        </div>
+        </Link>
+        </div>
+        </Col>
+        
+      })
+      
+    }
     
-    <Col className="service-center-cards">
-    <div className="service-center-images">
-    <img src={logo8} alt="" srcset="" />
-    </div>
-    <div className="service-center-detials">
-    <b>name</b>
-    <p>place</p>
-    <p>District</p>
-    </div>
-    </Col>
-    <Col className="service-center-cards">
-    <div className="service-center-images">
-    <img src={logo5} alt="" srcset="" />
-    </div>
-    <div className="service-center-detials">
-    <b>name</b>
-    <p>place</p>
-    <p>District</p>
-    </div>
-    </Col>
-    <Col className="service-center-cards">
-    <div className="service-center-images">
-    <img src={logo6} alt="" srcset="" />
-    </div>
-    <div className="service-center-detials">
-    <b>name</b>
-    <p>place</p>
-    <p>District</p>
-    </div>
-    </Col>
-    <Col className="service-center-cards">
-    <div className="service-center-images">
-    <img src={logo7} alt="" srcset="" />
-    </div>
-    <div className="service-center-detials">
-    <b>name</b>
-    <p>place</p>
-    <p>District</p>
-    </div>
-    </Col>
+    
+    
     </Row>
+    
+    </div>
     </div>
     
     </div>

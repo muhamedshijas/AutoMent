@@ -19,6 +19,11 @@ const ServiceCenterSchema = new mongoose.Schema({
         type:Object,
         required:true
     },
+    logo:{    
+        type:Object,
+        required:true
+    },
+    
     permission:{
         type:Boolean,
         default:false

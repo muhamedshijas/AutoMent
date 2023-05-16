@@ -37,9 +37,11 @@ function AdminViewServiceCenter({id}) {
     <p>Place:{serviceCenter.place}</p>
     <p>District:{serviceCenter.district}</p>
     <p>PhoneNo</p>
-    <p>Certificate</p>
     <div className="images">
+    <p>Certificate</p>
     {serviceCenter.certificate && <img src={serviceCenter.certificate.url} alt="" />}
+    <p>Logo</p>
+    {serviceCenter.logo && <img src={serviceCenter.logo.url} alt="" />}
     </div>
     <div className="permission">
     <button onClick={()=>acceptRequest(serviceCenter._id)}>Accept</button>

@@ -15,6 +15,8 @@ function ServiceCenterSignUp() {
   const [certificate, setCertificate] = useState(null)
   const [image, setImage] = useState(null)
   const [finalImage,setFinalImage]=useState(null)
+  const [finalLogo,setFinalLogo]=useState(null)
+
   const dispatch = useDispatch();
   const navigate = useNavigate(); 
 
@@ -33,12 +35,29 @@ function ServiceCenterSignUp() {
             setErrmessage("Invalid File type")
         }
     }
+    const handleLogo=(e)=>{
+        if(isValidFileUploaded(e.target.files[0])){
+            setImage(e.target.files[0])
+            setErrmessage("")
+            LogoTOBase(e.target.files[0])
+        }else{
+            setErrmessage("Invalid File type")
+        }
+    }
 
     const ImageTOBase=(file)=>{
       const reader= new FileReader();
       reader.readAsDataURL(file);
       reader.onloadend=()=>{
         setFinalImage(reader.result)
+      }
+    }
+
+    const LogoTOBase=(file)=>{
+      const reader= new FileReader();
+      reader.readAsDataURL(file);
+      reader.onloadend=()=>{
+        setFinalLogo(reader.result)
       }
     }
 
@@ -53,7 +72,7 @@ function ServiceCenterSignUp() {
     if (validForm()) {
       alert("hsfhsdjf")
       let { data } = await axios.post("/serviceCenter/auth/signUp", {
-    email,name, password, place, district, certificate:finalImage
+    email,name, password, place, district, certificate:finalImage,logo:finalLogo,
       })
 
       if (!data.error) {
@@ -101,6 +120,11 @@ function ServiceCenterSignUp() {
             <div className="certificate">
               <label htmlFor=""> Add Reg Certificate of your service Center</label>
               <input type="file" className="chooseImage" onChange={handleImage} />
+              <p className='text-success text-center' style={{fontWeight:'400',fontSize:'12px'}}>(This is for your permission purpose)</p>
+            </div>
+            <div className="certificate">
+              <label htmlFor=""> Add Logo of your service Center</label>
+              <input type="file" className="chooseImage" onChange={handleLogo} />
               <p className='text-success text-center' style={{fontWeight:'400',fontSize:'12px'}}>(This is for your permission purpose)</p>
             </div>
           </div>

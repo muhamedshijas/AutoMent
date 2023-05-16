@@ -31,7 +31,7 @@ function UserEditProfile() {
     console.log("hiii")
     e.preventDefault();
     if (!validationErr()) {
-      let {data}=await axios.post("/edit-profile", {
+      let {data}=await axios.post("/user/edit-profile", {
         name, email,  mobileNo,id
     });
     console.log(data)
@@ -47,7 +47,7 @@ function UserEditProfile() {
 
     useEffect(()=>{
         (async function(){
-            let {data}=await axios.get('/edit-profile/'+id)
+            let {data}=await axios.get('/user/edit-profile/'+id)
             setName(data.name)
             setEmail(data.email)
             setMobileNo(data.mobileNo)
