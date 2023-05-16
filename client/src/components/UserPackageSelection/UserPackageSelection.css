@@ -1,0 +1,67 @@
+.package-cards{
+    background-color:#f1f6f9;
+    border-radius: 6px;
+    box-shadow: 0px 0px 100px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width:95%;
+}
+.package-cards .package-image img{
+    height: 180px;
+    width: 180px;
+}
+
+.package-cards .package-detials h4{
+    text-align: left;
+    font-weight: 600;
+}
+.package-cards .package-detials{
+    font-size: 16px;
+    font-weight: 550;
+    width: 500px;
+    font-family:'Times New Roman', Times, serif;
+}
+.package-cards .package-detials .package-col{
+    display: flex;
+    flex-direction: column ;
+    gap: 5px;
+}
+.package-cards .package-detials .package-col .package-name{
+    display: flex;
+    gap: 5px;
+    align-items: center;
+}
+
+.package-cards .package-buton button{
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.package-cards .package-buton{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end !important;
+    height: 160px!important;
+    margin-right: 20px;
+}
+.choose-package{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    max-height: 100%;
+}
+.choose-package .create-custom-button{
+    display: flex;
+    justify-content: center;
+}
+.choose-package  .custom-button{
+    width:300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 500;
+}
+

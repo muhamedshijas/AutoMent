@@ -10,6 +10,7 @@ import logo7 from '../../assets/images/logo7.png'
 import logo8 from '../../assets/images/logo8.png'
 import Row from 'react-bootstrap/esm/Row'
 import Col from 'react-bootstrap/esm/Col'
+import { Link } from 'react-router-dom'
 
 function UserServiceCenterSelection() {
   return (
@@ -26,8 +27,8 @@ function UserServiceCenterSelection() {
     </div>
 
     <Row className="service-centers">
-    
     <Col className="service-center-cards">
+    <Link to ='/choosepackage'>
     <div className="service-center-images">
     <img src={logo1} alt="" srcset="" />
     </div>
@@ -36,6 +37,7 @@ function UserServiceCenterSelection() {
     <p>place</p>
     <p>District</p>
     </div>
+    </Link>
     </Col>
     <Col className="service-center-cards">
     <div className="service-center-images">

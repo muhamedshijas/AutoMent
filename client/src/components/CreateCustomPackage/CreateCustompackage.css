@@ -1,0 +1,14 @@
+button{
+    height: 40px;
+    width:180px;
+    background-color:#212A3E ;
+    color:white;
+    border-radius: 5px;
+}
+
+.add-service-button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+}

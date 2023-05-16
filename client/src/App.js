@@ -26,6 +26,9 @@ import EditProfilePage from './pages/user/EditProfilePage.js';
 import WorkerProfilePage from './pages/Worker/WorkerProfilePage.js';
 import WokerEditProfilePage from './pages/Worker/WokerEditProfilePage.js';
 import ServiceCenterSlectionPage from './pages/user/ServiceCenterSlectionPage.js';
+import PackageSelection from './pages/user/PackageSelectionPage.js';
+import PackageSelectionPage from './pages/user/PackageSelectionPage.js';
+import CreateCustomPackagePage from './pages/user/CreateCustomPackagePage.js';
 function App() {
   axios.defaults.withCredentials = true;
   axios.defaults.baseURL = "http://localhost:5000/"
@@ -86,6 +89,8 @@ function App() {
             <Route path='/profile' element={<UserProfilePage/>}/>
             <Route path='/edit-profile/:id' element={<EditProfilePage/>}/>
            <Route path='/chooseservicecenter' element={<ServiceCenterSlectionPage/>}/>
+           <Route path='/choosepackage' element={<PackageSelectionPage/>}/>
+           <Route path='/createcustompackage' element={<CreateCustomPackagePage/>}/>
           </>
         }
         {
@@ -98,6 +103,7 @@ function App() {
           <Route path='/profile' element={<Navigate to='/login'/>}/>
           <Route path='/edit-profile/:id' element={<Navigate to='/login'/>}/>
           <Route path='/chooseservicecenter'element={<Navigate to='/login'/>}/>
+          <Route path='/createcustompackage'element={<Navigate to='/login'/>}/>
           </>
         }
        
