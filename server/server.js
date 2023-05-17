@@ -12,6 +12,10 @@ import serviceCenterRouter from './routers/serviceCenterRouter.js'
 import workerAuthRouter from './routers/workerAuthRouter.js'
 import userRouter from './routers/userRouter.js'
 import WorkerRouter from './routers/WorkerRouter.js'
+import verifyServiceCenter from './middlewares/verifyServiceStation.js';
+import verifyUser from './middlewares/verifyUser.js';
+import verifyWorker from './middlewares/verifyWorker.js';
+import verifyAdmin from './middlewares/verifyAdmin.js';
 
 
 app.use(cookieParser())
@@ -29,13 +33,13 @@ app.use(
 dbConnect() 
 
 app.use("/admin/auth/",adminAuthRouter)
-app.use("/admin",adminRouter)
+app.use("/admin",verifyAdmin,adminRouter)
 app.use("/user/auth/",userAuthRouter)
 app.use('/serviceCenter/auth',serviceCenterAuthRouter)
-app.use('/servicecenter',serviceCenterRouter)
+app.use('/servicecenter',verifyServiceCenter,serviceCenterRouter)
 app.use('/worker/auth/',workerAuthRouter)
-app.use('/user',userRouter)
-app.use('/worker',WorkerRouter)
+app.use('/user',verifyUser,userRouter)
+app.use('/worker',verifyWorker,WorkerRouter)
 app.listen(5000, ()=>{
     console.log("started on  port 5000");
 })    

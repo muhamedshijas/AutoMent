@@ -14,6 +14,7 @@ function UserRegister() {
     const [password,setPassword]=useState("");
     const [confirmPassword,setconfirmPassword]=useState("");
     const [errMessage,setErrmessage]=useState("");
+    const [showOtpPage,setShowOtpPage]=useState(false)
     const dispatch=useDispatch()
     const validForm = () => {
         if (name.trim() === "" || password.trim() === "" || email.trim() === "" || password !== confirmPassword) {
@@ -32,6 +33,7 @@ async function handleSubmit(e){
         console.log(data);
         if(!data.error){
             dispatch({type:"refresh"})
+            setShowOtpPage(true)
         }else{
             setErrmessage(data.message)
         }
@@ -40,6 +42,7 @@ async function handleSubmit(e){
 
   return (
     <section className='d-flex justify-content-evenly align-items-center loginSection '>
+    
     <div className="login row w-75 ">
     <div className="image col-md-7">
     <h3>User SignUp </h3>

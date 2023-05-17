@@ -1,5 +1,6 @@
 import axios from 'axios'
 import React, { useState } from 'react'
+import './AddCustomService.css'
 
 function AddCustomService({setShowModal, setRefresh, refresh}) {
   const [name,setName]=useState("")
@@ -29,17 +30,19 @@ function AddCustomService({setShowModal, setRefresh, refresh}) {
   return (
    
     <div className="app">
-    
+    <div className="add-custom-service">
     <form action="" onSubmit={handleSubmit}>
+    <h4>Add Another Service</h4>
     <select name="" id="">
     {
       serviceList.map((item,index)=>{
           return<option value="">{item.serviceName}</option>
-      })
-  }
-    </select>
-    <button type='submit'>Submit</button>
-    </form>
+        })
+      }
+      </select>
+      <button type='submit'>Submit</button>
+      </form>
+      </div>
     </div>
 
   )

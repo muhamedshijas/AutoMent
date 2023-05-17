@@ -35,8 +35,8 @@ function SerViceCenterAddWorker() {
       });
       console.log(data)
       if(!data.error){
-          return navigate("/servicecenter/workers")
-          dispatch({type:"refresh"})
+        dispatch({type:"refresh"})
+        return navigate("/servicecenter/workers")
       }else{
         setErrMessage(data.message)
       }

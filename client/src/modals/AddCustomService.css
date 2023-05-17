@@ -1,0 +1,15 @@
+form{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  
+}
+
+form select{
+    width: 200px;
+    height: 40px;
+    outline: none;
+    border: 3px solid #2C457E;
+    padding: 5px;
+    border-radius: 5px;
+}

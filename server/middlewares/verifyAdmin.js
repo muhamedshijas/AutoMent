@@ -1,21 +1,22 @@
 import jwt from "jsonwebtoken";
-import ServiceCenterModel from '../models/ServiceCenterModel.js'
-const verifyServiceCenter = async (req, res, next) => {
+import AdminModel from "../models/AdminModel.js";
+
+const verifyAdmin = async (req, res, next) => {
     try {
-        const token = req.cookies.serviceCenterToken;
+        const token = req.cookies.adminToken;
         if (!token)
             return res.json({ loggedIn: false, error: true, message: "no token" });
 
         const verifiedJWT = jwt.verify(token, "myjwtsecretkey");
-        const serviceCenter= await ServiceCenterModel.findOne({_id:verifiedJWT.id}, { password: 0 });
-        if (!serviceCenter) {
+        const admin= await AdminModel.findOne({_id:verifiedJWT.id}, { password: 0 });
+        if (!admin) {
             return res.json({ loggedIn: false });
         }
-        req.serviceCenter=serviceCenter;
+        req.admin=admin;
         next()
     } catch (err) {
         console.log(err)
         res.json({ loggedIn: false, error: err });
     }
 }
-export default verifyServiceCenter
+export default verifyAdmin
