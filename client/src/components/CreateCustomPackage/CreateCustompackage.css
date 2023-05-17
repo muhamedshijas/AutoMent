@@ -12,3 +12,9 @@ button{
     align-items: center;
     margin-top: 10px;
 }
+.modals{
+    width:100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

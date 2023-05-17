@@ -3,6 +3,7 @@ import UserModel from "../models/UserModel.js";
 import bcrypt from 'bcryptjs'
 import jwt from 'jsonwebtoken'
 import ServiceCenterModel from "../models/ServiceCenterModel.js";
+import ServiceModel from "../models/ServiceModel.js";
 import { createCipheriv } from "crypto";
 
 
@@ -146,6 +147,49 @@ export async function getAcceptRequest(req,res){
 export async function getBlockServiceCenter(req,res){
     const id=req.body.id
     await ServiceCenterModel.findByIdAndUpdate(id,{$set:{permission:false}}).lean()
+    res.json({err:false})
+
+}
+
+export async function addServices(req,res){
+    try{
+        const {services}=req.body
+        console.log(services)
+        
+        const existService=await ServiceModel.findOne({serviceName:services}).lean()
+        if(existService){
+            return res.json({error:true,message:"service  already exist"})
+        }
+        const newservice= new ServiceModel({serviceName:services})
+        await newservice.save()
+        console.log("saved")   
+      res.json({ error: false });
+    }
+    catch(err){
+      console.log(err)
+        res.json({error:true, err})
+    }
+}
+
+
+export async function getServices(req,res){
+
+try{
+    const name=req.query.name?? ""
+    let services = await ServiceModel.find({ serviceName: new RegExp(name, 'i') }).lean()
+  
+res.json(services)
+}
+catch(err){
+    console.log(err)
+}
+}
+
+
+export async function getDeleteService(req,res){
+    const id=req.query.id
+    console.log(id)
+    await ServiceModel.findByIdAndDelete(id)
     res.json({err:false})
 
 }

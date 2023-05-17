@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React from 'react'
 import { useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom';
 import './AdminHeader.css'
 
 function AdminHeader() {
@@ -14,7 +15,9 @@ function AdminHeader() {
   }
   return (
    <header>
+   <Link to='/admin'>
    <h3>AutoMend</h3>
+   </Link>
    <button onClick={handleLogout}>Logout</button>
    </header>
   )

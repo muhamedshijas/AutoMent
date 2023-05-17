@@ -29,6 +29,8 @@ import ServiceCenterSlectionPage from './pages/user/ServiceCenterSlectionPage.js
 import PackageSelection from './pages/user/PackageSelectionPage.js';
 import PackageSelectionPage from './pages/user/PackageSelectionPage.js';
 import CreateCustomPackagePage from './pages/user/CreateCustomPackagePage.js';
+import AdminServicePage from './pages/admin/AdminServicePage.js';
+import AdminAddServicePage from './pages/admin/AdminAddServicePage.js';
 function App() {
   axios.defaults.withCredentials = true;
   axios.defaults.baseURL = "http://localhost:5000/"
@@ -62,6 +64,8 @@ function App() {
             <Route path='/admin/serviceCenter' element={<AdminServiceCenterPage/>}/>
             <Route path='/admin/requests' element={<ServiceCenterRequestPage/>}/>
             <Route path='/admin/servicecenterdetials/:id' element={<ViewServiceCenterPage/>}/>
+            <Route path='/admin/service' element={<AdminServicePage/>}/>
+            <Route path='/admin/addServices' element={<AdminAddServicePage/>}/>
           </>
  
         }

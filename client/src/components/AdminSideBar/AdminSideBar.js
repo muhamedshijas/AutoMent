@@ -18,6 +18,9 @@ function AdminSideBar() {
  <Link to='/admin/requests'>
  <b> Requests</b>
  </Link>
+ <Link to='/admin/service'>
+ <b> Services</b>
+ </Link>
  </div>
   )
 }
