@@ -7,7 +7,7 @@
 }
 .detials{
     display: flex;
-    width: 200px;
+    width: 300px;
     justify-content: space-around;
 
 }
@@ -26,9 +26,11 @@
 .logo h3{
     font-style: italic;
     font-family: 'Times New Roman', Times, serif;
+    width:100%;
 }
 
 .detials h5{
     font-weight: 500;
+    width: 200px;
     font-family: Arial, Helvetica, sans-serif;
 }

@@ -20,7 +20,9 @@ function UserHeader() {
   return (
     <div className="nav">
     <div className="logo">
+    <Link to ='/'>
     <h3>AutoMent</h3>
+    </Link>
     </div>
     <div className="detials">
     <Link to ='/profile'>

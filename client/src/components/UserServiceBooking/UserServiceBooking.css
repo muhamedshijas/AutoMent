@@ -1,0 +1,31 @@
+.booking-form{
+    display: flex !important;
+    flex-direction: column;
+    height:600px !important;
+    width: 80% !important;
+    justify-content: space-around;
+    font-size: 19px;
+    font-weight: 600;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.vehicle , .owner, .booking-detials,.time-date{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap:10px;
+}
+.booking-form input{
+    width: 250px;
+    height: 40px;
+    border: 1px solid black;
+}
+.booking-form h4{
+    font-weight: 700;
+}
+.service-booking{
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+}
