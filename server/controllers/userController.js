@@ -4,41 +4,79 @@ import jwt from 'jsonwebtoken'
 import crypto from 'crypto'
 import { log } from 'console';
 import ServiceCenterModel from '../models/ServiceCenterModel.js';
+import sentOTP from '../helpers/SentOtp.js';
 
 var salt=bcrypt.genSaltSync(10);
 
 export async function userSignup(req,res){
     try{
-        const {name,email,password,mobileNo}=req.body;
-        const hashPassword=bcrypt.hashSync(password,salt)
-        const user=await UserModel.findOne({email});
-        if(user){
-            return res.json({error:true,message:"user already exist"})
+      const { email } = req.body;
+        const user = await UserModel.findOne({ email });
+        if (user) {
+            return res.json({ err: true, message: "User Already Exist" })
         }
-        const newUser= new UserModel({
-            name,email,password:hashPassword,mobileNo
-        })
-        await newUser.save()
+        let otp = Math.ceil(Math.random() * 1000000)
+        console.log(otp)
+    let otpSent = await sentOTP(email, otp)
         const token = jwt.sign(
-      {
-        id: newUser._id,
-      },
-      "myjwtsecretkey"
-    );
-    return res
-      .cookie("userToken", token, {
-        httpOnly: true,
-        secure: true,
-        maxAge: 1000 * 60 * 60 * 24 * 7,
-        sameSite: "none",
-      })
-      .json({ error: false });
+            {
+                otp: otp
+            },"myjwtsecretkey"
+           
+        )
+        return res.cookie("tempToken", token, {
+            httpOnly: true,
+            secure: true,
+            maxAge: 1000 * 60 * 10,
+            sameSite: "none",
+        }).json({ err: false })
     }
     catch(err){
       console.log(err)
         res.json({error:true, err})
     }
 }
+
+
+export async function userOtpVerify(req, res) {
+    try {
+        const { name, email, password, mobileNo,otp } = req.body;
+        const tempToken = req.cookies.tempToken;
+
+        if (!tempToken) {
+            return res.json({ err: true, message: "OTP Session Timed Out" });
+        }
+
+        const verifiedTempToken = jwt.verify(tempToken,"myjwtsecretkey");
+       
+        if (otp!= verifiedTempToken.otp) {
+            return res.json({ err: true, message: "Invalid OTP" });
+        }
+
+        const hashPassword = bcrypt.hashSync(password, salt);
+
+        const newUser = new UserModel({ name, email, password: hashPassword ,mobileNo})
+        await newUser.save();
+
+        const token = jwt.sign(
+            {
+                id: newUser._id
+            },
+            "myjwtsecretkey"
+        )
+        return res.cookie("userToken", token, {
+            httpOnly: true,
+            secure: true,
+            maxAge: 1000 * 60 * 60 * 24 * 7,
+            sameSite: "none",
+        }).json({ err: false })
+    }
+    catch (err) {
+        console.log(err)
+        res.json({ error: err, err: true, message: "something went wrong" })
+    }
+}
+
 
 export async function userLogin(req,res){
   try{

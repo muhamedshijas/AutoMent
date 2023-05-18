@@ -3,6 +3,7 @@ import { loginImage } from '../images/Images'
 import '../AdminLogin/adminLogin.css'
 import './UserRegister.css'
 import { useDispatch } from 'react-redux';
+import VerifyOtp from '../VerifyOtp/VerifyOtp.js'
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 
@@ -27,9 +28,7 @@ async function handleSubmit(e){
     e.preventDefault();
     if(validForm()){
         console.log("hjuiuu");
-        let {data}=await axios.post("/user/auth/signUp",{
-            name,email,password,mobileNo
-        })
+        let {data}=await axios.post("/user/auth/signUp",{email})
         console.log(data);
         if(!data.error){
             dispatch({type:"refresh"})
@@ -42,7 +41,9 @@ async function handleSubmit(e){
 
   return (
     <section className='d-flex justify-content-evenly align-items-center loginSection '>
-    
+    {
+        !showOtpPage?
+   
     <div className="login row w-75 ">
     <div className="image col-md-7">
     <h3>User SignUp </h3>
@@ -78,6 +79,9 @@ async function handleSubmit(e){
       <Link to='/login'>Login here</Link>
     </form>
     </div>
+    :<VerifyOtp  data={{name,email,password,mobileNo}}/>
+    
+     }
     </section>
   )
 }
