@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import './UserPackageSelection.css'
 import { FcOk } from "react-icons/fc";
 import basic from '../../assets/images/basic.png'
@@ -8,13 +8,29 @@ import Row from 'react-bootstrap/esm/Row';
 import Col from 'react-bootstrap/esm/Col';
 import { Button } from 'bootstrap';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 
-function UserPackageSelection() {
+function UserPackageSelection({id}) {
+  console.log(id)
+  const [serviceCenter,setServiceCenter]=useState("")
+  const [refresh,setRefresh]=useState(false)
+
+  useEffect(()=>{
+    (async function(){
+      console.log("hiii")
+     let {data}=await axios.get("/user/chooseservicecenter/" +id)
+     
+     if(!data.err){
+       console.log(data)
+       setServiceCenter(data)
+   }
+    })()
+ },[refresh])
   return (
     <div>
     <div className="container choose-package">
     <h3 >
-    Scheduled packages
+    Scheduled packages,{serviceCenter.name}
     </h3>
     <div className="package-cards">
     <div className="package-image">
@@ -37,7 +53,7 @@ function UserPackageSelection() {
     </Row>
     </div>
     <div className="package-buton">
-    <Link to='/bookservice'>
+    <Link to='/bookservice'  state={{package:"Basic Package",serviceCenter:serviceCenter}} >
     <button> choose</button>
     </Link>
     </div>

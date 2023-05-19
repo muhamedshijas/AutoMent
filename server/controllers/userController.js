@@ -162,14 +162,25 @@ export async function getUserServiceCenterList(req,res){
   try{
         const name=req.query.name?? ""
         let servicecenter=await ServiceCenterModel.find({district:new RegExp(name, 'i'),permission:true }).lean()
-        console.log(servicecenter)
         res.json(servicecenter)
 
     }catch(err){
         return res.json({err:true,message:"Something went wrong" ,error:err})
 
     }
+  
+}
 
+export async function getServiceCenter(req,res){
+  try{
+    const id=req.params.id
+    const serviceStation=await ServiceCenterModel.findById(id).lean()
+    res.json(serviceStation)
+    console.log(serviceStation)
+  }catch{
+
+        
+  }
 }
 
 

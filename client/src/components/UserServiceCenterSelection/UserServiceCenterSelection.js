@@ -54,7 +54,7 @@ function UserServiceCenterSelection() {
       serviceCenterList.map((item,index)=>{
         return <Col md={3} >
         <div className="service-center-cards mt-5">
-        <Link to ='/choosepackage'>
+        <Link to={'/choosepackage/'+item._id}>
         <div className="service-center-images">
         {item.logo && <img src={item.logo.url} alt="" />}
         </div>

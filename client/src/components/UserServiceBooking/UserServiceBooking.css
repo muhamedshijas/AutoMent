@@ -2,7 +2,7 @@
     display: flex !important;
     flex-direction: column;
     height:600px !important;
-    width: 80% !important;
+    width: 60% !important;
     justify-content: space-around;
     font-size: 19px;
     font-weight: 600;
@@ -15,9 +15,10 @@
     justify-content: space-between;
     gap:10px;
 }
-.booking-form input{
-    width: 250px;
-    height: 40px;
+.booking-form input{ 
+    padding: 5px;
+    width: 150px;
+    height: 38px;
     border: 1px solid black;
 }
 .booking-form h4{
@@ -29,3 +30,4 @@
     align-items: center;
     justify-content: center;
 }
+

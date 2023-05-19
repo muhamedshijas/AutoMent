@@ -94,7 +94,7 @@ function App() {
             <Route path='/profile' element={<UserProfilePage/>}/>
             <Route path='/edit-profile/:id' element={<EditProfilePage/>}/>
            <Route path='/chooseservicecenter' element={<ServiceCenterSlectionPage/>}/>
-           <Route path='/choosepackage' element={<PackageSelectionPage/>}/>
+           <Route path='/choosepackage/:id' element={<PackageSelectionPage/>}/>
            <Route path='/createcustompackage' element={<CreateCustomPackagePage/>}/>
            <Route path='/bookservice' element={<ServiceBookingPage/>}/>
           </>

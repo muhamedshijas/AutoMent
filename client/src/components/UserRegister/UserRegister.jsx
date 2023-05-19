@@ -62,6 +62,7 @@ async function handleSubmit(e){
     <input type="tel" pattern='[0-9]{3}[0-9]{3}[0-9]{4}'  value={mobileNo} onChange={(e)=>setMobileNo(e.target.value)} />
     <p className='text-success text-center' style={{fontWeight:'400',fontSize:'12px'}}>(Phone number must contain 10 numbers)</p>
     </div>
+    
     <div className="name">
     <label htmlFor=""><p> name</p></label>
     <input type="text"  value={name} onChange={(e)=>setName(e.target.value)} />

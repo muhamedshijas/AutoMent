@@ -2,7 +2,8 @@ import React from 'react'
 import UserHeader from '../../components/UserHeader/UserHeader'
 import UserServiceCenterSelection from '../../components/UserServiceCenterSelection/UserServiceCenterSelection'
 
-function ServiceCenterSlectionPage() {
+function ServiceCenterSlectionPage(props) {
+  
   return (
       <div>
       <UserHeader/>
