@@ -1,0 +1,28 @@
+.booking-vehicle-detials,.booking-owner-detials,.booking-detials-package{
+    display: flex;
+    width:100%;
+    font-size: 20px;
+    justify-content: space-around;
+}
+.serviceCenter-booking-detials{
+   display: flex;
+ 
+   justify-content: center;
+   align-items: center;
+}
+.serviceCenter-booking-detials-form{
+    width: 1200px !important;
+    display: flex;
+    gap: 20px;
+    padding: 10px;
+}
+.booking-updations{
+    display: flex;
+    width: 100%;
+  font-size: 16px;
+  justify-content: space-around;
+
+}
+
+
+

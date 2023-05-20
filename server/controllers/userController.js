@@ -187,8 +187,8 @@ export async function getServiceCenter(req,res){
 export async function userBookService(req,res){
   try{
     
-    const {ownerMobileNo,ownerName,vehicleNo,vehicleBrand,vehicleYear,serviceCenterId,packageChoosen,time,date}=req.body
-    const newBooking=new BookingModel({ ownerMobileNo,ownerName,vehicleNo,vehicleBrand
+    const {ownerMobileNo,ownerName,vehicleNo,vehicleBrand,vehicleYear,vehicleModel,serviceCenterId,packageChoosen,time,date}=req.body
+    const newBooking=new BookingModel({ ownerMobileNo,ownerName,vehicleNo,vehicleBrand,vehicleModel
       ,vehicleYear,serviceCenterId,packageChoosen,time,dateOfService:date})
       await newBooking.save();
     res.json({error:false})

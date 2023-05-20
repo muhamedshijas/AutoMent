@@ -33,6 +33,7 @@ import AdminServicePage from './pages/admin/AdminServicePage.js';
 import AdminAddServicePage from './pages/admin/AdminAddServicePage.js';
 import ServiceBookingPage from './pages/user/ServiceBookingPage.js';
 import ServiceCenterBookingPage from './pages/ServiceCenter/ServiceCenterBookingPage.js';
+import ViewServiceCenterBookingPage from './pages/ServiceCenter/ViewServiceCenterBookingPage.js';
 function App() {
   axios.defaults.withCredentials = true;
   axios.defaults.baseURL = "http://localhost:5000/"
@@ -123,6 +124,7 @@ function App() {
         <Route path='/servicecenter/workers' element={<ServiceCenterWorkerPage/>}/> 
         <Route path='/servicecenter/addworkers' element={<ServiceCenterAddWorkerPage/>}/>
         <Route path='/servicecenter/booking' element={<ServiceCenterBookingPage/>}/>
+        <Route path='/servicecenter/viewbookingdetials/:id'element={<ViewServiceCenterBookingPage/>} />
         </>
       }
 
@@ -135,6 +137,7 @@ function App() {
         <Route path='/servicecenter/workers' element={<Navigate to='/servicecenter/login'/>}/> 
         <Route path='/servicecenter/addworkers' element={<Navigate to='/servicecenter/login'/>}/>
         <Route path='/servicecenter/booking' element={<Navigate to='/servicecenter/login'/>}/>
+        <Route path='/servicecenter/viewbookingdetials/:id'element={<Navigate to='/servicecenter/login'/>} />
         </>
       }
         

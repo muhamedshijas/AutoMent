@@ -6,7 +6,7 @@ const BookingSchema = new mongoose.Schema({
         ownerName:{
             type:String
         },
-        vehiceBrand:{
+        vehicleBrand:{
             type:String
         },
         vehicleNo:{

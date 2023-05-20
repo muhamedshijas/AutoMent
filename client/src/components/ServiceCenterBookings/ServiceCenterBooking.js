@@ -36,7 +36,7 @@ function ServiceCenterBooking() {
     <tr className="table-head">
       <th scope="col">SI No</th>
       <th scope="col">Name</th>
-      <th scope="col">Email</th>
+      <th scope="col">Vehicle No</th>
       <th scope="col">Action</th>
     </tr>
   </thead>
@@ -47,7 +47,7 @@ function ServiceCenterBooking() {
             <td>{index+1}</td>
             <td>{item.ownerName}</td>
             <td>{item.vehicleNo}</td>
-            <td> <Link to='/servicecenter/booking/'>View Detials</Link></td>
+            <td> <Link to={'/servicecenter/viewbookingdetials/'+item._id}>View Detials</Link></td>
             </tr>
         })
     }

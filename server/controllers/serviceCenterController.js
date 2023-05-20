@@ -170,10 +170,26 @@ try{
     console.log(verifiedJWT.id)
     const  id=verifiedJWT.id;
     let bookings = await BookingModel.find({serviceCenterId:id}).lean()   
-    console.log(bookings)
 res.json(bookings)
 }
 catch(err){
     console.log(err)
 }
 }
+
+
+export async function getbookingDetials(req,res){
+       try{
+        const booking=await BookingModel.findById(req.params.id).lean();
+        const id=booking.serviceCenterId
+        console.log(id)
+        let workers = await WorkerModel.find({ serviceCenterId: id}).lean()
+        console.log(booking)
+        res.json({booking,workers})
+       }catch{
+
+       }
+}
+
+
+      
