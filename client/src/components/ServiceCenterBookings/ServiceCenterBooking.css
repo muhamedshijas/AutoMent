@@ -1,0 +1,8 @@
+.servicecenter-booking{
+    display:flex;
+}
+
+.servicecenter-booking .table{
+    display: list-item;
+   
+}

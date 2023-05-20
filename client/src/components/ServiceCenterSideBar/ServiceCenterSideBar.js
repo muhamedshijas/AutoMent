@@ -7,7 +7,7 @@ function ServiceCenterSideBar() {
  <b>Dash board</b>
  </Link>
  
- <Link to='/servicecenter'>
+ <Link to='/servicecenter/booking'>
  <b>Bookings</b>
  </Link>
 

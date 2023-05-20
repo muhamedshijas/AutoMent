@@ -1,6 +1,7 @@
 import bcrypt from 'bcryptjs'
 import jwt from 'jsonwebtoken'
 import  cloudinary from '../config/cloudinary.js'
+import BookingModel from '../models/BookingModel.js';
 import ServiceCenterModel from '../models/ServiceCenterModel.js'
 import WorkerModel from '../models/WorkerModel.js';
 
@@ -159,4 +160,20 @@ export async function getunBlockWorker(req,res){
     await WorkerModel.findByIdAndUpdate(id,{$set:{block:false}}).lean()
     res.json({err:false})
 
+}
+
+export async function getServiceCenterbooking(req,res){
+
+try{
+    const  token=req.cookies.serviceCenterToken
+    const verifiedJWT = jwt.verify(token, "myjwtsecretkey");
+    console.log(verifiedJWT.id)
+    const  id=verifiedJWT.id;
+    let bookings = await BookingModel.find({serviceCenterId:id}).lean()   
+    console.log(bookings)
+res.json(bookings)
+}
+catch(err){
+    console.log(err)
+}
 }

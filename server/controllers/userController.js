@@ -5,6 +5,7 @@ import crypto from 'crypto'
 import { log } from 'console';
 import ServiceCenterModel from '../models/ServiceCenterModel.js';
 import sentOTP from '../helpers/SentOtp.js';
+import BookingModel from '../models/BookingModel.js';
 
 var salt=bcrypt.genSaltSync(10);
 
@@ -177,10 +178,24 @@ export async function getServiceCenter(req,res){
     const serviceStation=await ServiceCenterModel.findById(id).lean()
     res.json(serviceStation)
     console.log(serviceStation)
-  }catch{
-
-        
+  }catch(err){
+   
   }
 }
 
+
+export async function userBookService(req,res){
+  try{
+    
+    const {ownerMobileNo,ownerName,vehicleNo,vehicleBrand,vehicleYear,serviceCenterId,packageChoosen,time,date}=req.body
+    const newBooking=new BookingModel({ ownerMobileNo,ownerName,vehicleNo,vehicleBrand
+      ,vehicleYear,serviceCenterId,packageChoosen,time,dateOfService:date})
+      await newBooking.save();
+    res.json({error:false})
+
+  }catch(err){
+    console.log(err)
+        res.json({ error: err, err: true, message: "something went wrong" })
+  }
+}
 
