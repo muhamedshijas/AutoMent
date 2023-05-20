@@ -11,7 +11,7 @@ function ServiceCenterViewBookingDtials({id}) {
     const [worker,setWorker]=useState("")
     const [refresh, setRefresh] = useState(false)
     const [status ,setStatus]=useState("")
-
+    
     console.log(status)
     console.log(worker)
 
@@ -31,12 +31,23 @@ function ServiceCenterViewBookingDtials({id}) {
       }
        })()
     },[refresh])
+const bookingId=bookingDetials._id
+        async function handleSubmit(e){
+            e.preventDefault();
+            let {data}=await axios.post("/servicecenter/updatebooking", {
+              bookingId,status,worker
+            });
+            console.log(data)
+      if(!data.error){
+          dispatch({type:"refresh"})
+          return navigate("/servicecenter/booking")
+      }
 
-
+        }
   return (
     <div>
    <div className="serviceCenter-booking-detials">
-        <form action="" className='serviceCenter-booking-detials-form'>
+        <form action="" onSubmit={handleSubmit} className='serviceCenter-booking-detials-form'>
         <h4 className='text-center'>{serviceCenter.name}</h4>
         <p>( {new Date().toLocaleDateString() })</p>
 
@@ -49,6 +60,7 @@ function ServiceCenterViewBookingDtials({id}) {
         
         <div className="booking-owner-detials">
         <p> Owner Name    : {bookingDetials.ownerName}</p>
+        <p> Status :{bookingDetials.status}</p>
         <p>Owner Mobile No:{bookingDetials.ownerMobileNo}</p>
         </div>
 
@@ -79,7 +91,7 @@ function ServiceCenterViewBookingDtials({id}) {
         </select>
         </div>
         </div>
-        <button>Update</button>
+        <button type='submit'>Update</button>
         </form>
    </div>
     

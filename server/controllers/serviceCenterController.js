@@ -182,13 +182,24 @@ export async function getbookingDetials(req,res){
        try{
         const booking=await BookingModel.findById(req.params.id).lean();
         const id=booking.serviceCenterId
-        console.log(id)
+
         let workers = await WorkerModel.find({ serviceCenterId: id}).lean()
-        console.log(booking)
+    
         res.json({booking,workers})
        }catch{
 
        }
+}
+
+export async function updateBooking(req,res){
+    try{
+        const id=req.body.bookingId
+        await BookingModel.findByIdAndUpdate(id,{$set:{
+    status:req.body.status,worker:req.body.worker}})
+    return res.json({error:false})
+    }catch(err){
+        console.log(err)
+    }
 }
 
 

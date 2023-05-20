@@ -30,6 +30,11 @@ const BookingSchema = new mongoose.Schema({
         },
         dateOfService:{
             type:Date
+        },worker:{
+            type:String
+        },status:{
+            type:String,
+            default:"upcoming"
         }
 
 })

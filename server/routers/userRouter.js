@@ -8,4 +8,5 @@ router.post('/edit-profile/',userEditProfile)
 router.get('/servicecenter',getUserServiceCenterList)
 router.get('/chooseservicecenter/:id',getServiceCenter)
 router.post('/bookservice',userBookService)
+
 export default router          
