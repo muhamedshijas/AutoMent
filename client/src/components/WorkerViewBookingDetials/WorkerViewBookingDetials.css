@@ -1,0 +1,29 @@
+.worker-booking-detials{
+    display: flex;
+    width:1000px !important;
+}
+.worker-booking-detials .headers{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.worker-bookings{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.worker-owner,.worker-vehicle,.worker-package-detials{
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+}
+.worker-service-detials{
+    width:100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 300px;
+    justify-content: space-around;
+    font-size: 16px;
+}

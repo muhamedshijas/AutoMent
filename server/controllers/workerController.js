@@ -1,6 +1,7 @@
 import bcrypt from 'bcryptjs'
 import jwt from 'jsonwebtoken'
 import WorkerModel from '../models/WorkerModel.js';
+import BookingModel from '../models/BookingModel.js'
 
 export async function workerLogin(req,res){
   try{
@@ -79,3 +80,41 @@ export async function workerEditProfile(req,res){
   }})
   return res.json({error:false})
 }
+
+export async function getWorkerBookings(req,res){
+  try{
+    const  token=req.cookies.workerToken
+    const verifiedJWT = jwt.verify(token, "myjwtsecretkey");
+    console.log(verifiedJWT.id)
+    const  id=verifiedJWT.id;
+    const bookings=await BookingModel.find({worker:id})
+    res.json(bookings)
+  }catch(err){
+    console.log(err)
+  }
+
+}
+
+
+export async function getWorkerbookingDetials(req,res){
+       try{
+        console.log(req.params.id)
+        const booking= await BookingModel.findOne({_id:req.params.id}).lean()
+        console.log(booking)
+       res.json(booking)
+       }catch(err){
+        console.log(err)
+       }
+}
+
+
+export async function workerUpdateBooking(req,res){
+    try{
+        const id=req.body.bookingId
+        await BookingModel.findByIdAndUpdate(id,{$set:{status:req.body.status}})
+    return res.json({error:false})
+    }catch(err){
+        console.log(err)
+    }
+}
+

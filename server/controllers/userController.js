@@ -187,8 +187,8 @@ export async function getServiceCenter(req,res){
 export async function userBookService(req,res){
   try{
     
-    const {ownerMobileNo,ownerName,vehicleNo,vehicleBrand,vehicleYear,vehicleModel,serviceCenterId,packageChoosen,time,date}=req.body
-    const newBooking=new BookingModel({ ownerMobileNo,ownerName,vehicleNo,vehicleBrand,vehicleModel
+    const {ownerMobileNo,ownerName,vehicleNo,vehicleBrand,vehicleYear,vehicleModel,serviceCenterId,packageChoosen,time,date,serviceCenterName,userId}=req.body
+    const newBooking=new BookingModel({ ownerMobileNo,ownerName,vehicleNo,vehicleBrand,vehicleModel,userId,serviceCenterName
       ,vehicleYear,serviceCenterId,packageChoosen,time,dateOfService:date})
       await newBooking.save();
     res.json({error:false})
@@ -198,4 +198,13 @@ export async function userBookService(req,res){
         res.json({ error: err, err: true, message: "something went wrong" })
   }
 }
+export async function getUserBookings(req,res){
+  try{
+    const id=req.params.id
+    const bookings=await BookingModel.find({userId:id}).lean()
 
+    res.json({error:false,bookings})
+  }catch(err){
+
+  }
+}

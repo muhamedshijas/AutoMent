@@ -20,11 +20,13 @@ function UserServiceBooking() {
     return state.user.detials
 
   });
+  const userId=user._id;
 const location= useLocation()
 const {state}= location
 
 const serviceCenterId=state.serviceCenter._id
 const packageChoosen=state.package
+const serviceCenterName=state.serviceCenter.name
 
   const validForm = () => {
     if (ownerName.trim() === "" ||  vehicleModel.trim() === "" || vehicleBrand.trim()==="") {
@@ -40,7 +42,8 @@ async   function handleSubmit(e){
    if(validForm()){
       console.log("success")
    let {data}=await axios.post("/user/bookservice",{
-    ownerMobileNo,ownerName,vehicleBrand,vehicleNo,vehicleModel,vehicleYear,serviceCenterId,packageChoosen,time,date
+    ownerMobileNo,ownerName,vehicleBrand,vehicleNo,vehicleModel,vehicleYear,serviceCenterId,packageChoosen,time,date,userId
+    ,serviceCenterName
    })
   if(!data.error){
     dispatch({type:"refresh"})

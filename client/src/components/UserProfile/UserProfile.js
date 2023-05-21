@@ -5,12 +5,22 @@ import { Link } from 'react-router-dom';
 import './userProfile.css'
 
 function UserProfile() {
+  const [bookingList,setBookingList]=useState([""])
   const user=useSelector((state)=>{
     return state.user.detials
 
   });
+  const id=user._id
 
- 
+  useEffect(()=>{
+    (async function(){
+        let {data}=await axios.get('/user/profile/'+id)
+        if(!data.err){
+          console.log(data)
+          setBookingList(data.bookings)
+      }
+    })()
+},[]) 
 
   console.log(user)
   const dispatch=useDispatch();
@@ -40,30 +50,23 @@ function UserProfile() {
 
     <div className="serviceHistory">
     <h4>Service History</h4>
-    <div className="card">
-    <div className="detials">
-    <p>Date</p>
-    <p>Package Type</p>
-    <p>Service Center</p>
-    <p>Vehicle Model No</p>
-    </div>
-    <div className="status">
-    <p className="text-primary">upcoming</p>
-    </div>
-    </div>
-    <div className="card">
-    <div className="detials">
-    <p>Date</p>
-    <p>Package Type</p>
-    <p>Service Center</p>
-    <p>Vehicle Model No</p>
-    </div>
-    <div className="status">
-    <p className="text-success">completed</p>
-    <a href='#' className='text-info'>View Detials</a>
-    </div>
-    </div>
-    </div>
+    {
+     bookingList.map((item,index)=>{
+      return<div className="card">
+      <div className="detials">
+      <p><b>Date:</b>&nbsp;&nbsp;&nbsp;&nbsp;{item.dateOfService}</p>
+      <p> <b> Package Type:</b>&nbsp;&nbsp;&nbsp;&nbsp;{item.packageChoosen}</p>
+      <p> <b> Service Center: &nbsp;</b>{item.serviceCenterName}</p>
+      <p> <b>Vehicle Reg No:</b>&nbsp;{item.vehicleNo}</p>
+      </div>
+      <div className="status">
+      <p className="text-primary">{item.status}</p>
+      </div>
+      </div>
+
+     }) 
+    }
+     </div>
     </div>
     </div>
   )

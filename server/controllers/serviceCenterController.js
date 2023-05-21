@@ -170,7 +170,7 @@ try{
     console.log(verifiedJWT.id)
     const  id=verifiedJWT.id;
     let bookings = await BookingModel.find({serviceCenterId:id}).lean()   
-res.json(bookings)
+    res.json(bookings)
 }
 catch(err){
     console.log(err)
@@ -194,8 +194,7 @@ export async function getbookingDetials(req,res){
 export async function updateBooking(req,res){
     try{
         const id=req.body.bookingId
-        await BookingModel.findByIdAndUpdate(id,{$set:{
-    status:req.body.status,worker:req.body.worker}})
+        await BookingModel.findByIdAndUpdate(id,{$set:{worker:req.body.worker}})
     return res.json({error:false})
     }catch(err){
         console.log(err)

@@ -35,6 +35,11 @@ const BookingSchema = new mongoose.Schema({
         },status:{
             type:String,
             default:"upcoming"
+        },userId:{
+            type:String,
+        },
+        serviceCenterName:{
+            type:String
         }
 
 })

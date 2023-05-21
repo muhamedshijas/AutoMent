@@ -34,6 +34,7 @@ import AdminAddServicePage from './pages/admin/AdminAddServicePage.js';
 import ServiceBookingPage from './pages/user/ServiceBookingPage.js';
 import ServiceCenterBookingPage from './pages/ServiceCenter/ServiceCenterBookingPage.js';
 import ViewServiceCenterBookingPage from './pages/ServiceCenter/ViewServiceCenterBookingPage.js';
+import ViewWorkerBookingDetialsPage from './pages/Worker/ViewWorkerBookingDetialsPage.js';
 function App() {
   axios.defaults.withCredentials = true;
   axios.defaults.baseURL = "http://localhost:5000/"
@@ -141,7 +142,7 @@ function App() {
         </>
       }
         
-
+     
       {
         worker.login &&
         <>
@@ -149,6 +150,7 @@ function App() {
         <Route path='/worker/login' element={ <Navigate to ='/worker/'/>}/>
         <Route path='/worker/profile' element={<WorkerProfilePage/>}/>
         <Route path='/worker/profile/worker/edit-profile/:id' element={<WokerEditProfilePage/>}/>
+        <Route path='/worker/viewbooking/:id'element={<ViewWorkerBookingDetialsPage/>} />
         </>
 
       }
