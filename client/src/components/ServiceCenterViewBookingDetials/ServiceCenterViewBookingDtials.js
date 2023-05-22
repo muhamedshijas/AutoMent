@@ -63,8 +63,8 @@ const bookingId=bookingDetials._id
 
         <div className="booking-detials-package">
         <p> Package Choosen: {bookingDetials.packageChoosen}</p>
-        <p> Date Booked: {bookingDetials.dateBooked}</p>
-        <p>Date of Service:{bookingDetials.dateOfService}</p>
+        <p> Date Booked:{new Date(bookingDetials.dateBooked).toLocaleDateString()}</p>
+        <p>Date of Service:{new Date(bookingDetials.dateOfService).toLocaleDateString()}</p>
         </div>
         
         <div className="booking-updations">
