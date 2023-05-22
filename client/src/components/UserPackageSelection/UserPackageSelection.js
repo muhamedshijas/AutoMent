@@ -81,7 +81,9 @@ function UserPackageSelection({id}) {
     </Row>
     </div>
     <div className="package-buton">
+    <Link to='/bookservice'  state={{package:"Standard Package",serviceCenter:serviceCenter}} >
     <button> choose</button>
+    </Link>
     </div>
     </div>
 
@@ -107,7 +109,9 @@ function UserPackageSelection({id}) {
     </Row>
     </div>
     <div className="package-buton">
+    <Link to='/bookservice'  state={{package:"Comprehensive Package",serviceCenter:serviceCenter}} >
     <button> choose</button>
+    </Link>
     </div>
     </div>
     <div className="create-custom-button">

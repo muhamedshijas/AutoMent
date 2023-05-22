@@ -44,7 +44,7 @@
 .userProfile{
     display: flex;
     justify-content: space-around;
-    
+    height: 100%;
 }
 
 .card{
@@ -72,7 +72,9 @@
 .detials p{
     background: none;
 }
-
+.detials{
+    width:400px;
+}
 .serviceHistory{
     display: flex;
     flex-direction: column;
