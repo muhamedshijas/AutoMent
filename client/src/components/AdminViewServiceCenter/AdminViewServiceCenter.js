@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2'
 import './AdminViewServiceCenter.css'
 
 function AdminViewServiceCenter({id}) {
@@ -21,13 +22,26 @@ function AdminViewServiceCenter({id}) {
     },[refresh])
 
     async function acceptRequest(id){
-      console.log(id)
-      if(window.confirm("are You sure")){
+      Swal.fire({
+      title: 'Are you sure?',
+      text: "Accept this request",
+      icon: 'info',
+      showCancelButton: true,
+      confirmButtonColor: '#2C457E',
+      cancelButtonColor: ' #9BA4B5',
+      confirmButtonText: 'Yes, Sure!'
+    }).then(async (result) => {
+      if (result.isConfirmed) {
         await axios.patch("/admin/serviceCenter/acceptrequest",{id})
         dispatch({type:"refresh"})
         return navigate("/admin/serviceCenter")
       }
-     }
+    })
+  }
+     
+
+     
+
   return (
     
   <div className="section container">
