@@ -51,6 +51,7 @@ async function handleSubmit(e){
     <input type="password"  value={password} onChange={(e)=>setPassword(e.target.value)} />
     </div>
     <button type='submit' disabled={validationErr()} className='loginSubmit'>Submit</button>
+    <Link to='/forgetpassword'>Forget password</Link>
       <p>Don't you have an account </p>
       <Link to='/signup'>Signup here</Link>
     </form>

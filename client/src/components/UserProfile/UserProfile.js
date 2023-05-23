@@ -54,7 +54,8 @@ function UserProfile() {
      bookingList.map((item,index)=>{
       return<div className="card">
       <div className="detials">
-      <p><b>Date:</b>&nbsp;&nbsp;&nbsp;&nbsp;{item.dateOfService}</p>
+      
+      <p><b>Date:</b>&nbsp;&nbsp;&nbsp;&nbsp;{new Date(item.dateOfService).toLocaleDateString()}</p>
       <p> <b> Package Type:</b>&nbsp;&nbsp;&nbsp;&nbsp;{item.packageChoosen}</p>
       <p> <b> Service Center: &nbsp;</b>{item.serviceCenterName}</p>
       <p> <b>Vehicle Reg No:</b>&nbsp;{item.vehicleNo}</p>

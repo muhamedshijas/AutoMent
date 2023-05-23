@@ -35,6 +35,7 @@ import ServiceBookingPage from './pages/user/ServiceBookingPage.js';
 import ServiceCenterBookingPage from './pages/ServiceCenter/ServiceCenterBookingPage.js';
 import ViewServiceCenterBookingPage from './pages/ServiceCenter/ViewServiceCenterBookingPage.js';
 import ViewWorkerBookingDetialsPage from './pages/Worker/ViewWorkerBookingDetialsPage.js';
+import ForgetPage from './pages/user/ForgetPage.js';
 function App() {
   axios.defaults.withCredentials = true;
   axios.defaults.baseURL = "http://localhost:5000/"
@@ -113,6 +114,7 @@ function App() {
           <Route path='/edit-profile/:id' element={<Navigate to='/login'/>}/>
           <Route path='/chooseservicecenter'element={<Navigate to='/login'/>}/>
           <Route path='/createcustompackage'element={<Navigate to='/login'/>}/>
+          <Route path='/forgetpassword' element={<ForgetPage/>}/>
           </>
         }
        

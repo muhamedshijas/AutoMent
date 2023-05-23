@@ -109,8 +109,22 @@ function ServiceCenterSignUp() {
             <input type="text" value={place} onChange={(e) => setPlace(e.target.value)} />
           </div>
           <div className="email">
-            <label htmlFor=""><p> district</p></label>
-            <input type="text" value={district} onChange={(e) => setDistrict(e.target.value)} />
+          <select name="" id="" onChange={(e)=>setDistrict(e.target.value)}>
+          <option value="">Choose District</option>
+          <option value="Thiruvananthapuram">Thiruvananthapuram</option>
+          <option value="Kollam">Kollam</option>
+          <option value="Pathanamthitta">Pathanamthitta</option>
+          <option value="Alappuzha">Alappuzha</option>
+          <option value="Kottayam">Kottayam</option>
+          <option value="Ernamkulam">Ernamkulam</option>
+          <option value="Thrisuur">Thrissur</option>
+          <option value="Palakkad">Palakkad</option>
+          <option value="Malappuram">Malappuram</option>
+          <option value="Kozhikode">Kozhikode</option>
+          <option value="Wayanad">Wayanad</option>
+          <option value="Kannur">Kannur</option>
+          <option value="Kasargod">Kasargod</option>
+          </select>
           </div>
           <div className="password">
             <label htmlFor=""><p> password</p></label>
