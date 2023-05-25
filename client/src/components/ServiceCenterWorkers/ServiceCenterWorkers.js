@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import './ServiceCenterWorkers.css'
+import Swal from 'sweetalert2'
 import ServiceCenterSideBar from '../ServiceCenterSideBar/ServiceCenterSideBar'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
@@ -28,18 +29,39 @@ function ServiceCenterWorkers() {
   },[refresh,name])
 
   async function blockWorker(id){
-    if(window.confirm("are You sure")){
-      await axios.patch("/servicecenter/workers/block",{id})
-      setRefresh(!refresh)
-    }
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "Accept this request",
+      icon: 'info',
+      showCancelButton: true,
+      confirmButtonColor: '#2C457E',
+      cancelButtonColor: ' #9BA4B5',
+      confirmButtonText: 'Yes, Sure!'
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+       await axios.patch("/servicecenter/workers/block",{id})
+  setRefresh(!refresh)
+      }
+    })
    }
 
    async function unBlockWorker(id){
-    if(window.confirm("are You sure")){
-      await axios.patch("/servicecenter/workers/unblock",{id})
-      setRefresh(!refresh)
-    }
-   }
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "Accept this request",
+      icon: 'info',
+      showCancelButton: true,
+      confirmButtonColor: '#2C457E',
+      cancelButtonColor: ' #9BA4B5',
+      confirmButtonText: 'Yes, Sure!'
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+       await axios.patch("/servicecenter/workers/unblock",{id})
+  setRefresh(!refresh)
+      }
+    })
+  }
+  
   return (
     <div className="app d-flex">
     <ServiceCenterSideBar/>

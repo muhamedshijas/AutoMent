@@ -1,6 +1,7 @@
 import axios from 'axios'
 import React, { useState } from 'react'
 import AdminSideBar from '../AdminSideBar/AdminSideBar'
+import Swal from 'sweetalert2'
 
 function AdminServiceCenter() {
     const [serviceCenterList, setServiceCenterList] = useState([""])
@@ -8,11 +9,22 @@ function AdminServiceCenter() {
   const [name, setName] = useState("")
 
   async function blockServiceCenter(id){
-    if(window.confirm("are You sure")){
-      await axios.patch("/admin/servicecenter/block",{id})
-      setRefresh(!refresh)
-    }
-   }
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "Block this service center",
+      icon: 'info',
+      showCancelButton: true,
+      confirmButtonColor: '#2C457E',
+      cancelButtonColor: ' #9BA4B5',
+      confirmButtonText: 'Yes, Sure!'
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        await axios.patch("/admin/servicecenter/block",{id})
+  setRefresh(!refresh)
+      }
+    })
+  }
+ 
 
   React.useEffect(()=>{
     (

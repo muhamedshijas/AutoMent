@@ -24,7 +24,6 @@ async function handleSubmit(e){
     console.log(data);
     if(!data.error){
       dispatch({type:"refresh"})
-      alert("logged in")
     }else{
       setErrmessage(data.message)
     }

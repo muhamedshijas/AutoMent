@@ -1,0 +1,36 @@
+.not-found{
+     width: 680px;
+     height: 450px;
+    background: #f1f6f9;
+    padding: 10px;
+    color: black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 6px;
+    box-shadow: 0px 0px 100px rgba(0, 0, 0, 0.1);
+    font-family: 'Times New Roman', Times, serif;
+}
+.not-found h1{
+   
+    font-size: 200px;
+    color: #2C457E;
+}
+.not-found h5{
+color: red;
+font-size: 60px;
+}
+.not-found  button{
+    margin-top: 10px;
+}
+.full-page{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+p{
+    font-size: 20px;
+    font-weight: 550;
+}

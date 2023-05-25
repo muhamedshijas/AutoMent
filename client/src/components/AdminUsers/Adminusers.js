@@ -2,6 +2,7 @@ import axios from 'axios'
 import React, { useState } from 'react'
 import AdminSideBar from '../AdminSideBar/AdminSideBar'
 import './AdminUsers.css'
+import Swal from 'sweetalert2'
 
 function Adminusers() {
 
@@ -28,18 +29,40 @@ function Adminusers() {
   },[refresh,name])
 
  async function blockUser(id){
-  if(window.confirm("are You sure")){
-    await axios.patch("/admin/users/block",{id})
-    setRefresh(!refresh)
-  }
+  Swal.fire({
+    title: 'Are you sure?',
+    text: "Block this service center",
+    icon: 'info',
+    showCancelButton: true,
+    confirmButtonColor: '#2C457E',
+    cancelButtonColor: ' #9BA4B5',
+    confirmButtonText: 'Yes, Sure!'
+  }).then(async (result) => {
+    if (result.isConfirmed) {
+      await axios.patch("/admin/users/unblock",{id})
+      setRefresh(!refresh)
+    }
+  })
+
  }
 
  async function unBlockUser(id){
-  if(window.confirm("are You sure")){
-    await axios.patch("/admin/users/unblock",{id})
-    setRefresh(!refresh)
-  }
- }
+  Swal.fire({
+    title: 'Are you sure?',
+    text: "Block this service center",
+    icon: 'info',
+    showCancelButton: true,
+    confirmButtonColor: '#2C457E',
+    cancelButtonColor: ' #9BA4B5',
+    confirmButtonText: 'Yes, Sure!'
+  }).then(async (result) => {
+    if (result.isConfirmed) {
+      await axios.patch("/admin/users/unblock",{id})
+      setRefresh(!refresh)
+    }
+  })
+}
+  
   
   return (
     <div className="app d-flex">

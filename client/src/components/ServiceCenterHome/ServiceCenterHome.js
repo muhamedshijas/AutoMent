@@ -3,6 +3,7 @@ import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import ServiceCenterHeader from '../ServiceCenterHeader/ServiceCenterHeader';
 import ServiceCenterSideBar from '../ServiceCenterSideBar/ServiceCenterSideBar';
+import './ServiceCenterHome.css'
 
 function ServiceCenterHome() {
   const dispatch=useDispatch()
@@ -15,11 +16,11 @@ function ServiceCenterHome() {
 
   return (
     <div className="app">
-    <section className="row">
+    <div className="service-center-home">
     
     <ServiceCenterSideBar/>
     h1
-    </section>
+    </div>
     </div>
   )
 }

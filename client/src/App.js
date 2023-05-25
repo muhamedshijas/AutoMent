@@ -36,6 +36,7 @@ import ServiceCenterBookingPage from './pages/ServiceCenter/ServiceCenterBooking
 import ViewServiceCenterBookingPage from './pages/ServiceCenter/ViewServiceCenterBookingPage.js';
 import ViewWorkerBookingDetialsPage from './pages/Worker/ViewWorkerBookingDetialsPage.js';
 import ForgetPage from './pages/user/ForgetPage.js';
+import PageNotFound from './pages/PageNotFound.js';
 function App() {
   axios.defaults.withCredentials = true;
   axios.defaults.baseURL = "http://localhost:5000/"
@@ -71,6 +72,7 @@ function App() {
             <Route path='/admin/servicecenterdetials/:id' element={<ViewServiceCenterPage/>}/>
             <Route path='/admin/service' element={<AdminServicePage/>}/>
             <Route path='/admin/addServices' element={<AdminAddServicePage/>}/>
+            <Route path='/admin/*' element={<PageNotFound/>}/>
           </>
  
         }
@@ -101,6 +103,8 @@ function App() {
            <Route path='/choosepackage/:id' element={<PackageSelectionPage/>}/>
            <Route path='/createcustompackage' element={<CreateCustomPackagePage/>}/>
            <Route path='/bookservice' element={<ServiceBookingPage/>}/>
+           <Route path='/*' element={<PageNotFound/>}/>
+
           </>
         }
         {
@@ -128,6 +132,8 @@ function App() {
         <Route path='/servicecenter/addworkers' element={<ServiceCenterAddWorkerPage/>}/>
         <Route path='/servicecenter/booking' element={<ServiceCenterBookingPage/>}/>
         <Route path='/servicecenter/viewbookingdetials/:id'element={<ViewServiceCenterBookingPage/>} />
+        <Route path='/servicecenter/ *' element={<PageNotFound/>}/>
+  
         </>
       }
 
@@ -153,6 +159,7 @@ function App() {
         <Route path='/worker/profile' element={<WorkerProfilePage/>}/>
         <Route path='/worker/profile/worker/edit-profile/:id' element={<WokerEditProfilePage/>}/>
         <Route path='/worker/viewbooking/:id'element={<ViewWorkerBookingDetialsPage/>} />
+        <Route path='/worker/ *' element={<PageNotFound/>}/>
         </>
 
       }

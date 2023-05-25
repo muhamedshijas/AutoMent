@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
+import Swal from 'sweetalert2'
 import axios from 'axios'
 import AdminSideBar from '../AdminSideBar/AdminSideBar'
 
@@ -26,12 +27,22 @@ function AdminServices() {
   },[refresh,name])
 
   async function deleteService(id){
-    if(window.confirm("are You sure")){
-      await axios.delete("/admin/deleteservice?id="+id)
-      console.log(id)
-      setRefresh(!refresh)
-    }
-   }
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "Block this service center",
+      icon: 'info',
+      showCancelButton: true,
+      confirmButtonColor: '#2C457E',
+      cancelButtonColor: ' #9BA4B5',
+      confirmButtonText: 'Yes, Sure!'
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        await axios.delete("/admin/deleteservice?id="+id)
+         setRefresh(!refresh)
+      }
+    })
+  }
+  
   return (
     <div className="app d-flex">
     <AdminSideBar/>
