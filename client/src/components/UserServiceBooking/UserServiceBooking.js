@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation, useNavigate } from 'react-router-dom'
+import Swal from 'sweetalert2'
 import './UserServiceBooking.css'
 
 function UserServiceBooking() {
@@ -14,6 +15,8 @@ function UserServiceBooking() {
   const [date,setDate]=useState("")
   const [time,setTime]=useState("")
   const [errMessage,setErrmessage]=useState("")
+  
+  
   const navigate=useNavigate()
   const dispatch=useDispatch()
   const user=useSelector((state)=>{
@@ -41,17 +44,59 @@ const serviceCenterName=state.serviceCenter.name
 async   function handleSubmit(e){
     e.preventDefault()
    if(validForm()){
-      console.log("success")
-   let {data}=await axios.post("/user/bookservice",{
-    ownerMobileNo,ownerName,vehicleBrand,vehicleNo,vehicleModel,vehicleYear,serviceCenterId,packageChoosen,date,userId
-    ,serviceCenterName
-   })
-  if(!data.error){
-    dispatch({type:"refresh"})
-    navigate("/profile")
-  }
+    const {data}=await axios.post("user/bookservice",{bookingAmount:500})
+    console.log("sfsdjfhsdjkfhsjdkfhsjkd")
+    if(!data.error){
+      console.log(data.order)
+      handleRazorPay(data.order);
+    }
    }
   }
+
+  
+  const handleRazorPay = (order) => {
+    
+    const options = {
+        key: "rzp_test_XwdQoSEsOiDbSW",
+        amount: order.amount,
+        currency: order.currency,
+        name: "AutoMent",
+        description: "Booking Fee",
+        order_id: order.id,
+        handler: async (response) => {
+          
+            const { data } = await axios.post("/user/payment/verify", { response,ownerMobileNo,ownerName,vehicleNo,vehicleBrand,vehicleYear
+              ,vehicleModel,serviceCenterId,packageChoosen,date,serviceCenterName,userId});
+            if(data.err){
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: data.message,
+                })
+            }else{
+                Swal.fire(
+                    'Success!',
+                    'Successfully Booked',
+                    'success'
+                  )
+                  navigate("/profile")
+            }
+           
+        }
+    }
+    var rzp1 = new window.Razorpay(options);
+    rzp1.open();
+    rzp1.on('payment.failed', (response) => {
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: response.error.description,
+        })
+       
+
+    })
+
+}
 
 
 
