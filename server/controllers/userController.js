@@ -177,13 +177,23 @@ export async function getUserServiceCenterList(req,res){
 
 export async function getServiceCenter(req,res){
   try{
+    let totalRating = 0;
+    console.log("hiiii")
+    
     const id=req.params.id
     const serviceStation=await ServiceCenterModel.findById(id).lean()
-    
-    res.json(serviceStation)
+    const reviews = await FeedbackModel.find({serviceCenterId: req.params.id }).populate('userId').lean()
+
+    for (let item of reviews) {
+      totalRating += item.rating
+  }
+  let reviewCount =  reviews.length != 0 ? reviews.length : 1;
+  const rating = totalRating / reviewCount;
+  console.log(reviews)
+    res.json({serviceStation,rating,reviews})
     
   }catch(err){
-   
+      console.log(err) 
   }
 }
 

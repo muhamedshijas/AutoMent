@@ -65,3 +65,72 @@
     font-weight: 500;
 }
 
+
+.package{
+    display: flex;
+    padding: 20px;
+}
+
+.package .servicecenter-profile{
+    height:655px;
+    width: 400px;
+    background-color: #F1F6F9;
+    margin-top: 92px;
+    box-shadow: 0px 0px 100px rgba(0, 0, 0, 0.1);
+    border-radius: 6px;
+    text-align: center;
+}
+.package .servicecenter-profile img{
+    height: 360px;
+    width: 360px;
+}
+
+.package .servicecenter-profile h4{
+    font-size: 28px;
+    font-weight: 600;
+}
+.package .servicecenter-profile b{
+    font-size: 23px;
+    font-weight: 500;
+}
+.package .servicecenter-profile p{
+    font-weight: 550;
+}
+ .package .servicecenter-profile .rating{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+ }
+
+ p{
+    margin: 0px;
+ }
+
+ .servicecenter-review{
+    background-color: #F1F6F9;
+    padding: 10px;
+    border-radius: 6px;
+    margin-top: 20px;
+    box-shadow: 0px 0px 100px rgba(0, 0, 0, 0.1);
+ }
+
+ .servicecenter-review .head-sec{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+ }
+
+ .servicecenter-review .head-sec .user-detials{
+    display: flex;
+    width: 50%;
+    gap: 20px;
+    align-items: center;
+ }
+ .servicecenter-review .servicecenter-review-desc{
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+ }
