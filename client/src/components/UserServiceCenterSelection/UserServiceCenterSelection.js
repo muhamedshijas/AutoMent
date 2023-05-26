@@ -26,7 +26,7 @@ function UserServiceCenterSelection() {
                 
                 if(!data.err){     
                   console.log(data)
-                    setServiceCenterList(data)
+                    setServiceCenterList(data.serviceCenter)
                 }
             }
             

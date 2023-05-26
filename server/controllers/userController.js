@@ -6,6 +6,7 @@ import { log } from 'console';
 import ServiceCenterModel from '../models/ServiceCenterModel.js';
 import sentOTP from '../helpers/SentOtp.js';
 import BookingModel from '../models/BookingModel.js';
+import FeedbackModel from '../models/FeedBackModel.js'
 
 var salt=bcrypt.genSaltSync(10);
 
@@ -163,7 +164,9 @@ export async function getUserServiceCenterList(req,res){
   try{
         const name=req.query.name?? ""
         let servicecenter=await ServiceCenterModel.find({district:new RegExp(name, 'i'),permission:true }).lean()
-        res.json(servicecenter)
+        const review =await FeedbackModel.find().lean()
+        
+        res.json({serviceCenter:servicecenter,review:review})
 
     }catch(err){
         return res.json({err:true,message:"Something went wrong" ,error:err})
@@ -176,8 +179,9 @@ export async function getServiceCenter(req,res){
   try{
     const id=req.params.id
     const serviceStation=await ServiceCenterModel.findById(id).lean()
+    
     res.json(serviceStation)
-    console.log(serviceStation)
+    
   }catch(err){
    
   }
@@ -280,5 +284,26 @@ export async function resetUserPassword(req, res) {
   catch (err) {
       console.log(err)
       res.json({ error: err, err: true, message: "something went wrong" })
+  }
+}
+
+export async function getUserServiceHistory(req,res){
+  const id=req.params
+  const service=await BookingModel.findById(req.params.id)
+  res.json(service)
+}
+
+export async function addServiceCenterFeedback(req, res) {
+  try {
+    console.log(req.body)
+      const { serviceCenterId, rating, review } = req.body;
+      await FeedbackModel.updateOne({ userId: req.user._id,serviceCenterId}, {
+          rating, review
+      }, { upsert: true })
+      return res.json({ err: false })
+
+  } catch (error) {
+      console.log(error)
+      res.json({ err: true, error, message: "something went wrong" })
   }
 }

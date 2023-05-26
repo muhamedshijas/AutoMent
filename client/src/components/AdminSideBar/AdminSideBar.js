@@ -1,5 +1,6 @@
 import React from 'react'
 import './AdminSideBar.css'
+import { FcBusinessman } from "react-icons/fc";
 import { Link } from 'react-router-dom'
 function AdminSideBar() {
   return (
@@ -9,6 +10,7 @@ function AdminSideBar() {
  </Link>
  
  <Link to='/admin/users'>
+ <FcBusinessman/>
  <b>users</b>
  </Link>
 

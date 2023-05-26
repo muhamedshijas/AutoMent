@@ -27,7 +27,7 @@ table tbody{
 
 .admin-search-box button{
     height: 40px;
-    width:100px;
+    width:100px !important;
     margin-left:5px;
     background-color:#212A3E ;
     color:white;

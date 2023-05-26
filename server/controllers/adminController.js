@@ -4,6 +4,8 @@ import bcrypt from 'bcryptjs'
 import jwt from 'jsonwebtoken'
 import ServiceCenterModel from "../models/ServiceCenterModel.js";
 import ServiceModel from "../models/ServiceModel.js";
+import WorkerModel from "../models/WorkerModel.js"
+import BookingModel from "../models/BookingModel.js"
 import { createCipheriv } from "crypto";
 
 
@@ -193,3 +195,19 @@ export async function getDeleteService(req,res){
     res.json({err:false})
 
 }
+
+export async function getAdminDashboard(req,res){
+try{
+    const userCount=await UserModel.find().countDocuments()
+    const serviceCenterCount=await ServiceCenterModel.find().countDocuments()
+    const workerCount=await WorkerModel.find().countDocuments()
+    const totalBooking=await BookingModel.find().countDocuments()
+    const users=await UserModel.find().limit(5).sort({_id:-1})
+    const serviceCenters=await ServiceCenterModel.find().limit(5).sort({_id:-1})
+    const booking=await BookingModel.find().limit(5).sort({id:-1})
+    res.json({userCount,serviceCenterCount,workerCount,totalBooking,users,serviceCenters,booking})
+}catch(err){
+    console.log(err)
+}
+}
+

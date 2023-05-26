@@ -39,7 +39,7 @@ function Adminusers() {
     confirmButtonText: 'Yes, Sure!'
   }).then(async (result) => {
     if (result.isConfirmed) {
-      await axios.patch("/admin/users/unblock",{id})
+      await axios.patch("/admin/users/block",{id})
       setRefresh(!refresh)
     }
   })
@@ -54,7 +54,7 @@ function Adminusers() {
     showCancelButton: true,
     confirmButtonColor: '#2C457E',
     cancelButtonColor: ' #9BA4B5',
-    confirmButtonText: 'Yes, Sure!'
+    confirmButtonText: 'Yes, Sure!'  
   }).then(async (result) => {
     if (result.isConfirmed) {
       await axios.patch("/admin/users/unblock",{id})

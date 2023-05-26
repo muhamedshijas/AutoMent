@@ -1,5 +1,5 @@
 import express from 'express';
-import { addServices, getAcceptRequest, getAdminRequests, getAdminServiceCenter, getAdminUsers, getBlockServiceCenter, getBlockUser, getDeleteService, getServices, getunBlockUser, getViewServiceCenter } from '../controllers/adminController.js';
+import { addServices, getAcceptRequest, getAdminDashboard, getAdminRequests, getAdminServiceCenter, getAdminUsers, getBlockServiceCenter, getBlockUser, getDeleteService, getServices, getunBlockUser, getViewServiceCenter } from '../controllers/adminController.js';
 
 const router=express.Router();
 
@@ -14,4 +14,5 @@ router.patch("/servicecenter/block",getBlockServiceCenter)
 router.post('/addservice',addServices)
 router.get('/service',getServices)
 router.delete('/deleteservice',getDeleteService)
+router.get('/dashboard/',getAdminDashboard)
 export default router

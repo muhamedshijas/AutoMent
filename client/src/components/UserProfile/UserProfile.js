@@ -18,6 +18,7 @@ function UserProfile() {
         if(!data.err){
           console.log(data)
           setBookingList(data.bookings)
+          
       }
     })()
 },[]) 
@@ -62,9 +63,11 @@ function UserProfile() {
       </div>
       <div className="status">
       <p className="text-primary">{item.status}</p>
-      </div>
-      </div>
 
+      {item.status=="completed"&& <Link to={'/servicehistory/'+item._id}>view detials</Link> }
+      </div>
+      </div>
+  
      }) 
     }
      </div>

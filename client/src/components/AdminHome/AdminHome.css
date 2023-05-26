@@ -2,3 +2,37 @@ body{
     background-color: #F1F6F9;
 
 }
+.admin-home{
+    width:100%;
+    display: flex;
+}
+
+.admin-body{
+    padding-left: 20px;
+    width: 100%;
+    margin-top: 5px;
+
+}
+
+.user-card{
+    box-shadow: 0px 0px 100px rgba(0, 0, 0, 0.1);
+    background: #f1f6f9;
+    height: 200px;
+    width: 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 6px;
+    font-size: 50px;
+}
+
+.counts{
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+}
+.user-card h5{
+    font-size:22px !important;
+}
+
