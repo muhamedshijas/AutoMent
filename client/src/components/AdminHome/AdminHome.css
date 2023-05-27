@@ -16,23 +16,41 @@ body{
 
 .user-card{
     box-shadow: 0px 0px 100px rgba(0, 0, 0, 0.1);
-    background: #f1f6f9;
-    height: 200px;
-    width: 200px;
+    background:#F1F6F9;
+    height: 150px;
+    width: 250px;
     display: flex;
-    flex-direction: column;
     align-items: center;
-    justify-content: center;
-    border-radius: 6px;
+    padding: 8px;
+    color: black;
+    border-radius: 12px;
     font-size: 50px;
 }
 
-.counts{
+.admin-body .counts{
     display: flex;
     width: 100%;
     justify-content: space-around;
 }
-.user-card h5{
-    font-size:22px !important;
-}
 
+.user-card-icon{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 100px;
+    height: 100%;
+    width:100px;
+    margin-left: 0px !important;
+    border-top-left-radius: 12px;
+    border-bottom-left-radius: 12px;
+    color: #212A3E !important;
+   
+ 
+}
+.user-card .user-card-counts{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}

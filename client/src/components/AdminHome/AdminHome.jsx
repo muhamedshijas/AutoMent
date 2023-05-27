@@ -2,7 +2,11 @@ import axios from 'axios';
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import AdminSideBar from '../AdminSideBar/AdminSideBar';
-import { FcBusinessman } from "react-icons/fc";
+import { FaUsers} from "react-icons/fa";
+import { GiMechanicGarage } from "react-icons/gi";
+import { GrUserWorker} from "react-icons/gr";
+import { AiOutlineSchedule} from "react-icons/ai";
+import { RiShieldUserLine} from "react-icons/ri";
 import './AdminHome.css'
 
 function AdminHome() {
@@ -45,21 +49,40 @@ function AdminHome() {
     <div className="admin-body">
     <div className="counts">
     <div className="user-card">
-    <FcBusinessman className='icons'/>
-    <h5>Total Users</h5>
-   {userCount}
+    <div className="user-card-icon">
+    <FaUsers className='icons'/>
+    </div>
+    <div className="user-card-counts">
+    <h5> Users</h5>
+    {userCount}
+    </div>
     </div>
     <div className="user-card">
-    <h5>Total Service Centers</h5>
+    <div className="user-card-icon">
+    <GiMechanicGarage className='icons'/>
+    </div>
+    <div className="user-card-counts">
+    <h5> Service centers</h5>
     {serviceCenterCount}
     </div>
-    <div className="user-card">
-    <h5>Total Bookings</h5>
-    {booking}
     </div>
     <div className="user-card">
-    <h5>Total Workers</h5>
+    <div className="user-card-icon">
+    <RiShieldUserLine className='icons'/>
+    </div>
+    <div className="user-card-counts">
+    <h5> workers</h5>
     {workerCount}
+    </div>
+    </div>
+    <div className="user-card">
+    <div className="user-card-icon">
+    <AiOutlineSchedule className='icons'/>
+    </div>
+    <div className="user-card-counts">
+    <h5> Bookings</h5>
+    {booking}
+    </div>
     </div>
     </div>
 

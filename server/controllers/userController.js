@@ -317,3 +317,12 @@ export async function addServiceCenterFeedback(req, res) {
       res.json({ err: true, error, message: "something went wrong" })
   }
 }
+
+export async function getAppoiments(req,res){
+
+  console.log(req.params)
+  const id=req.params.id
+
+  const appoiments=await BookingModel.find({userId:id}).lean()
+  res.json(appoiments)
+}

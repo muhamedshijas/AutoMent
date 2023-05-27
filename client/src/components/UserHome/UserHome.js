@@ -1,6 +1,6 @@
 import axios from 'axios';
-import React from 'react'
-import { useDispatch } from 'react-redux'
+import React, { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import UserBanner from '../UserBanner/UserBanner';
 import './userHome.css'
 import Container from 'react-bootstrap/Container';
@@ -21,6 +21,39 @@ import RR from '../../assets/images/RR.png'
  
 function UserHome() {
   const dispatch=useDispatch();
+
+  const user=useSelector((state)=>{
+    return state.user.detials
+
+  });
+
+  const id=user._id
+
+  useEffect(() => {
+    const fetchAppointments = async () => {
+      try {
+        const {data} = await axios.get('/user/appointments/'+id);
+        const today = new Date().toISOString().split('T')[0];
+        const todayAppointments = data.filter(appointment => new Date(appointment.dateOfService).toISOString().split('T')[0]==today);
+        console.log(today)
+        todayAppointments.forEach(appointment => {
+          if ('Notification' in window) {
+            Notification.requestPermission().then(permission => {
+              if (permission === 'granted') {
+                new Notification('Booking  Reminder', {
+                  body: `You have an vehicle  have service on  today ${appointment.serviceCenterName} service center`,
+                });
+              }
+            });
+          }
+        });
+      } catch (error) {
+        console.error('Error fetching appointments:', error);
+      }
+    };
+
+    fetchAppointments();
+  }, []);  
   
   return (
     <div className='app'>
@@ -31,7 +64,7 @@ function UserHome() {
 
     <section className='userSection'>
     <h1>Our services</h1>
-    
+ 
     <Row className='service'>
     <Col className="service-cards">
     <img src={wheelAlignment} alt="" />
