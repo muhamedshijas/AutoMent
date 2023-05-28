@@ -27,7 +27,7 @@ function VerifyOtp(props) {
           <img src={verfyOtp} alt="" srcset="" />
         </div>
 
-        <form action="" className='otp-form' onClick={handleSubmit}>
+        <form action="" className='otp-form' onSubmit={handleSubmit}>
           <div className="heads">
             <h3 className='text-center'>Enter the Otp</h3>
             <b>that we have sent to your email</b>

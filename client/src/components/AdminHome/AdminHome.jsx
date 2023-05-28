@@ -15,10 +15,14 @@ function AdminHome() {
   const [refresh,setRefresh]=useState(false)
   const [serviceCenterCount,setServiceCenterCount]=useState()
   const [workerCount,setWorkerCount]=useState()
-  const [booking,setBooking]=useState()
-
+  const [booking,setBooking]=useState(0)
+  
   const [users,setUsers]=useState([""]);
   const [serviceCenters,setServiceCenters]=useState([""]);
+  const [bookings,setBookings]=useState([""])
+
+  const [currentPage, setCurrentPage] = useState(1);
+  const [appointmentsPerPage] = useState(4);
 
 
   React.useEffect(()=>{
@@ -34,6 +38,7 @@ function AdminHome() {
                  setBooking(data.totalBooking)
                  setUsers(data.users)
                  setServiceCenters(data.serviceCenters)
+                 setBookings(data.booking)
                 }
             }
             catch(err){   
@@ -42,12 +47,32 @@ function AdminHome() {
         }
     )()
   },[refresh])
+
+  const indexOfLastAppointment = currentPage * appointmentsPerPage;
+  const indexOfFirstAppointment = indexOfLastAppointment - appointmentsPerPage;
+  const currentAppointments = bookings.slice(indexOfFirstAppointment, indexOfLastAppointment);
+ 
+
+  const handlePaginationClick = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
+
   return (
     <div className="app">
     <div className="admin-home">
     <AdminSideBar/>
     <div className="admin-body">
     <div className="counts">
+    <div className="user-card">
+    <div className="user-card-icon">
+    <FaUsers className='icons'/>
+    </div>
+    <div className="user-card-counts">
+    <h5> Revenue</h5>
+   RS 100
+    </div>
+    </div>
+
     <div className="user-card">
     <div className="user-card-icon">
     <FaUsers className='icons'/>
@@ -87,7 +112,9 @@ function AdminHome() {
     </div>
 
     <div className="tables">
+    <div className="user-service-tables">
     <div className="user-table">
+    <h4 className='text-center'>Rececnt Users</h4>
     <table class="table striped mt-5" >
     <thead className="thead-dark">
     <tr className="table-head">
@@ -100,11 +127,11 @@ function AdminHome() {
     </thead>
     <tbody>
     {
-          users.map((item,index)=>{
-              return <tr>
-              <td>{index+1}</td>
-              <td>{item.name}</td>
-              <td>{item.email}</td>
+      users.map((item,index)=>{
+        return <tr>
+        <td>{index+1}</td>
+        <td>{item.name}</td>
+        <td>{item.email}</td>
               </tr>
             })
           }
@@ -112,8 +139,9 @@ function AdminHome() {
           
           </table>
           </div>
-
+          
           <div className="servicecenter-table">
+          <h4 className="text-center">Recent Service centers</h4>
           <table class="table striped mt-5" >
           <thead className="thead-dark">
           <tr className="table-head">
@@ -126,8 +154,8 @@ function AdminHome() {
           </thead>
           <tbody>
           {
-                serviceCenters.map((item,index)=>{
-                    return <tr>
+            serviceCenters.map((item,index)=>{
+              return <tr>
                     <td>{index+1}</td>
                     <td>{item.name}</td>
                     <td>{item.email}</td>
@@ -137,7 +165,55 @@ function AdminHome() {
                 </tbody>
                 
                 </table>
-          </div>
+                </div>
+                </div>
+                
+          <div className="booking-table">
+          <h4 className='text-center'>Rececnt Bookings</h4>
+          <table class="table striped mt-5" >
+          <thead className="thead-dark">
+          <tr className="table-head">
+          <th scope="col">SI No</th>
+          <th scope="col">Owner Name</th>
+          <th scope="col">Vehicle</th>
+          <th scope="col">Reg No</th>
+          <th scope="col">Service Center </th>
+          <th scope="col">Package Choosen </th>
+          <th scope="col">Status </th>
+          
+          </tr>
+          
+          
+          </thead>
+          <tbody>
+          {
+                currentAppointments.map((item,index)=>{
+                    return <tr>
+                    <td>{index+1}</td>
+                    <td>{item.ownerName}</td>
+                    <td>{item.vehicleBrand}  {item.vehicleModel}</td>
+                    <td>{item.vehicleNo}</td>
+                    <td>{item.serviceCenterName}</td>
+                    <td>{item.packageChoosen}</td>
+                    <td className={item.status=="completed"?"complete":""}>{item.status}</td>
+                    </tr>
+                  })
+                }
+                </tbody>
+                
+                </table>
+                <div className='pagination'>
+                {Array.from(Array(Math.ceil(booking/appointmentsPerPage)).keys()).map((pageNumber) => (
+                  <button
+                    key={pageNumber}
+                    onClick={() => handlePaginationClick(pageNumber + 1)}
+                    disabled={currentPage === pageNumber + 1}
+                  >
+                    {pageNumber + 1}
+                  </button>
+                ))}
+              </div>
+                </div>
           </div>
     </div>
     </div>

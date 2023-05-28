@@ -201,5 +201,18 @@ export async function updateBooking(req,res){
     }
 }
 
+export async function getServiceCenterDashboard(req,res){
+    try{
+        const id=req.params.id
+        const workers =await WorkerModel.find({serviceCenterId:id}).lean()
+        const worker =await WorkerModel.find({serviceCenterId:id}).lean().countDocuments()
+        const bookings=await BookingModel.find({serviceCenterId:id}).populate('worker')
+        const upcoming=await BookingModel.find({serviceCenterId:id,status:"upcoming"}).countDocuments()
+        const completed=await BookingModel.find({serviceCenterId:id,status:"completed"}).countDocuments()
+        const totalBooking=await BookingModel.find({serviceCenterId:id}).countDocuments()
+        res.json({workers,bookings,upcoming,completed,totalBooking,worker,error:false})
 
-      
+    }catch(err){
+        console.log(err) 
+    }
+}

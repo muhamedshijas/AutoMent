@@ -204,7 +204,8 @@ try{
     const totalBooking=await BookingModel.find().countDocuments()
     const users=await UserModel.find().limit(5).sort({_id:-1})
     const serviceCenters=await ServiceCenterModel.find().limit(5).sort({_id:-1})
-    const booking=await BookingModel.find().limit(5).sort({id:-1})
+    const booking=await BookingModel.find().lean().limit(5).sort({id:-1})
+    console.log(booking)
     res.json({userCount,serviceCenterCount,workerCount,totalBooking,users,serviceCenters,booking})
 }catch(err){
     console.log(err)

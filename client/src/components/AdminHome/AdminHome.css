@@ -17,17 +17,18 @@ body{
 .user-card{
     box-shadow: 0px 0px 100px rgba(0, 0, 0, 0.1);
     background:#F1F6F9;
-    height: 150px;
-    width: 250px;
+    height: 120px;
+    width: 200px;
     display: flex;
     align-items: center;
     padding: 8px;
     color: black;
     border-radius: 12px;
-    font-size: 50px;
+    font-size: 25px;
 }
 
 .admin-body .counts{
+    font-size: 20px !important;
     display: flex;
     width: 100%;
     justify-content: space-around;
@@ -37,7 +38,7 @@ body{
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 100px;
+    font-size: 40px;
     height: 100%;
     width:100px;
     margin-left: 0px !important;
@@ -54,3 +55,56 @@ body{
     justify-content: center;
     padding: 20px;
 }
+
+.admin-home .tables {
+  
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    padding: 20px;
+}
+.admin-home .tables .user-service-tables{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+.admin-home .tables .user-table,.admin-home .tables  .servicecenter-table{
+    background-color: #F1F6F9;
+    box-shadow: 0px 0px 100px rgba(0, 0, 0, 0.1);
+    width: 45%;
+    border-radius: 5px;
+    display: flex;
+    padding: 10px;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.admin-home .tables .booking-table{
+    width: 95%;
+    margin-top: 10px;
+    background-color: #F1F6F9;
+    box-shadow: 0px 0px 100px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    display: flex;
+    padding: 10px;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
+}
+.admin-home .tables table{
+    margin-top: 5px !important;
+
+}
+.admin-home .tables .booking-table .complete{
+    color: green;
+    font-weight: 600;
+}
+
+.admin-home .tables .booking-table .pagination button{
+    background-color:#212A3E  ;
+    width: 30px;
+    height: 30px;
+    margin-left: 10px;
+}
+
+

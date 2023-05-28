@@ -1,3 +1,61 @@
 .service-center-home{
     width: 100%;
+    display: flex;
+
+}
+.service-center-body{
+    margin-top: 10px;
+    padding: 10px;
+    align-items: center;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+.service-center-body .counts{
+    font-size: 20px !important;
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+}
+.service-card-icon{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 40px;
+    height: 100%;
+    width:100px;
+    margin-left: 0px !important;
+    border-top-left-radius: 12px;
+    border-bottom-left-radius: 12px;
+    color: #212A3E !important;
+}
+
+.service-card{
+    box-shadow: 0px 0px 100px rgba(0, 0, 0, 0.1);
+    background:#F1F6F9;
+    height: 120px;
+    width: 200px;
+    display: flex;
+    align-items: center;
+    padding: 8px;
+    color: black;
+    border-radius: 12px;
+    font-size: 25px;
+}
+
+.service-center-body .booking-table{
+
+    width: 90%;
+    margin-top: 20px;
+    background-color: #F1F6F9;
+    box-shadow: 0px 0px 100px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    display: flex;
+    padding: 20px;
+    justify-content: center ;
+    align-items: center ;
+    flex-direction: column;
+}
+.service-center-body .booking-table table{
+    margin: 0px !important;
 }

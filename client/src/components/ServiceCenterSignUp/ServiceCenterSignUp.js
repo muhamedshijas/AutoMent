@@ -9,6 +9,7 @@ function ServiceCenterSignUp() {
   const [email, setEmail] = useState("");
   const [name,setName]=useState("");
   const [password, setPassword] = useState("");
+  const [confirmPassword,setConfirmPassword]=useState("")
   const [errMessage, setErrmessage] = useState("");
   const [place, setPlace] = useState("");
   const [district, setDistrict] = useState("")
@@ -62,7 +63,7 @@ function ServiceCenterSignUp() {
     }
 
   const validForm = () => {
-    if (place.trim() === "" || password.trim() === "" || email.trim() === "" || district.trim() === "" || name.trim==="") {
+    if (place.trim() === "" || password.trim() === "" || email.trim() === "" || district.trim() === "" || name.trim==="" ||password !== confirmPassword) {
       return false
     }
     return true
@@ -86,68 +87,77 @@ function ServiceCenterSignUp() {
   }
 
   return (
-    <section className='d-flex justify-content-evenly align-items-center loginSection '>
-      <div className="login row w-75 ">
-        <div className="image col-md-7">
-          <h3>Service center signUp </h3>
-          <img src={loginImage} alt="" srcset="" />
-        </div>
-        <form onSubmit={handleSubmit} className="serviceCenterSignUp col-md-4">
-          <label className="form-label text-danger" htmlFor="form2Example27">
-            {errMessage && errMessage}
-          </label>
-          <div className="email">
-            <label htmlFor=""><p> Name</p></label>
-            <input type="text" value={name} onChange={(e) => setName(e.target.value)} />
-          </div>
-          <div className="email">
-            <label htmlFor=""><p> email</p></label>
-            <input type="text" value={email} onChange={(e) => setEmail(e.target.value)} />
-          </div>
-          <div className="email">
-            <label htmlFor=""><p> place</p></label>
-            <input type="text" value={place} onChange={(e) => setPlace(e.target.value)} />
-          </div>
-          <div className="email">
-          <select name="" id="" onChange={(e)=>setDistrict(e.target.value)}>
-          <option value="">Choose District</option>
-          <option value="Thiruvananthapuram">Thiruvananthapuram</option>
-          <option value="Kollam">Kollam</option>
-          <option value="Pathanamthitta">Pathanamthitta</option>
-          <option value="Alappuzha">Alappuzha</option>
-          <option value="Kottayam">Kottayam</option>
-          <option value="Ernamkulam">Ernamkulam</option>
-          <option value="Thrisuur">Thrissur</option>
-          <option value="Palakkad">Palakkad</option>
-          <option value="Malappuram">Malappuram</option>
-          <option value="Kozhikode">Kozhikode</option>
-          <option value="Wayanad">Wayanad</option>
-          <option value="Kannur">Kannur</option>
-          <option value="Kasargod">Kasargod</option>
-          </select>
-          </div>
-          <div className="password">
-            <label htmlFor=""><p> password</p></label>
-            <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
-          </div>
-          <div className="logos">
-            <div className="certificate">
-              <label htmlFor=""> Add Reg Certificate of your service Center</label>
-              <input type="file" className="chooseImage" onChange={handleImage} />
-              <p className='text-success text-center' style={{fontWeight:'400',fontSize:'12px'}}>(This is for your permission purpose)</p>
-            </div>
-            <div className="certificate">
-              <label htmlFor=""> Add Logo of your service Center</label>
-              <input type="file" className="chooseImage" onChange={handleLogo} />
-              <p className='text-success text-center' style={{fontWeight:'400',fontSize:'12px'}}>(This is for your permission purpose)</p>
-            </div>
-          </div>
-          <button type='submit' disabled={!validForm()} className='loginSubmit'>Submit</button>
-   <p>Do you have an account </p>
-      <Link to='/servicecenter/login'>Login here</Link>
-        </form>
-      </div>
-    </section>
+    <div className="service-signup">
+    
+    <div className="image">
+    <img src={loginImage} alt="" srcset="" />
+    </div>
+
+    <form onSubmit={handleSubmit} >
+    <div className="first-row">
+    <div className="email">
+    <label htmlFor="">Email</label>
+    <input type="text" value={email} onChange={(e)=>setEmail(e.target.value)} />
+    </div>
+    <div className="name">
+    <label htmlFor="">Service center Name</label>
+    <input type="text" value={name} onChange={(e)=>setName(e.target.value)} />
+    </div>
+    </div>
+
+    <div className="first-row">
+    <div className="email">
+    <label htmlFor="">
+    Enter the place</label>
+    <input type="text" value={place}  onChange={(e)=>setPlace(e.target.value)} />
+    </div>
+    <div className="email">
+    <select onChange={(e)=>setDistrict(e.target.value)} >
+    <option value="">Choose District</option>
+  <option value="Thiruvanathapuram">Thiruvanathapuram</option>    
+  <option value="Kollam">Kollam</option>    
+  <option value="Pathanamthitta">Pathanamthitta</option>    
+  <option value="Idukki">Idukki</option>    
+  <option value="Kottayam">Kottayam</option>    
+  <option value="Alappuzha">Alappuzha</option>    
+  <option value="Ernamkulam">Ernamkulam</option>    
+  <option value="Thrissur">Thrissur</option>    
+  <option value="Palakkad">Palakkad</option>    
+  <option value="Malappuram">Malappuram</option>    
+  <option value="Kozhikode">Kozhikode</option>    
+  <option value="Wayanad">Wayanad</option>    
+  <option value="Kannur">Kannur</option>    
+  <option value="Kasargode">Kasargode</option>    
+    </select>
+    </div>
+    </div>
+
+  <div className="first-row">
+  <div className="email">
+  <label htmlFor="">Password</label>
+  <input type="password"  value={password} onChange={(e)=>setPassword(e.target.value)}/>
+  </div>
+
+  <div className="email">
+  <label htmlFor="">Confirm Password</label>
+  <input type="password" value={confirmPassword} onChange={(e)=>setConfirmPassword(e.target.value)} />
+  </div>
+  </div>    
+
+  <div className="first-row">
+  <div className="email logos">
+  <label htmlFor="">Upload Logo</label>
+  <input type="file" onChange={handleLogo}/>
+  </div>
+
+  <div className="email logos">
+  <label htmlFor="">Upload registration certificat</label>
+  <input type="file" onChange={handleImage} />
+  </div>
+  </div>
+  <button type='submit' disabled={!validForm()}> Submit </button>
+    </form>
+    </div>
   )
 }
 

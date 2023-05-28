@@ -31,7 +31,8 @@ const BookingSchema = new mongoose.Schema({
         dateOfService:{
             type:Date
         },worker:{
-            type:String
+            type:mongoose.Schema.Types.ObjectId,
+            ref:'Worker'
         },status:{
             type:String,
             default:"upcoming"
