@@ -2,6 +2,8 @@ import axios from 'axios';
 import React from 'react'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
+import UpdatePassword from '../../assets/images/UpdatePassword.png'
+
 
 
 function ResetPassword({email,otp}) {
@@ -16,7 +18,6 @@ function ResetPassword({email,otp}) {
         if(data.err){
             setErrMessage(data.message)
         }else{
-            alert("true")
             navigate("/login")
         }
     }
@@ -30,11 +31,12 @@ function ResetPassword({email,otp}) {
 
   return (
     <div>
-    <div className="container">
+    <div className="forgot-container">
+    <div className="forgot-otp">
     <div className="image">
-    
+    <img src={UpdatePassword} alt="" srcset="" />
     </div>
-    
+    <div className="forgot-form">
     <form action="" className='reset-form' onSubmit={handleSubmit}>
     <input type="text" value={email} disabled />
     <input type="password" value={password}  onChange={(e)=>setPassword(e.target.value)} placeholder="new password" />
@@ -44,11 +46,13 @@ function ResetPassword({email,otp}) {
         <div className="login-row" style={{ justifyContent: "flex-start" }}>
         <p className='text-danger'>{errMessage}</p>
         </div>
-     }
-    <button type='submit' disabled={!validForm()}>Submit</button>
-    </form>
-    </div>
-    
+    }
+     <button type='submit' disabled={!validForm()}>Submit</button>
+     </form>
+     </div>
+     </div>
+     
+     </div>
     </div>
   )
 }

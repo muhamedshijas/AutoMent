@@ -111,7 +111,7 @@ export async function getWorkerbookingDetials(req,res){
 export async function workerUpdateBooking(req,res){
     try{
         const id=req.body.bookingId
-        await BookingModel.findByIdAndUpdate(id,{$set:{status:req.body.status}})
+        await BookingModel.findByIdAndUpdate(id,{$set:{status:req.body.status,vehicleCondition:req.body.vehicleCondition}})
     return res.json({error:false})
     }catch(err){
         console.log(err)

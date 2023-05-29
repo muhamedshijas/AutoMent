@@ -88,7 +88,6 @@ function ServiceCenterSignUp() {
 
   return (
     <div className="service-signup">
-    
     <div className="image">
     <img src={loginImage} alt="" srcset="" />
     </div>

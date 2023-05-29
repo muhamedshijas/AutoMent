@@ -3,11 +3,12 @@ import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import ServiceCenterHeader from '../ServiceCenterHeader/ServiceCenterHeader';
 import ServiceCenterSideBar from '../ServiceCenterSideBar/ServiceCenterSideBar';
-import { FaUsers} from "react-icons/fa";
+import { HiOutlineClipboardList } from "react-icons/hi";
 import { GiMechanicGarage } from "react-icons/gi";
-import { GrUserWorker} from "react-icons/gr";
-import { AiOutlineSchedule} from "react-icons/ai";
+import { GrUserWorker,GrMoney} from "react-icons/gr";
+import { AiOutlineSchedule,AiOutlineCheckCircle} from "react-icons/ai";
 import { RiShieldUserLine} from "react-icons/ri";
+import { Avatar, Rating, setRef, TextField } from "@mui/material"
 import './ServiceCenterHome.css'
 
 function ServiceCenterHome() {
@@ -23,6 +24,7 @@ function ServiceCenterHome() {
   const [worker,setWorker]=useState(0)
   const [bookings,setBookings]=useState([])
   const [workers,setWorkers]=useState([""])
+  const [reviews,setReviews]=useState([])
 
   React.useEffect(()=>{
     (
@@ -37,6 +39,7 @@ function ServiceCenterHome() {
                 setUpcoming(data.upcoming)
                 setTotalBooking(data.totalBooking)
                 setWorker(data.worker)
+                setReviews(data.reviews)
                 }
             }
             catch(err){   
@@ -55,7 +58,7 @@ function ServiceCenterHome() {
     <div className="counts">
     <div className="service-card">
     <div className="service-card-icon">
-    <FaUsers className='icons'/>
+    <GrMoney className='icons'/>
     </div>
     <div className="service-card-counts">
     <h5> Revenue</h5>
@@ -65,7 +68,7 @@ function ServiceCenterHome() {
 
     <div className="service-card">
     <div className="service-card-icon">
-    <FaUsers className='icons'/>
+    <HiOutlineClipboardList className='icons'/>
     </div>
     <div className="service-card-counts">
     <h5>Total Booking</h5>
@@ -84,7 +87,7 @@ function ServiceCenterHome() {
     
     <div className="service-card">
     <div className="service-card-icon">
-    <AiOutlineSchedule className='icons'/>
+    <AiOutlineCheckCircle className='icons'/>
     </div>
     <div className="service-card-counts">
     <h5>Completed</h5>
@@ -128,7 +131,7 @@ function ServiceCenterHome() {
                     <td>{item.ownerName}</td>
                     <td>{item.vehicleBrand}  {item.vehicleModel}</td>
                     <td>{item.vehicleNo}</td>
-                    <td>{item.worker.name}</td>
+                    <td>{item.worker?item.worker.name:"Not Assigned"}</td>
                     <td>{item.packageChoosen}</td>
                     <td className={item.status=="completed"?"complete":""}>{item.status}</td>
                     </tr>
@@ -137,6 +140,37 @@ function ServiceCenterHome() {
                 </tbody>
                 </table>
                 </div>
+
+                <div className="review-sec">
+                <h4>Review and Ratings</h4>
+               
+                <div className="review-and-rating">
+                {
+                  reviews &&
+                  reviews.map((item, index) => {
+                    return <div className="servicecenter-review">
+                      <div className="head-sec">
+                        <div className="user-detials">
+                          <Avatar
+                            alt="Remy Sharp"
+                            src="/static/images/avatar/1.jpg"
+                            sx={{ width: 32, height: 32 }}
+                          />
+                          <b>{item.userId.name}</b>
+                        </div>
+                        <p>{new Date(item.updatedAt).toLocaleDateString()}</p>
+                      </div>
+                      <p className="servicecenter-review-desc">
+                        <Rating value={item.rating}
+                          readOnly
+                          size="small" />
+                        {item.review}
+                      </p>
+                    </div>
+                  })
+                }
+              </div>
+              </div>
     </div>
 
     </div>

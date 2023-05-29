@@ -8,6 +8,7 @@ function WorkerViewBookingDetials({id}) {
     const [bookingDetials,setBookingDetials]=useState("")
     const [status,setStatus]=useState("")
     const [refresh,setRefresh]=useState(false)
+    const [vehicleCondition,setVehicleCondition]=useState("")
     const navigate=useNavigate()
     const dispatch=useDispatch()
     useEffect(()=>{
@@ -30,7 +31,7 @@ function WorkerViewBookingDetials({id}) {
       async function handleSubmit(e){
         e.preventDefault();
         let {data}=await axios.post("/worker/updatebooking", {
-          bookingId,status
+          bookingId,status,vehicleCondition
         });
         console.log(data)
   if(!data.error){
@@ -71,6 +72,11 @@ function WorkerViewBookingDetials({id}) {
     <option value="ongoing">Ongoing</option>
     </select></p>
     
+    <p>Update Vehicle Condition: <select name="" id="" onChange={(e)=>setVehicleCondition(e.target.value)}>
+    <option value="Well-maintained">Well-maintained</option>
+    <option value="Satisfactory">Satisfactory</option>
+    <option value="Need More Improvements">Need More Improvements</option>
+    </select></p>
     </div>
     <button type='submit'>Update</button>
     </div>

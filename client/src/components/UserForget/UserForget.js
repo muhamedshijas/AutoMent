@@ -3,6 +3,7 @@ import React from 'react'
 import { useState } from 'react'
 import forget from '../../assets/images/forget.png'
 import UserForgetOtp from '../UserForgetOtp/UserForgetOtp'
+import './UserForget.css'
 
 
 function UserForget() {
@@ -29,15 +30,14 @@ function UserForget() {
             }else{
                 console.log(data.user)
                 setOtp(true)
-                alert(true)
             }
         }
     }
   return (
-    <div className='container'>
+    <div className='forgot-container'>
    {
     otp?<UserForgetOtp email={email}/>:
-    <div className="app">
+    <div className='forgot-otp'>
     <div className="forget-image">
     <img src={forget} alt="" srcset=""  />
     </div>
@@ -46,7 +46,6 @@ function UserForget() {
     <input type="email " value={email} onChange={(e)=>setEmail(e.target.value)} />
     <button type='submit'>Submit</button>
     </form>
-
     </div>
    }
  

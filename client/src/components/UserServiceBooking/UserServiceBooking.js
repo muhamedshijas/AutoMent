@@ -26,7 +26,7 @@ function UserServiceBooking() {
   const userId=user._id;
 const location= useLocation()
 const {state}= location
-
+ 
 const serviceCenterId=state.serviceCenter._id
 const packageChoosen=state.package
 const serviceCenterName=state.serviceCenter.name

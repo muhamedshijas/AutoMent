@@ -299,9 +299,10 @@ export async function resetUserPassword(req, res) {
 
 export async function getUserServiceHistory(req,res){
   const id=req.params
-  const service=await BookingModel.findById(req.params.id)
+  const service=await BookingModel.findById(req.params.id).populate('worker')
+  console.log(service)
   res.json(service)
-}
+}  
 
 export async function addServiceCenterFeedback(req, res) {
   try {

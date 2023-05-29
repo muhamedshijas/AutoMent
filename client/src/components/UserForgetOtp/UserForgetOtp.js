@@ -1,6 +1,7 @@
 import axios from 'axios'
 import React from 'react'
 import { useState } from 'react'
+import { verfyOtp } from '../images/Images.jsx'
 import ResetPassword from '../ResetPassword/ResetPassword'
 
 function UserForgetOtp({email}) {
@@ -15,20 +16,19 @@ function UserForgetOtp({email}) {
             setErrMessage(data.message)
         }else{
             setReset(true)
-            alert("passss")
         }
 
     }
   return (
     <div>
-    <div className="container">
+    <div className="forgot-container">
    
 
    {
     reset?<ResetPassword otp={otp} email={email}/>
-    :<div className="app"> 
+    :<div className="forgot-otp"> 
     <div className="image">
-    
+    <img src={verfyOtp} alt="" srcset="" />
     </div>
     <form action="" className='otp-form' onSubmit={handleSubmit}>
           <div className="heads">

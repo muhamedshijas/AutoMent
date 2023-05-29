@@ -4,6 +4,7 @@ import  cloudinary from '../config/cloudinary.js'
 import BookingModel from '../models/BookingModel.js';
 import ServiceCenterModel from '../models/ServiceCenterModel.js'
 import WorkerModel from '../models/WorkerModel.js';
+import FeedbackModel from '../models/FeedBackModel.js';
 
 
 var salt = bcrypt.genSaltSync(10);
@@ -210,7 +211,8 @@ export async function getServiceCenterDashboard(req,res){
         const upcoming=await BookingModel.find({serviceCenterId:id,status:"upcoming"}).countDocuments()
         const completed=await BookingModel.find({serviceCenterId:id,status:"completed"}).countDocuments()
         const totalBooking=await BookingModel.find({serviceCenterId:id}).countDocuments()
-        res.json({workers,bookings,upcoming,completed,totalBooking,worker,error:false})
+        const reviews = await FeedbackModel.find({serviceCenterId:id}).populate('userId').lean()
+        res.json({workers,bookings,upcoming,completed,totalBooking,worker,reviews,error:false})
 
     }catch(err){
         console.log(err) 

@@ -59,3 +59,24 @@
 .service-center-body .booking-table table{
     margin: 0px !important;
 }
+.service-center-body  .review-sec .review-and-rating{
+    display: flex;
+    gap: 10px;
+}
+.service-center-body .review-and-rating .servicecenter-review{
+    margin-top: 0px !important;
+    height: 120px;
+    width: 300px;
+}
+.service-center-body .review-sec{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    background-color: #F1F6F9;
+    box-shadow: 0px 0px 100px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+    padding: 10px;
+}
+.service-center-body .review-sec h6{
+    margin: 0px !important;
+}
