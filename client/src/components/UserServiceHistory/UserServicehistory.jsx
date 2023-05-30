@@ -50,8 +50,8 @@ function UserServicehistory({ id }) {
                     <div className="first-row">
                         <div className="service-history-vehicle">
                             <p className='text-center'>Vehicle Detials</p>
-                            <p>{history.vehicleBrand}</p>
-                            <p>{history.vehicleModel}</p>
+                            <p>{history.vehicleBrand} {history.vehicleModel}</p>
+                        
                             <p>{history.vehicleNo}</p>
                         </div>
 

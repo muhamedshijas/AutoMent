@@ -174,6 +174,7 @@ function App() {
         <Route path='/worker/login' element={<WorkerLoginpage/>}/>
         <Route path='/worker/profile'element={<Navigate to='/worker/login'/>}/>
         <Route path='/worker/profile/worker/edit-profile/:id' element={<Navigate to='/worker/login'/>}/>
+        <Route path='/worker/viewbooking/:id' element={<Navigate to='/worker/login'/> }/>
         </>
       }
       </Routes>

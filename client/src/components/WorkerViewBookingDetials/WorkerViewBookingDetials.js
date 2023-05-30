@@ -66,6 +66,9 @@ function WorkerViewBookingDetials({id}) {
     <div className="worker-package-detials">
     <p>Package Choosen:{bookingDetials.packageChoosen}</p>
     <p>Status:{bookingDetials.status}</p>
+    </div>
+
+    <div className="updations">
     <p>Update Status: <select name="" id="" onChange={(e)=>setStatus(e.target.value)}>
     <option value="">Update status</option>
     <option value="completed">Completed</option>
@@ -73,6 +76,7 @@ function WorkerViewBookingDetials({id}) {
     </select></p>
     
     <p>Update Vehicle Condition: <select name="" id="" onChange={(e)=>setVehicleCondition(e.target.value)}>
+    <option value=""> Choose One</option>
     <option value="Well-maintained">Well-maintained</option>
     <option value="Satisfactory">Satisfactory</option>
     <option value="Need More Improvements">Need More Improvements</option>

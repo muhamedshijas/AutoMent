@@ -120,9 +120,9 @@ async   function handleSubmit(e){
     
     <div className="vehicle-2">
     <label htmlFor=""> vehicle model year</label>
-    <input type="text" maxlength="4"  pattern="\d{4}" value={vehicleYear} onChange={(e) => setVehicleYear(e.target.value)} />
+    <input type="text" maxlength="4"  pattern="\d{4}" placeholder='eg:-2014' value={vehicleYear} onChange={(e) => setVehicleYear(e.target.value)} />
     <label htmlFor=""> vehicle No</label>
-    <input type="text" value={vehicleNo} onChange={(e) => setVehicleNo(e.target.value)} pattern='[A-Z]{2}\s[0-9]{2}\s[A-Z]{2}\s[0-9]{4}' required/>
+    <input type="text" value={vehicleNo} placeholder='eg-KL XX AB XXXX' onChange={(e) => setVehicleNo(e.target.value)} pattern='[A-Z]{2}\s[0-9]{1,2}\s[A-Z]{1,2}\s[0-9]{4}' required/>
     </div>
 
     <div className="owner">

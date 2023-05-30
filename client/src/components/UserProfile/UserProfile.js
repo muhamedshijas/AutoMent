@@ -62,7 +62,7 @@ function UserProfile() {
       <p> <b>Vehicle Reg No:</b>&nbsp;{item.vehicleNo}</p>
       </div>
       <div className="status">
-      <p className="text-primary">{item.status}</p>
+      <p className={item.status=="completed"?"text-success":"text-primary"}>{item.status}</p>
 
       {item.status=="completed"&& <Link to={'/servicehistory/'+item._id}>view detials</Link> }
       </div>
