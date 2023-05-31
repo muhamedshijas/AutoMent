@@ -140,6 +140,11 @@ async   function handleSubmit(e){
     <label htmlFor="">Date</label>
     <input type="date" value={date}  onChange={(e) => setDate(e.target.value)} />
     </div>
+
+    <div className="refund">
+    <p className="text-center text-danger">Booking Fee :500</p>
+    <p className='text-danger'> (This will be refunded to you after the vehicle service )</p>
+    </div>
     <button type='submit'  disabled={!validForm()}>Submit </button>
     </form>
     

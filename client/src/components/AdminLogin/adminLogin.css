@@ -13,7 +13,7 @@ body{
     gap: 20px;
     justify-content: center;
 }
-.image img{
+ .image img{
     width: 600px;
     height: 460px;
 }
@@ -74,15 +74,20 @@ button:disabled{
 }
 @media(max-width:800px){
     .image img{
-        width: 300px;
-        height: 280px;
+        width: 230px !important;
+        height: 200px !important;
         margin-left: 0px;
 
     }
     .image{
-        height: 400px;
+        height: 270px;
+    }
+    .image h3{
+        margin-top: 10px;
+        margin-left:0px;
     }
     .loginSection{
+    
         height: 100%;
     }
     .image h3{
@@ -91,15 +96,24 @@ button:disabled{
     }
 
     .form input{
-        height: 40px;
-        width:250px;
+        height: 32px;
+        width:200px;
     }
     .loginSubmit{
-        width: 250px;
-        height: 40px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 190px;
+        font-size: 14px;
+        font-weight: 500;
+        height: 30px;
     }
     .form{
-        height: 300px;
+       width: 300px;
+        margin-bottom: 30px;
+        gap: 19px;
+        height: 370;
+        font-size: 12px;
     }
 }
 
