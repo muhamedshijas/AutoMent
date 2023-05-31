@@ -34,3 +34,44 @@
     width: 200px;
     font-family: Arial, Helvetica, sans-serif;
 }
+         
+@media(max-width:800px){
+   .nav{
+    width:100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+   }
+
+   .nav .logo{
+    width: 100px;
+
+   }
+
+   .nav .logo h3{
+    font-size: 12px;
+   }
+   .nav .detials{
+    width:100px;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    gap: 20px;
+   }
+
+   .nav .detials h5{
+    width:50px;
+    font-size: 12px;
+    font-weight: 550;
+    margin-bottom:0px !important;
+   }
+
+   .nav .detials button{
+    height:25px;
+    width:100px;
+    font-size: 10px;
+    padding: 3px;
+   }
+
+}
+
