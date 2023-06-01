@@ -8,7 +8,9 @@ import { GrUserWorker} from "react-icons/gr";
 import { AiOutlineSchedule} from "react-icons/ai";
 import { RiShieldUserLine} from "react-icons/ri";
 import './AdminHome.css'
-import AdminGraphs from '../AdminGraphs/AdminGraphs';
+import AdminGraphs from '../AdminGraphs/BookingGraphs';
+import BookingGraphs from '../AdminGraphs/BookingGraphs';
+import ByPackageGraph from '../AdminGraphs/ByPackageGraph';
 
 function AdminHome() {
   const dispatch=useDispatch();
@@ -22,6 +24,7 @@ function AdminHome() {
   const [serviceCenters,setServiceCenters]=useState([""]);
   const [bookings,setBookings]=useState([""])
   const [monthlyBooking,setMonthlyBooking]=useState([])
+  const [byCategory,setByCategory]=useState([])
 
   const [currentPage, setCurrentPage] = useState(1);
   const [appointmentsPerPage] = useState(4);
@@ -41,6 +44,7 @@ function AdminHome() {
                  setServiceCenters(data.serviceCenters)
                  setBookings(data.booking)
                  setMonthlyBooking(data.monthlyData)
+                 setByCategory(data.byPackage)
                 }
             }
             catch(err){   
@@ -217,7 +221,8 @@ function AdminHome() {
                 </div>
           </div>
 
-          <AdminGraphs monthlyData={monthlyBooking}/>
+          <BookingGraphs monthlyData={monthlyBooking}/>
+          <ByPackageGraph byPackage={byCategory}/>
     </div>
     </div>
     

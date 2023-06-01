@@ -1,7 +1,7 @@
 import React from 'react'
 import Chart from "react-apexcharts";
 
-function AdminGraphs({ monthlyData }) {
+function BookingGraphs({ monthlyData }) {
   const state = {
     options: {
       chart: {
@@ -31,4 +31,4 @@ function AdminGraphs({ monthlyData }) {
 
 }
 
-export default AdminGraphs
+export default BookingGraphs

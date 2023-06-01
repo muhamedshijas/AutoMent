@@ -214,7 +214,8 @@ export async function getAdminDashboard(req, res) {
         for (let i = 1; i <= 12; i++) {
             monthlyData[i - 1] = monthlyDataObject[i] ?? 0
         }
-        res.json({ userCount, serviceCenterCount, workerCount, totalBooking, users, serviceCenters, booking,monthlyData})
+        let byPackage = await BookingModel.aggregate([{ $group: { _id: "$packageChoosen", count: { $sum: 1 }, price: { $sum: "$amount" } } }])
+        res.json({ userCount, serviceCenterCount, workerCount, totalBooking, users, serviceCenters, booking,monthlyData,byPackage})
     } catch (err) {
         console.log(err)
     }   
