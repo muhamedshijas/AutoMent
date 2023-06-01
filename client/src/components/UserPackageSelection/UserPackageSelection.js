@@ -73,7 +73,7 @@ function UserPackageSelection({ id }) {
         </div>
       </div>
 
-      <div className="container choose-package">
+      <div className=" choose-package">
 
         <h3 className='text-center'>
           Scheduled packages

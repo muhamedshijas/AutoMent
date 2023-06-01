@@ -52,7 +52,7 @@ function UserServiceCenterSelection() {
     <Row>
     {
       serviceCenterList.map((item,index)=>{
-        return <Col md={3} >
+        return <Col xs={6} md={3} >
         <div className="service-center-cards mt-5">
         <Link to={'/choosepackage/'+item._id}>
         <div className="service-center-images">

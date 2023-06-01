@@ -1,136 +1,185 @@
-.package-cards{
-    background-color:#f1f6f9;
-    border-radius: 6px;
-    box-shadow: 0px 0px 100px rgba(0, 0, 0, 0.1);
-    padding: 10px;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    width:95%;
+.package-cards {
+  background-color: #f1f6f9;
+  border-radius: 6px;
+  box-shadow: 0px 0px 100px rgba(0, 0, 0, 0.1);
+  padding: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 95%;
 }
-.package-cards .package-image img{
-    height: 180px;
-    width: 180px;
-}
-
-.package-cards .package-detials h4{
-    text-align: left;
-    font-weight: 600;
-}
-.package-cards .package-detials{
-    font-size: 16px;
-    font-weight: 550;
-    width: 500px;
-    font-family:'Times New Roman', Times, serif;
-}
-.package-cards .package-detials .package-col{
-    display: flex;
-    flex-direction: column ;
-    gap: 5px;
-}
-.package-cards .package-detials .package-col .package-name{
-    display: flex;
-    gap: 5px;
-    align-items: center;
+.package-cards .package-image img {
+  height: 180px;
+  width: 180px;
 }
 
-.package-cards .package-buton button{
-    font-size: 18px;
-    font-weight: 600;
+.package-cards .package-detials h4 {
+  text-align: left;
+  font-weight: 600;
+}
+.package-cards .package-detials {
+  font-size: 16px;
+  font-weight: 550;
+  width: 500px;
+  font-family: "Times New Roman", Times, serif;
+}
+.package-cards .package-detials .package-col {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.package-cards .package-detials .package-col .package-name {
+  display: flex;
+  gap: 5px;
+  align-items: center;
 }
 
-.package-cards .package-buton{
+.package-cards .package-buton button {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.package-cards .package-buton {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end !important;
+  height: 160px !important;
+  margin-right: 20px;
+}
+.choose-package {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-height: 100%;
+  width: 100%;
+}
+.choose-package .create-custom-button {
+  display: flex;
+  justify-content: center;
+}
+.choose-package .custom-button {
+  width: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 500;
+}
+
+.package {
+  display: flex;
+  padding: 20px;
+  width: 100%;
+  gap: 20px;
+}
+
+.package .servicecenter-profile {
+  height: 655px;
+  width: 400px;
+  background-color: #f1f6f9;
+  margin-top: 61px;
+  box-shadow: 0px 0px 100px rgba(0, 0, 0, 0.1);
+  border-radius: 6px;
+  text-align: center;
+}
+.package .servicecenter-profile img {
+  height: 360px;
+  width: 360px;
+}
+
+.package .servicecenter-profile h4 {
+  font-size: 28px;
+  font-weight: 600;
+}
+.package .servicecenter-profile b {
+  font-size: 23px;
+  font-weight: 500;
+}
+.package .servicecenter-profile p {
+  font-weight: 550;
+}
+.package .servicecenter-profile .rating {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+}
+
+p {
+  margin: 0px;
+}
+
+.servicecenter-review {
+  background-color: #f1f6f9;
+  padding: 10px;
+  border-radius: 6px;
+  margin-top: 10px;
+  box-shadow: 0px 0px 100px rgba(116, 91, 91, 0.1);
+}
+
+.servicecenter-review .head-sec {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.servicecenter-review .head-sec .user-detials {
+  display: flex;
+  width: 50%;
+  gap: 10px;
+  align-items: center;
+}
+.servicecenter-review .servicecenter-review-desc {
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+@media (max-width: 800px) {
+  .package {
     display: flex;
     flex-direction: column;
-    justify-content: flex-end !important;
-    height: 160px!important;
-    margin-right: 20px;
-}
-.choose-package{
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    max-height: 100%;
-}
-.choose-package .create-custom-button{
-    display: flex;
-    justify-content: center;
-}
-.choose-package  .custom-button{
-    width:300px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-weight: 500;
-}
-
-
-.package{
-    display: flex;
-    padding: 20px;
-}
-
-.package .servicecenter-profile{
-    height:655px;
-    width: 400px;
-    background-color: #F1F6F9;
-    margin-top: 92px;
+    padding: 8px;
+    justify-content: space-around;
+  }
+  .package .servicecenter-profile {
+    height: 350px;
+    width: 350px;
+    background-color: #f1f6f9;
+    margin-top: 5px;
     box-shadow: 0px 0px 100px rgba(0, 0, 0, 0.1);
-    border-radius: 6px;
+    border-radius: 3px;
     text-align: center;
-}
-.package .servicecenter-profile img{
-    height: 360px;
-    width: 360px;
-}
+  }
+  .package .servicecenter-profile img {
+    height: 200px;
+    width: 200px;
+  }
 
-.package .servicecenter-profile h4{
-    font-size: 28px;
-    font-weight: 600;
-}
-.package .servicecenter-profile b{
-    font-size: 23px;
-    font-weight: 500;
-}
-.package .servicecenter-profile p{
-    font-weight: 550;
-}
- .package .servicecenter-profile .rating{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 5px;
- }
-
- p{
-    margin: 0px;
- }
-
- .servicecenter-review{
-    background-color: #F1F6F9;
-    padding: 10px;
-    border-radius: 6px;
+  .package .choose-package {
     margin-top: 20px;
-    box-shadow: 0px 0px 100px rgba(0, 0, 0, 0.1);
- }
-
- .servicecenter-review .head-sec{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-
- }
-
- .servicecenter-review .head-sec .user-detials{
-    display: flex;
-    width: 50%;
-    gap: 20px;
-    align-items: center;
- }
- .servicecenter-review .servicecenter-review-desc{
-    padding: 10px;
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
- }
+  }
+  .package .servicecenter-profile h4 {
+    font-size: 20px;
+    font-weight: 550;
+  }
+  .package .servicecenter-profile b {
+    font-size: 18px;
+    font-weight: 500;
+  }
+  .package .servicecenter-profile p {
+    font-size: 15px;
+    font-weight: 500;
+  }
+  .servicecenter-review .head-sec .user-detials b {
+    width: 100%;
+    font-size: 12px;
+  }
+  .servicecenter-review .servicecenter-review-desc {
+    font-size: 12px;
+  }
+  .servicecenter-review {
+    width: 350px;
+  }
+}
