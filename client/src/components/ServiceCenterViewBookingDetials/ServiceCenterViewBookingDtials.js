@@ -24,7 +24,7 @@ function ServiceCenterViewBookingDtials({id}) {
         if(!data.err){
           console.log(data)
           setBookingDetials(data.booking)
-          setWorkers(data.workers)
+          setWorkers(data.workers) 
       }
        })()
     },[refresh])

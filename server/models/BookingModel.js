@@ -45,6 +45,9 @@ const BookingSchema = new mongoose.Schema({
         vehicleCondition:{
             type:String,
             default:""
+        },amount:{
+            type:Number,
+            default:500
         }
 
 })

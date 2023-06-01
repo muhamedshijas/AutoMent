@@ -8,6 +8,7 @@ import { GrUserWorker} from "react-icons/gr";
 import { AiOutlineSchedule} from "react-icons/ai";
 import { RiShieldUserLine} from "react-icons/ri";
 import './AdminHome.css'
+import AdminGraphs from '../AdminGraphs/AdminGraphs';
 
 function AdminHome() {
   const dispatch=useDispatch();
@@ -20,6 +21,7 @@ function AdminHome() {
   const [users,setUsers]=useState([""]);
   const [serviceCenters,setServiceCenters]=useState([""]);
   const [bookings,setBookings]=useState([""])
+  const [monthlyBooking,setMonthlyBooking]=useState([])
 
   const [currentPage, setCurrentPage] = useState(1);
   const [appointmentsPerPage] = useState(4);
@@ -30,7 +32,6 @@ function AdminHome() {
         async function(){
             try{
                 const {data}=await axios.get("/admin/dashboard")
-                console.log(data)
                 if(!data.err){
                  setUserCount(data.userCount)
                  setServiceCenterCount(data.serviceCenterCount)
@@ -39,6 +40,7 @@ function AdminHome() {
                  setUsers(data.users)
                  setServiceCenters(data.serviceCenters)
                  setBookings(data.booking)
+                 setMonthlyBooking(data.monthlyData)
                 }
             }
             catch(err){   
@@ -46,8 +48,7 @@ function AdminHome() {
         }
         }
     )()
-  },[refresh])
-
+  },[refresh])    
   const indexOfLastAppointment = currentPage * appointmentsPerPage;
   const indexOfFirstAppointment = indexOfLastAppointment - appointmentsPerPage;
   const currentAppointments = bookings.slice(indexOfFirstAppointment, indexOfLastAppointment);
@@ -215,6 +216,8 @@ function AdminHome() {
               </div>
                 </div>
           </div>
+
+          <AdminGraphs monthlyData={monthlyBooking}/>
     </div>
     </div>
     
