@@ -56,7 +56,8 @@ function AdminHome() {
   const indexOfLastAppointment = currentPage * appointmentsPerPage;
   const indexOfFirstAppointment = indexOfLastAppointment - appointmentsPerPage;
   const currentAppointments = bookings.slice(indexOfFirstAppointment, indexOfLastAppointment);
- 
+  const startingNumber=(currentPage-1)*appointmentsPerPage+4;
+  const calculateSiNo=(index)=>startingNumber+index;
 
   const handlePaginationClick = (pageNumber) => {
     setCurrentPage(pageNumber);
@@ -194,7 +195,7 @@ function AdminHome() {
           {
                 currentAppointments.map((item,index)=>{
                     return <tr>
-                    <td>{index+1}</td>
+                    <td>{calculateSiNo(index-3)}</td>
                     <td>{item.ownerName}</td>
                     <td>{item.vehicleBrand}  {item.vehicleModel}</td>
                     <td>{item.vehicleNo}</td>
@@ -220,9 +221,16 @@ function AdminHome() {
               </div>
                 </div>
           </div>
-
+          <div className="admin-graphs">
+          <div className="admin-revenue-graph">
+          <h5 className='text-center'>Revenue per Month</h5>
           <BookingGraphs monthlyData={monthlyBooking}/>
+          </div>
+          <div className="admin-package-graph">
+          <h5 className='text-center'>Package Choosen</h5>
           <ByPackageGraph byPackage={byCategory}/>
+          </div>
+          </div>
     </div>
     </div>
     
