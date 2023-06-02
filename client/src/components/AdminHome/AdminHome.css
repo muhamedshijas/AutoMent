@@ -131,3 +131,19 @@ body{
     margin-right: 40px;
     padding: 10px;
 }
+
+ .weekly-graph{
+  width:100%;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+.weekly-graph .admin-weekly-graph{
+    width: 50%;
+    background-color: #F1F6F9;
+    box-shadow: 0px 0px 100px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    margin-right: 40px;
+    padding: 10px;
+}

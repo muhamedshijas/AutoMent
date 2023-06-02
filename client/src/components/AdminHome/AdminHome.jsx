@@ -11,6 +11,7 @@ import './AdminHome.css'
 import AdminGraphs from '../AdminGraphs/BookingGraphs';
 import BookingGraphs from '../AdminGraphs/BookingGraphs';
 import ByPackageGraph from '../AdminGraphs/ByPackageGraph';
+import WeeklyGraph from '../AdminGraphs/WeeklyGraph';
 
 function AdminHome() {
   const dispatch=useDispatch();
@@ -25,6 +26,7 @@ function AdminHome() {
   const [bookings,setBookings]=useState([""])
   const [monthlyBooking,setMonthlyBooking]=useState([])
   const [byCategory,setByCategory]=useState([])
+  const [weeklyData,setWeeklyData]=useState([])
 
   const [currentPage, setCurrentPage] = useState(1);
   const [appointmentsPerPage] = useState(4);
@@ -45,6 +47,7 @@ function AdminHome() {
                  setBookings(data.booking)
                  setMonthlyBooking(data.monthlyData)
                  setByCategory(data.byPackage)
+                 setWeeklyData(data.weeklyData)
                 }
             }
             catch(err){   
@@ -56,7 +59,7 @@ function AdminHome() {
   const indexOfLastAppointment = currentPage * appointmentsPerPage;
   const indexOfFirstAppointment = indexOfLastAppointment - appointmentsPerPage;
   const currentAppointments = bookings.slice(indexOfFirstAppointment, indexOfLastAppointment);
-  const startingNumber=(currentPage-1)*appointmentsPerPage+4;
+  const startingNumber=(currentPage-1)*appointmentsPerPage;
   const calculateSiNo=(index)=>startingNumber+index;
 
   const handlePaginationClick = (pageNumber) => {
@@ -195,7 +198,7 @@ function AdminHome() {
           {
                 currentAppointments.map((item,index)=>{
                     return <tr>
-                    <td>{calculateSiNo(index-3)}</td>
+                    <td>{calculateSiNo(index+1)}</td>
                     <td>{item.ownerName}</td>
                     <td>{item.vehicleBrand}  {item.vehicleModel}</td>
                     <td>{item.vehicleNo}</td>
@@ -221,11 +224,17 @@ function AdminHome() {
               </div>
                 </div>
           </div>
+          <div className="weekly-graph">
+          <div className="admin-weekly-graph">
+          <h5 className='text-center'>Weekly Data</h5>
+          <WeeklyGraph weeklyData={weeklyData}/>
+          </div>
+          </div>
           <div className="admin-graphs">
           <div className="admin-revenue-graph">
           <h5 className='text-center'>Revenue per Month</h5>
           <BookingGraphs monthlyData={monthlyBooking}/>
-          </div>
+          </div> 
           <div className="admin-package-graph">
           <h5 className='text-center'>Package Choosen</h5>
           <ByPackageGraph byPackage={byCategory}/>

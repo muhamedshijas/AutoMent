@@ -215,7 +215,19 @@ export async function getAdminDashboard(req, res) {
             monthlyData[i - 1] = monthlyDataObject[i] ?? 0
         }
         let byPackage = await BookingModel.aggregate([{ $group: { _id: "$packageChoosen", count: { $sum: 1 }, price: { $sum: "$amount" } } }])
-        res.json({ userCount, serviceCenterCount, workerCount, totalBooking, users, serviceCenters, booking,monthlyData,byPackage})
+        const sd=new Date()
+        const ed=new Date(new Date().setDate(new Date().getDate() - 7))
+        const weeklyDataArray = await BookingModel.aggregate([{ $match:{$and:[{dateOfService:{$gt:ed,$lt:sd}}]}}, { $group: { _id: { $dayOfWeek: "$dateOfService" }, sum: { $sum: "$amount" } } }])
+        let weeklyDataObject={}
+        weeklyDataArray.map(item => {
+            weeklyDataObject[item._id] = item.sum
+        })
+        let weeklyData = []
+        for (let i = 1; i <= 7; i++) {
+            weeklyData[i - 1] = weeklyDataObject[i] ?? 0
+        }
+        console.log(weeklyData)
+        res.json({ userCount, serviceCenterCount, workerCount, totalBooking, users, serviceCenters, booking,monthlyData,byPackage,weeklyData})
     } catch (err) {
         console.log(err)
     }   
