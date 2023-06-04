@@ -2,7 +2,7 @@ import axios from 'axios'
 import React, { useState } from 'react'
 import './AddCustomService.css'
 
-function AddCustomService({setShowModal, setRefresh, refresh}) {
+function AddCustomService({setShowModal, setRefresh,addService,refresh}) {
   const [name,setName]=useState("")
   const [serviceList,setServiceList]=useState([""])
 
@@ -11,7 +11,7 @@ function AddCustomService({setShowModal, setRefresh, refresh}) {
     (
         async function(){
             try{
-                const {data}=await axios.get("/admin/service?name="+name)
+                const {data}=await axios.get("/admin/service?name")
                 console.log(data)
                 if(!data.err){
                     setServiceList(data)
@@ -22,27 +22,29 @@ function AddCustomService({setShowModal, setRefresh, refresh}) {
         }
         }
     )()
-  },[refresh,name])
+  },[refresh])
 
    async function handleSubmit(){
-        setShowModal=false
+    addService(name)
+        setShowModal(false)
     }
   return (
    
     <div className="app">
-    <div className="add-custom-service">
-    <form action="" onSubmit={handleSubmit}>
-    <h4>Add Another Service</h4>
-    <select name="" id="">
+ <div className="add-custom-service">
+ <form action="" onSubmit={handleSubmit}>
+ <h5>Add a Services</h5>
+     <select name="" id="" onChange={(e)=>setName(e.target.value)}>
+     <option value="">Choode one</option>
     {
-      serviceList.map((item,index)=>{
-          return<option value="">{item.serviceName}</option>
-        })
-      }
-      </select>
-      <button type='submit'>Submit</button>
-      </form>
-      </div>
+      serviceList.map((item)=>{
+        return<option value={item.serviceName}>{item.serviceName}</option>
+      })
+    }
+    </select>
+    <button type='submiit'>Save</button>
+ </form>
+ </div>
     </div>
 
   )

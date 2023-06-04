@@ -168,9 +168,9 @@ export async function getServiceCenterbooking(req,res){
 try{
     const  token=req.cookies.serviceCenterToken
     const verifiedJWT = jwt.verify(token, "myjwtsecretkey");
-    console.log(verifiedJWT.id)
     const  id=verifiedJWT.id;
     let bookings = await BookingModel.find({serviceCenterId:id}).lean()   
+ 
     res.json(bookings)
 }
 catch(err){
@@ -185,7 +185,7 @@ export async function getbookingDetials(req,res){
         const id=booking.serviceCenterId
 
         let workers = await WorkerModel.find({ serviceCenterId: id}).lean()
-    
+        console.log(booking)
         res.json({booking,workers})
        }catch{
 

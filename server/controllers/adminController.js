@@ -177,8 +177,8 @@ export async function addServices(req, res) {
 export async function getServices(req, res) {
 
     try {
-        const name = req.query.name ?? ""
-        let services = await ServiceModel.find({ serviceName: new RegExp(name, 'i') }).lean()
+      
+        let services = await ServiceModel.find().lean()
 
         res.json(services)
     }

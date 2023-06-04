@@ -30,6 +30,13 @@ const {state}= location
 const serviceCenterId=state.serviceCenter._id
 const packageChoosen=state.package
 const serviceCenterName=state.serviceCenter.name
+let packageDetials
+if(packageChoosen=="Custom Package"){
+   packageDetials=state.packageDetials
+}else{
+  packageDetials=[]
+}
+console.log(packageDetials)
 
   const validForm = () => {
     if (ownerName.trim() === "" ||  vehicleModel.trim() === "" || vehicleBrand.trim()===""|| date.trim()==="" 
@@ -45,7 +52,7 @@ async   function handleSubmit(e){
     e.preventDefault()
    if(validForm()){
     const {data}=await axios.post("user/bookservice",{bookingAmount:500})
-    console.log("sfsdjfhsdjkfhsjdkfhsjkd")
+ 
     if(!data.error){
       console.log(data.order)
       handleRazorPay(data.order);
@@ -66,7 +73,7 @@ async   function handleSubmit(e){
         handler: async (response) => {
           
             const { data } = await axios.post("/user/payment/verify", { response,ownerMobileNo,ownerName,vehicleNo,vehicleBrand,vehicleYear
-              ,vehicleModel,serviceCenterId,packageChoosen,date,serviceCenterName,userId});
+              ,vehicleModel,serviceCenterId,packageChoosen,date,serviceCenterName,userId,packageDetials});
             if(data.err){
                 Swal.fire({
                     icon: 'error',

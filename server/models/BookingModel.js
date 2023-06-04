@@ -48,6 +48,8 @@ const BookingSchema = new mongoose.Schema({
         },amount:{
             type:Number,
             default:500
+        },packageDetials:{
+            type:Array
         }
 
 })

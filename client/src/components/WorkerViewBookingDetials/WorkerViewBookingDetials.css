@@ -13,7 +13,7 @@
     justify-content: center;
     align-items: center;
 }
-.worker-owner,.worker-vehicle,.worker-package-detials{
+.worker-owner,.worker-vehicle{
     display: flex;
     justify-content: space-evenly;
     width: 100%;
@@ -31,4 +31,19 @@
 .updations{
     display: flex;
     gap: 20px;
+}
+.worker-package-detials .worker-package{
+    display:flex;
+    flex-direction: column;
+} 
+.worker-package-detials{
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+}
+.worker-package-detials .worker-package span{
+    color: blue;
+    font-weight: 550;
+    text-align: center;
+    cursor: pointer;
 }

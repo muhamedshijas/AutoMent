@@ -200,10 +200,20 @@ export async function getServiceCenter(req,res){
 
 export async function userBookService(req,res){
   try{
-    
-    const {ownerMobileNo,ownerName,vehicleNo,vehicleBrand,vehicleYear,vehicleModel,serviceCenterId,packageChoosen,date,serviceCenterName,userId}=req.body
-    const newBooking=new BookingModel({ ownerMobileNo,ownerName,vehicleNo,vehicleBrand,vehicleModel,userId,serviceCenterName
-      ,vehicleYear,serviceCenterId,packageChoosen,dateOfService:date})
+    const {ownerMobileNo,ownerName,vehicleNo,vehicleBrand,vehicleYear,vehicleModel,serviceCenterId,packageChoosen,date,serviceCenterName,userId,packageDetials}=req.body
+    const newBooking=new BookingModel({ 
+      ownerMobileNo,
+      ownerName,
+      vehicleNo,
+      vehicleBrand,
+      vehicleModel,
+      userId,
+      serviceCenterName,
+      vehicleYear,
+      serviceCenterId,
+      packageChoosen,
+      packageDetials,
+      dateOfService:date})
       await newBooking.save();
     res.json({error:false})
 

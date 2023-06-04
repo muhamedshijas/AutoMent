@@ -64,7 +64,10 @@ function WorkerViewBookingDetials({id}) {
     </div>
 
     <div className="worker-package-detials">
+    <div className="worker-package">
     <p>Package Choosen:{bookingDetials.packageChoosen}</p>
+    {bookingDetials.packageChoosen=="Custom Package" ? <span>view Detials</span>:""}
+    </div>
     <p>Status:{bookingDetials.status}</p>
     </div>
 

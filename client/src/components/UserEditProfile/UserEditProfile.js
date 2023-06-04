@@ -67,7 +67,7 @@ function UserEditProfile() {
     </div>
     <div className="email">
     <label htmlFor="">Email</label>
-    <input type="email" onChange={(e)=>setEmail(e.target.value)}  value={email}/>
+    <input type="email" onChange={(e)=>setEmail(e.target.value)}  disabled value={email}/>
     </div>
     <div className="name">
     <label htmlFor="">Phone No</label>

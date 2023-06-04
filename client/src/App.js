@@ -102,7 +102,7 @@ function App() {
             <Route path='/edit-profile/:id' element={<EditProfilePage/>}/>
            <Route path='/chooseservicecenter' element={<ServiceCenterSlectionPage/>}/>
            <Route path='/choosepackage/:id' element={<PackageSelectionPage/>}/>
-           <Route path='/createcustompackage' element={<CreateCustomPackagePage/>}/>
+           <Route path='/createcustompackage/:id' element={<CreateCustomPackagePage/>}/>
            <Route path='/bookservice' element={<ServiceBookingPage/>}/>
            <Route path='/servicehistory/:id' element={<ServiceHistoryPage/>}/>
            <Route path='/*' element={<PageNotFound/>}/>

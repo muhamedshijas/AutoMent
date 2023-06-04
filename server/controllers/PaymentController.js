@@ -32,8 +32,6 @@ try{
 
 export async function verifyPayment(req, res) {
     try {
-        console.log(req.body)
-
         const {ownerMobileNo,
             response,
             ownerName,
@@ -45,6 +43,7 @@ export async function verifyPayment(req, res) {
             packageChoosen,
             date,
             serviceCenterName,
+            packageDetials,
             userId}
             =req.body
 
@@ -57,8 +56,9 @@ export async function verifyPayment(req, res) {
         if (expectedSignature === response.razorpay_signature){
             const booking= await BookingModel.create({
                 ownerMobileNo,ownerName,vehicleNo,vehicleBrand,vehicleModel,userId,serviceCenterName
-                ,vehicleYear,serviceCenterId,packageChoosen,dateOfService:date
+                ,vehicleYear,serviceCenterId,packageChoosen,dateOfService:date,packageDetials
             })
+            console.log(booking)
             return res.json({
                 err:false, booking
             })
