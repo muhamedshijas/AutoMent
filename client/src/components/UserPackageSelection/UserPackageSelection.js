@@ -163,7 +163,7 @@ function UserPackageSelection({ id }) {
         </div>
         <div className="create-custom-button"> 
           <Link to={'/createcustompackage/'+serviceCenter._id}>
-            <button className='custom-button'>{serviceCenter._id}</button>
+            <button className='custom-button'>Create Custom Package</button>
           </Link>
         </div>
       </div>

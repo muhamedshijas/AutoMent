@@ -80,3 +80,35 @@
 .service-center-body .review-sec h6{
     margin: 0px !important;
 }
+.service-center-body .booking-table .pagination button{
+    background-color:#212A3E  ;
+    width: 30px;
+    height: 30px;
+    margin-left: 10px;
+    margin-top: 10px;
+}
+
+.service-center-body .booking-table .complete{
+    color: green;
+    font-weight: 600;
+}
+.service-center-body .booking-table .filter-bookings{
+    display: flex;
+    width: 100%;
+    justify-content: flex-end;
+    align-items: center;
+
+}
+
+.service-center-body .booking-table .filter-bookings select{
+    border: 1px solid #212A3E;
+    width: 200px;
+    height: 30px;
+    border-radius: 3px;
+    gap: 5px;
+}
+.service-center-body .service-center-graphs{
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+}

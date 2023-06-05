@@ -10,6 +10,8 @@ import { AiOutlineSchedule,AiOutlineCheckCircle} from "react-icons/ai";
 import { RiShieldUserLine} from "react-icons/ri";
 import { Avatar, Rating, setRef, TextField } from "@mui/material"
 import './ServiceCenterHome.css'
+import BookingGraphs from '../AdminGraphs/BookingGraphs';
+import WeeklyGraph from '../AdminGraphs/WeeklyGraph';
 
 function ServiceCenterHome() {
   const dispatch=useDispatch()
@@ -26,6 +28,17 @@ function ServiceCenterHome() {
   const [workers,setWorkers]=useState([""])
   const [reviews,setReviews]=useState([])
 
+
+  const [currentPage, setCurrentPage] = useState(1);
+  const [appointmentsPerPage] = useState(5);
+ 
+  const [filterStatus, setFilterStatus] = useState('all');
+
+
+  const [monthlyBooking,setMonthlyBooking]=useState([])
+  const [weeklyData,setWeeklyData]=useState([])
+
+
   React.useEffect(()=>{
     (
         async function(){
@@ -40,6 +53,8 @@ function ServiceCenterHome() {
                 setTotalBooking(data.totalBooking)
                 setWorker(data.worker)
                 setReviews(data.reviews)
+                setMonthlyBooking(data.monthlyData)
+                setWeeklyData(data.weeklyData)
                 }
             }
             catch(err){   
@@ -49,6 +64,26 @@ function ServiceCenterHome() {
     )()
   },[refresh])
 
+  const filteredBookings = bookings.filter((booking) => {
+    if (filterStatus === 'all') {
+      return true;
+    }
+    return booking.status === filterStatus;
+  });
+
+  const indexOfLastAppointment = currentPage * appointmentsPerPage;
+  const indexOfFirstAppointment = indexOfLastAppointment - appointmentsPerPage;
+  const currentAppointments = filteredBookings.slice(indexOfFirstAppointment, indexOfLastAppointment);
+  const startingNumber=(currentPage-1)*appointmentsPerPage;
+  const calculateSiNo=(index)=>startingNumber+index;
+
+  const handleFilterChange = (e) => {
+    setFilterStatus(e.target.value);
+  };
+
+  const handlePaginationClick = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
 
   return (
     <div className="app">
@@ -107,6 +142,15 @@ function ServiceCenterHome() {
     </div>
 
     <div className="booking-table">
+    <div className='filter-bookings'>
+        <label htmlFor="filter">Filter by status:</label>
+        <select id="filter" value={filterStatus} onChange={handleFilterChange}>
+          <option value="all">All</option>
+          <option value="ongoing">On Going</option>
+          <option value="upcoming">Upcoming</option>
+          <option value="completed">Completed</option>
+        </select>
+      </div>
           <h4 className='text-center'>Rececnt Bookings</h4>
           <table class="table striped mt-5" >
           <thead className="thead-dark">
@@ -125,9 +169,9 @@ function ServiceCenterHome() {
           </thead>
           <tbody>
           {
-                bookings.map((item,index)=>{
+            currentAppointments.map((item,index)=>{
                     return <tr>
-                    <td>{index+1}</td>
+                    <td>{calculateSiNo(index+1)}</td>
                     <td>{item.ownerName}</td>
                     <td>{item.vehicleBrand}  {item.vehicleModel}</td>
                     <td>{item.vehicleNo}</td>
@@ -139,6 +183,17 @@ function ServiceCenterHome() {
                 }
                 </tbody>
                 </table>
+                <div className='pagination'>
+                {Array.from(Array(Math.ceil(totalBooking/appointmentsPerPage)).keys()).map((pageNumber) => (
+                  <button
+                    key={pageNumber}
+                    onClick={() => handlePaginationClick(pageNumber + 1)}
+                    disabled={currentPage === pageNumber + 1}
+                  >
+                    {pageNumber + 1}
+                  </button>
+                ))}
+              </div>
                 </div>
 
                 <div className="review-sec">
@@ -169,6 +224,16 @@ function ServiceCenterHome() {
                     </div>
                   })
                 }
+              </div>
+              </div>
+
+              <div className="service-center-graphs">
+              <div className="service-monthly-graph">
+              <BookingGraphs monthlyData={monthlyBooking}/>
+              </div>
+
+              <div className="service-weekly-graph">
+              <WeeklyGraph weeklyData={weeklyData}/>
               </div>
               </div>
     </div>

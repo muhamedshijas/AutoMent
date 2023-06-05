@@ -212,7 +212,29 @@ export async function getServiceCenterDashboard(req,res){
         const completed=await BookingModel.find({serviceCenterId:id,status:"completed"}).countDocuments()
         const totalBooking=await BookingModel.find({serviceCenterId:id}).countDocuments()
         const reviews = await FeedbackModel.find({serviceCenterId:id}).populate('userId').lean()
-        res.json({workers,bookings,upcoming,completed,totalBooking,worker,reviews,error:false})
+        const revenue=await BookingModel.find({})
+        const monthlyDataArray = await BookingModel.aggregate([{$match:{serviceCenterId:id}},{ $group: { _id: { $month: "$dateOfService" }, totalRevenue: { $sum: "$amount" } } }])
+        let monthlyDataObject = {}
+        monthlyDataArray.map(item => {
+            monthlyDataObject[item._id] = item.totalRevenue
+        })
+        let monthlyData = []
+        for (let i = 1; i <= 12; i++) {
+            monthlyData[i - 1] = monthlyDataObject[i] ?? 0
+        }
+
+        const sd=new Date()
+        const ed=new Date(new Date().setDate(new Date().getDate() - 7))
+        const weeklyDataArray = await BookingModel.aggregate([{ $match:{$and:[{dateOfService:{$gt:ed,$lt:sd}}]}},{$match:{serviceCenterId:id}}, { $group: { _id: { $dayOfWeek: "$dateOfService" }, sum: { $sum: "$amount" } } }])
+        let weeklyDataObject={}
+        weeklyDataArray.map(item => {
+            weeklyDataObject[item._id] = item.sum
+        })
+        let weeklyData = []
+        for (let i = 1; i <= 7; i++) {
+            weeklyData[i - 1] = weeklyDataObject[i] ?? 0
+        }
+        res.json({workers,bookings,upcoming,completed,totalBooking,worker,reviews,monthlyData,weeklyData,error:false})
 
     }catch(err){
         console.log(err) 

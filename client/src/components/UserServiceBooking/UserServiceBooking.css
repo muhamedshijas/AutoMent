@@ -35,3 +35,31 @@
     font-weight: 700;
     font-size: 36px;
 }
+@media(max-width:800px){
+    .booking-form{
+        width: 90% !important;
+        font-size: 13px;
+        font-weight: 600;
+        height:850px !important;
+        margin-top:20px !important; 
+    }
+    .vehicle , .owner, .booking-detials,.time-date,.vehicle-2{
+        flex-direction: column;
+        gap:5px;
+
+    }
+    .booking-form input{ 
+        padding: 5px;
+        width: 280px;
+        height: 38px;
+        border: 1px solid black;
+    }
+    .booking-form button{
+        height: 38px;
+        width: 280px !important;
+    }
+    .refund p{
+        font-size: 11px;
+    }
+
+}

@@ -38,6 +38,7 @@ import ViewWorkerBookingDetialsPage from './pages/Worker/ViewWorkerBookingDetial
 import ForgetPage from './pages/user/ForgetPage.js';
 import PageNotFound from './pages/PageNotFound.js';
 import ServiceHistoryPage from './pages/user/ServiceHistoryPage.js';
+import MapBox from './components/MapBox/Mapbox.js'
 function App() {
   axios.defaults.withCredentials = true;
   axios.defaults.baseURL = "http://localhost:5000/"
@@ -107,7 +108,7 @@ function App() {
            <Route path='/servicehistory/:id' element={<ServiceHistoryPage/>}/>
            <Route path='/*' element={<PageNotFound/>}/>
 
-
+            <Route path='/mapbox' element ={<MapBox/>}/>
           </>
         }
         {
@@ -122,6 +123,7 @@ function App() {
           <Route path='/chooseservicecenter'element={<Navigate to='/login'/>}/>
           <Route path='/createcustompackage'element={<Navigate to='/login'/>}/>
           <Route path='/forgetpassword' element={<ForgetPage/>}/>
+     
           </>
         }
        
