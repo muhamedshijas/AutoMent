@@ -3,12 +3,14 @@ import React, { useEffect, useState } from 'react'
 import './WorkerViewBookingDetials.css'
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import CustomPackageDetials from '../../modals/CustomPackageDetials';
 
 function WorkerViewBookingDetials({id}) {
     const [bookingDetials,setBookingDetials]=useState("")
     const [status,setStatus]=useState("")
     const [refresh,setRefresh]=useState(false)
     const [vehicleCondition,setVehicleCondition]=useState("")
+    const [showModal,setShowModal]=useState(false)
     const navigate=useNavigate()
     const dispatch=useDispatch()
     useEffect(()=>{
@@ -38,8 +40,14 @@ function WorkerViewBookingDetials({id}) {
       dispatch({type:"refresh"})
       return navigate("/worker/")
   }
-
+  
     }
+     async function handleView(){
+      console.log("hi hhh")
+      setShowModal(true)
+    }
+let packageDetials=bookingDetials.packageDetials
+
 
   return (
     <div className='worker-bookings'>
@@ -66,11 +74,11 @@ function WorkerViewBookingDetials({id}) {
     <div className="worker-package-detials">
     <div className="worker-package">
     <p>Package Choosen:{bookingDetials.packageChoosen}</p>
-    {bookingDetials.packageChoosen=="Custom Package" ? <span>view Detials</span>:""}
+    {bookingDetials.packageChoosen=="Custom Package" ? <span onClick={handleView}>view Detials</span>:""}
     </div>
     <p>Status:{bookingDetials.status}</p>
     </div>
-
+   
     <div className="updations">
     <p>Update Status: <select name="" id="" onChange={(e)=>setStatus(e.target.value)}>
     <option value="">Update status</option>
@@ -88,7 +96,10 @@ function WorkerViewBookingDetials({id}) {
     <button type='submit'>Update</button>
     </div>
     </form>
-    
+    {
+      showModal &&
+      <CustomPackageDetials setShowModal={setShowModal} packageDetials={packageDetials}/>
+    }
     </div>
   )
 }

@@ -1,12 +1,14 @@
 import axios from 'axios'
 import React, { useState } from 'react'
 import './AddCustomService.css'
-
+import { RiCloseLine } from "react-icons/ri";
 function AddCustomService({setShowModal, setRefresh,addService,refresh}) {
   const [name,setName]=useState("")
   const [serviceList,setServiceList]=useState([""])
 
-
+  async function handleClose(){
+    setShowModal(false)
+  }
   React.useEffect(()=>{
     (
         async function(){
@@ -30,12 +32,14 @@ function AddCustomService({setShowModal, setRefresh,addService,refresh}) {
     }
   return (
    
-    <div className="app">
+    <div className="ac-service">
  <div className="add-custom-service">
  <form action="" onSubmit={handleSubmit}>
+ <div className="close">
+ <RiCloseLine onClick={handleClose}/>
+ </div>
  <h5>Add a Services</h5>
      <select name="" id="" onChange={(e)=>setName(e.target.value)}>
-     <option value="">Choode one</option>
     {
       serviceList.map((item)=>{
         return<option value={item.serviceName}>{item.serviceName}</option>
