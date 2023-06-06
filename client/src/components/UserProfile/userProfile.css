@@ -99,3 +99,68 @@
     color:white;
 }
 
+@media(max-width:800px){
+    .userProfile{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        height: 100%;
+        align-items:center;
+        margin-top: 10px;
+    }
+    .serviceHistory h4{
+        background: none;
+        text-align: center;
+        font-size: 15px;
+        margin-top: 10px;
+    }
+    .card{
+        height: 120px;
+        width: 340px;
+        box-shadow: 0px 0px 100px rgba(0, 0, 0, 0.1);
+        border: none;
+        background-color:#f1f6f9;
+        display: flex !important;
+        flex-direction: row !important;
+        justify-content: space-between;
+        padding: 10px;
+    
+    }
+    .serviceHistory .card .detials{
+        width: 250px;
+        font-size: 12px;
+        height: 100%;
+        padding:0px;
+    }
+    .status{
+        display: flex;
+        align-items: center;
+        font-weight: 500;
+        flex-direction:column;
+        justify-content: center;
+        text-decoration: none;
+        font-size: 12px;
+    }
+    .profile{
+        height: 380px;
+        width: 340px;
+        color:#2C457E;
+        background-color:#f1f6f9;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        justify-content: space-evenly;
+        box-shadow: 0px 0px 100px rgba(0, 0, 0, 0.1);
+        border-radius: 5px;
+    
+    }
+    .profile button{
+    border: none;
+    width:160px !important;
+    height: 25px !important;
+    border-radius: 2px;
+    font-size: 11px;
+    font-weight: 600;
+}
+
+}

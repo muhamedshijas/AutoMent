@@ -111,4 +111,27 @@
     display: flex;
     justify-content: space-around;
     width: 100%;
+    margin-top:20px;
+}
+.service-center-body .service-center-graphs .service-monthly-graph{
+    width: 45%;
+    background-color: #F1F6F9;
+    box-shadow: 0px 0px 100px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;   
+    padding: 10px;
+}
+
+.service-center-body .service-center-graphs .service-weekly-graph{
+    width: 45%;
+    background-color: #F1F6F9;
+    box-shadow: 0px 0px 100px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;   
+    padding: 10px;
+}
+.service-center-body .service-center-graphs .service-package-graph{
+    width: 45%;
+    background-color: #F1F6F9;
+    box-shadow: 0px 0px 100px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;   
+    padding: 10px;
 }

@@ -234,7 +234,9 @@ export async function getServiceCenterDashboard(req,res){
         for (let i = 1; i <= 7; i++) {
             weeklyData[i - 1] = weeklyDataObject[i] ?? 0
         }
-        res.json({workers,bookings,upcoming,completed,totalBooking,worker,reviews,monthlyData,weeklyData,error:false})
+         let byPackage = await BookingModel.aggregate([{$match:{serviceCenterId:id}},{ $group: { _id: "$packageChoosen", count: { $sum: 1 }, price: { $sum: "$amount" } } }])
+        console.log(byPackage)
+        res.json({workers,bookings,upcoming,completed,totalBooking,worker,reviews,monthlyData,weeklyData,byPackage,error:false})
 
     }catch(err){
         console.log(err) 
