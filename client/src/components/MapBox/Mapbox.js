@@ -1,51 +1,44 @@
-import React, { useState } from 'react';
-import mapboxgl from 'mapbox-gl';
+import React, { useEffect, useState } from 'react'
+import axios from 'axios';
+import mapboxAPI from './MapBoxApi';
+import mapboxgl from 'mapbox-gl'; 
+import 'mapbox-gl/dist/mapbox-gl.css'; 
+function Mapbox() {
+  const [latitude, setLatitude] = useState(null);
+  const [longitude, setLongitude] = useState(null);
 
-mapboxgl.accessToken = 'pk.eyJ1Ijoic2hpamFzMDkiLCJhIjoiY2xpaXUyZHQzMDFzeDNlcGEwbHd6ejJmOCJ9.TZzIUmMeUTVSKfdqqSWgWg';
+  useEffect(() => {
+    // Get the user's current location
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        const { latitude, longitude } = position.coords;
+        setLatitude(latitude);
+        setLongitude(longitude);
+        console.log('Current lattitude:', latitude);
+        console.log('Current Longtitude:',longitude)
 
-const SearchBox = () => {
-  const [searchText, setSearchText] = useState('');
-  const [suggestions, setSuggestions] = useState([]);
+        // Save the latitude and longitude to the database
+        // Add your database saving logic here
+      },
+      (error) => {
+        console.error('Error getting current location:', error);
+      }
+    );
 
-  const handleInputChange = (event) => {
-    setSearchText(event.target.value);
-  };
+    // Map setup and marker code
+    mapboxgl.accessToken = 'pk.eyJ1Ijoic2hpamFzMDkiLCJhIjoiY2xpaXUyZHQzMDFzeDNlcGEwbHd6ejJmOCJ9.TZzIUmMeUTVSKfdqqSWgWg'; // Replace with your Mapbox access token
 
-  const fetchSuggestions = async () => {
-    try {
-      const response = await fetch(
-        `https://api.mapbox.com/search/searchbox/v1/suggest?q=${searchText}`,
-        {
-          method: 'GET',
-          headers: {
-            Authorization: `Bearer ${mapboxgl.accessToken}`,
-          },
-        }
-      );
+    const map = new mapboxgl.Map({
+      container: 'map-container',
+      style: 'mapbox://styles/mapbox/streets-v11',
+      center: [longitude, latitude], // Use the retrieved latitude and longitude as the map center
+      zoom: 9
+    });
 
-      const data = await response.json();
-      setSuggestions(data.features);
-    } catch (error) {
-      console.error('Error fetching suggestions:', error);
-    }
-  };
-
-  return (
-    <div>
-      <input
-        type="text"
-        value={searchText}
-        onChange={handleInputChange}
-        placeholder="Search..."
-      />
-      <button onClick={fetchSuggestions}>Search</button>
-      <ul>
-        {suggestions.map((suggestion) => (
-          <li key={suggestion.id}>{suggestion.text}</li>
-        ))}
-      </ul>
-    </div>
-  );
+    // Add a marker for the current location
+    new mapboxgl.Marker().setLngLat([longitude, latitude]).addTo(map);
+  }, [latitude, longitude]);
+  return <div id="map-container" style={{ width: '100%', height: '400px' }} />;
 };
 
-export default SearchBox;
+export default Mapbox

@@ -7,6 +7,8 @@ import './ServiceCenterSignUp.css'
 import { Link, useNavigate } from 'react-router-dom';
 import ReactMapGL, { Marker } from 'react-map-gl';
 import Mapbox from '../MapBox/Mapbox';
+import ServiceCenterSignupSearch from '../MapBox/Mapbox';
+import MapSearchBox from '../MapBox/MapSearchBox';
 function ServiceCenterSignUp() {
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
@@ -93,29 +95,7 @@ const [suggestions, setSuggestions] = useState([]);
     }
   }
 
-  const handleSearchChange = (e) => {
-    const { value } = e.target;
-    setSearchValue(value);
-    fetchSuggestions(value);
-  };
-  const fetchSuggestions = async (value) => {
-    try {
-      const response = await axios.get(
-        `https://api.mapbox.com/geocoding/v5/mapbox.places/${encodeURIComponent(value)}.json?access_token=pk.eyJ1Ijoic2hpamFzMDkiLCJhIjoiY2xpaWc2bGtyMXYwZTNlb2I2dHduNGFhbSJ9.y8s_MM2A8p955H7fgHVoSg`
-      );
-      const suggestions = response.data.features.map((feature) => feature.place_name);
-      setSuggestions(suggestions);
-    } catch (error) {
-      console.error('Error fetching suggestions:', error);
-    }
-  };
-
-  const handleSuggestionClick = (suggestion) => {
-    setSearchValue(suggestion);
-    setSuggestions([]);
-  };
   return (
-
 
     <div className="signup-app">
       <div className="service-signup">
@@ -137,9 +117,8 @@ const [suggestions, setSuggestions] = useState([]);
 
           <div className="first-row">
             <div className="email">
-              <label htmlFor="">
-                Enter the place</label>
-              <input type="text" value={place} onChange={(e) => setPlace(e.target.value)} />
+            <label htmlFor="">Enter the place</label>
+          <MapSearchBox setPlace={setPlace}/>
             </div>
             <div className="email">
               <select onChange={(e) => setDistrict(e.target.value)} >
