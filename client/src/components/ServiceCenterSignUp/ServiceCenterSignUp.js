@@ -5,10 +5,8 @@ import { loginImage } from '../images/Images'
 import '../AdminLogin/adminLogin.css'
 import './ServiceCenterSignUp.css'
 import { Link, useNavigate } from 'react-router-dom';
-import ReactMapGL, { Marker } from 'react-map-gl';
-import Mapbox from '../MapBox/Mapbox';
-import ServiceCenterSignupSearch from '../MapBox/Mapbox';
 import MapSearchBox from '../MapBox/MapSearchBox';
+import Mapbox from '../MapBox/Mapbox';
 function ServiceCenterSignUp() {
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
@@ -28,7 +26,8 @@ function ServiceCenterSignUp() {
 const [searchValue, setSearchValue] = useState('');
 const [suggestions, setSuggestions] = useState([]);
 
-
+const [showModal,setShowModal]=useState(false)
+const [placeName, setPlaceName] = useState('');
 
   const isValidFileUploaded = (file) => {
     const validExtensions = ['png', 'jpeg', 'jpg']
@@ -71,6 +70,7 @@ const [suggestions, setSuggestions] = useState([]);
     }
   }
 
+ 
   const validForm = () => {
     if (place.trim() === "" || password.trim() === "" || email.trim() === "" || district.trim() === "" || name.trim === "" || password !== confirmPassword) {
       return false
@@ -80,7 +80,6 @@ const [suggestions, setSuggestions] = useState([]);
   async function handleSubmit(e) {
     e.preventDefault();
     if (validForm()) {
-      alert("hsfhsdjf")
       let { data } = await axios.post("/serviceCenter/auth/signUp", {
         email, name, password, place, district, certificate: finalImage, logo: finalLogo,
       })
@@ -88,6 +87,7 @@ const [suggestions, setSuggestions] = useState([]);
       if (!data.error) {
         console.log(data)
         dispatch({ type: "refresh" })
+        navigate('/servicecenter')
 
       } else {
         setErrmessage(data.message)
@@ -118,8 +118,11 @@ const [suggestions, setSuggestions] = useState([]);
           <div className="first-row">
             <div className="email">
             <label htmlFor="">Enter the place</label>
-          <MapSearchBox setPlace={setPlace}/>
+             <MapSearchBox setPlace={setPlace} />
+          
             </div>
+
+
             <div className="email">
               <select onChange={(e) => setDistrict(e.target.value)} >
                 <option value="">Choose District</option>

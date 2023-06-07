@@ -3,6 +3,7 @@ import axios from 'axios';
 import mapboxAPI from './MapBoxApi';
 import mapboxgl from 'mapbox-gl'; 
 import 'mapbox-gl/dist/mapbox-gl.css'; 
+import './MapBox.css'
 function Mapbox() {
   const [latitude, setLatitude] = useState(null);
   const [longitude, setLongitude] = useState(null);
@@ -14,8 +15,6 @@ function Mapbox() {
         const { latitude, longitude } = position.coords;
         setLatitude(latitude);
         setLongitude(longitude);
-        console.log('Current lattitude:', latitude);
-        console.log('Current Longtitude:',longitude)
 
         // Save the latitude and longitude to the database
         // Add your database saving logic here
@@ -35,10 +34,14 @@ function Mapbox() {
       zoom: 9
     });
 
+  
     // Add a marker for the current location
     new mapboxgl.Marker().setLngLat([longitude, latitude]).addTo(map);
   }, [latitude, longitude]);
-  return <div id="map-container" style={{ width: '100%', height: '400px' }} />;
+  return <div className="map">
+  <div id="map-container" className='map' />;
+  </div>
+
 };
 
 export default Mapbox

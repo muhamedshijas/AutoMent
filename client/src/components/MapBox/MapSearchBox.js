@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import mapboxAPI from './MapBoxApi';
+import { BiCurrentLocation } from "react-icons/bi";
 
 function MapSearchBox({setPlace}) {
     const [searchValue, setSearchValue] = useState('');
@@ -20,6 +21,39 @@ function MapSearchBox({setPlace}) {
     } catch (error) {
       console.error('Error fetching suggestions:', error);
     }
+  };
+
+  const getCurrentLocation = () => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(onSuccess, onError);
+    } else {
+      console.log("Geolocation is not supported by this browser.");
+    }
+  };
+
+  const onSuccess = (position) => {
+    const latitude = position.coords.latitude;
+    const longitude = position.coords.longitude;
+
+    const accessToken = 'pk.eyJ1Ijoic2hpamFzMDkiLCJhIjoiY2xpaXUyZHQzMDFzeDNlcGEwbHd6ejJmOCJ9.TZzIUmMeUTVSKfdqqSWgWg';
+    const geocodingUrl = `https://api.mapbox.com/geocoding/v5/mapbox.places/${longitude},${latitude}.json?access_token=${accessToken}`;
+
+    fetch(geocodingUrl)
+      .then(response => response.json())
+      .then(data => {
+        if (data.features && data.features.length > 0) {
+          const placeName = data.features[0].place_name;
+          setSearchValue(placeName)
+          console.log(placeName);
+        }
+      })
+      .catch(error => {
+        console.log("Error occurred during geocoding:", error);
+      });
+  };
+
+  const onError = (error) => {
+    console.log("Error occurred during geolocation:", error);
   };
   
 
@@ -52,6 +86,10 @@ function MapSearchBox({setPlace}) {
                         </div>
                     )}
                 </div>
+         <div className="current-location" onClick={getCurrentLocation} >
+          <p>choose current Location</p>
+          <BiCurrentLocation/>
+          </div>
             </fieldset>
         </div>
     )

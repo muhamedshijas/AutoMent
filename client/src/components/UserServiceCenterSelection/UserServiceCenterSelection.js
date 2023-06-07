@@ -19,7 +19,7 @@ function UserServiceCenterSelection() {
   const [name,setName]=useState("")
   const[refresh,setRefresh]=useState(false)
 
-  const symbolDlt='-'
+  const symbolDlt='-' ?? ' ';
   React.useEffect(()=>{
     (
         async function(){
@@ -62,7 +62,7 @@ function UserServiceCenterSelection() {
         </div>
         <div className="service-center-detials">
         <b>{item.name}</b>
-        <p>{item.place?.split(symbolDlt)[0]}</p>
+        <p>{item?.place?.replaceAll(" ", '-').replaceAll(",", '-').split("-")[0]}</p>
         <p>{item.district}</p>
         </div>
         </Link>

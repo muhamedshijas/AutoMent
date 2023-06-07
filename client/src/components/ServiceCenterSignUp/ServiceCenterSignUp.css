@@ -32,4 +32,12 @@
 .service-signup form .first-row .logos input{
     background:none;
 }
-
+.service-signup form .first-row .current-location{
+    display: flex;
+    font-size: 22px;
+    gap: 10px;
+    cursor: pointer;
+}
+.service-signup form .first-row .current-location p{
+    font-size: 16px;
+}
