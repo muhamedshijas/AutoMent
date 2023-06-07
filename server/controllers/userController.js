@@ -164,9 +164,10 @@ export async function getUserServiceCenterList(req,res){
   try{
         const name=req.query.name?? ""
         let servicecenter=await ServiceCenterModel.find({district:new RegExp(name, 'i'),permission:true }).lean()
+        const number=await ServiceCenterModel.find({permission:true}).countDocuments()
         const review =await FeedbackModel.find().lean()
         
-        res.json({serviceCenter:servicecenter,review:review})
+        res.json({serviceCenter:servicecenter,review:review,totalServiceCenter:number})
 
     }catch(err){
         return res.json({err:true,message:"Something went wrong" ,error:err})

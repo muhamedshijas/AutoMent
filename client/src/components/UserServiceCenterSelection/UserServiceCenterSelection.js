@@ -1,13 +1,5 @@
 import React, { useState } from 'react'
 import './UserServiceCenterChoose.css'
-import logo1 from '../../assets/images/logo1.png'
-import logo2 from '../../assets/images/logo2.png'
-import logo3 from '../../assets/images/logo3.png'
-import logo4 from '../../assets/images/logo4.png'
-import logo5 from '../../assets/images/logo5.png'
-import logo6 from '../../assets/images/logo6.png'
-import logo7 from '../../assets/images/logo7.png'
-import logo8 from '../../assets/images/logo8.png'
 import Row from 'react-bootstrap/esm/Row'
 import Col from 'react-bootstrap/esm/Col'
 import { ImSearch } from "react-icons/im";
@@ -16,8 +8,13 @@ import axios from 'axios'
 
 function UserServiceCenterSelection() {
   const [serviceCenterList,setServiceCenterList]=useState([""])
+  const [serviceCenters,setServiceCenters]=useState()
   const [name,setName]=useState("")
   const[refresh,setRefresh]=useState(false)
+
+  const [currentPage, setCurrentPage] = useState(1);
+  const [appointmentsPerPage] = useState(4);
+
 
   const symbolDlt='-' ?? ' ';
   React.useEffect(()=>{
@@ -29,6 +26,7 @@ function UserServiceCenterSelection() {
                 if(!data.err){     
                   console.log(data)
                     setServiceCenterList(data.serviceCenter)
+                    setServiceCenters(data.totalServiceCenter)
                 }
             }
             
@@ -38,6 +36,18 @@ function UserServiceCenterSelection() {
         }
     )()
   },[refresh,name])
+
+
+  const indexOfLastAppointment = currentPage * appointmentsPerPage;
+  const indexOfFirstAppointment = indexOfLastAppointment - appointmentsPerPage;
+  const currentAppointments = serviceCenterList.slice(indexOfFirstAppointment, indexOfLastAppointment);
+  const startingNumber=(currentPage-1)*appointmentsPerPage;
+  const calculateSiNo=(index)=>startingNumber+index;
+
+  const handlePaginationClick = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
+
   return (
     <div>
     
@@ -53,7 +63,7 @@ function UserServiceCenterSelection() {
     <div className="service-centers">
     <Row>
     {
-      serviceCenterList.map((item,index)=>{
+      currentAppointments.map((item,index)=>{
         return <Col xs={6} md={3} >
         <div className="service-center-cards mt-5">
         <Link to={'/choosepackage/'+item._id}>
@@ -76,6 +86,20 @@ function UserServiceCenterSelection() {
     
     
     </Row>
+    {
+      serviceCenters &&<div className='pagination'>
+      {Array.from(Array(Math.ceil(serviceCenters/appointmentsPerPage)).keys()).map((pageNumber) => (
+        <button
+          key={pageNumber}
+          onClick={() => handlePaginationClick(pageNumber + 1)}
+          disabled={currentPage === pageNumber + 1}
+        >
+          {pageNumber + 1}
+        </button>
+      ))}
+    </div>
+    }
+    
     
     </div>
     </div>
