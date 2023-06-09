@@ -43,14 +43,14 @@ async function handleSubmit(e){
     {errMessage && errMessage}
   </label>
     <div className="email">
-    <label htmlFor=""><p> email</p></label>
+    <label htmlFor=""><p> Email</p></label>
     <input type="text"  value={email} onChange={(e)=>setEmail(e.target.value)}/>
     </div>
     <div className="password">
-    <label htmlFor=""><p> password</p></label>
+    <label htmlFor=""><p> Password</p></label>
     <input type="password"  value={password} onChange={(e)=>setPassword(e.target.value)} />
     </div>
-    <button type='submit' disabled={validationErr()} className='loginSubmit'>Submit</button>
+    <button type='submit' disabled={validationErr()} className='loginSubmit'>Login</button>
     <Link to='/forgetpassword'>Forget password</Link>
       <p>Don't you have an account </p>
       <Link to='/signup'>Signup here</Link>

@@ -59,7 +59,7 @@ function CreateCustompackage({id}) {
         </div>
         <div className="package-buton">
         <Link to='/bookservice' state={{ package: "Custom Package", serviceCenter: serviceCenter,packageDetials:customServicesPackage}} >
-        <button> choose</button>
+        <button> Choose</button>
       </Link>
 
 

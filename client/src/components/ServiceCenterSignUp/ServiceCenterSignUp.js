@@ -164,7 +164,7 @@ const [placeName, setPlaceName] = useState('');
             </div>
 
             <div className="email logos">
-              <label htmlFor="">Upload registration certificat</label>
+              <label htmlFor="">Upload registration certificate</label>
               <input type="file" onChange={handleImage} />
             </div>
           </div>

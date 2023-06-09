@@ -71,6 +71,8 @@
 }
 .detials p{
     background: none;
+    font-size: 15px;
+    font-weight: 500;
 }
 .detials{
     width:400px;

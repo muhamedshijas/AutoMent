@@ -55,11 +55,11 @@ function UserRegister() {
                             </label>
 
                             <div className="name">
-                                <label htmlFor=""><p> name</p></label>
+                                <label htmlFor=""><p> Name</p></label>
                                 <input type="text" value={name} onChange={(e) => setName(e.target.value)} />
                             </div>
                             <div className="email">
-                                <label htmlFor=""><p> email</p></label>
+                                <label htmlFor=""><p> Email</p></label>
                                 <input type="text" value={email} onChange={(e) => setEmail(e.target.value)} />
                             </div>
                             <div className="phone">
@@ -69,11 +69,11 @@ function UserRegister() {
                             </div>
 
                             <div className="password">
-                                <label htmlFor=""><p> password</p></label>
+                                <label htmlFor=""><p> Password</p></label>
                                 <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
                             </div>
                             <div className="password">
-                                <label htmlFor=""><p> Confirm password</p></label>
+                                <label htmlFor=""><p> Confirm Password</p></label>
                                 <input type="password" value={confirmPassword} onChange={(e) => setconfirmPassword(e.target.value)} />
                             </div>
                             <button type='submit' disabled={!validForm()} className='loginSubmit'>Submit</button>

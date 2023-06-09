@@ -40,6 +40,7 @@ function AddCustomService({setShowModal, setRefresh,addService,refresh}) {
  </div>
  <h5>Add a Services</h5>
      <select name="" id="" onChange={(e)=>setName(e.target.value)}>
+     <option value="">Choose One</option>
     {
       serviceList.map((item)=>{
         return<option value={item.serviceName}>{item.serviceName}</option>

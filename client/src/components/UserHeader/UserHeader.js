@@ -1,15 +1,16 @@
 import axios from 'axios';
-import React from 'react'
+import React, { useState } from 'react'
 import Swal from 'sweetalert2'
 import { useDispatch, useSelector } from 'react-redux';
+import { RiNotification3Line } from "react-icons/ri";
 import { Link } from 'react-router-dom';
 import './UserHeader.css'
 
 function UserHeader() {
-    
+
     const user=useSelector((state)=>{
         return state.user.detials
-
+ 
       });
       const dispatch=useDispatch();
       async function handleLogout(e) {
@@ -29,7 +30,7 @@ function UserHeader() {
           }
         })
       }
-        
+     
   return (
     <div className="nav">
     <div className="logo">
@@ -39,9 +40,10 @@ function UserHeader() {
     </div>
     <div className="detials">
     <Link to ='/profile'>
-    
     <h5>{user.name}</h5>
     </Link>
+
+    
     <button onClick={handleLogout}>Logout</button>
     </div>
     </div>

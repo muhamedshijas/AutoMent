@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import UserBanner from '../UserBanner/UserBanner';
 import './userHome.css'
@@ -18,50 +18,29 @@ import Audi from '../../assets/images/Audi.png'
 import Jaguar from '../../assets/images/jaguar.png'
 import Mini from '../../assets/images/Mini.png'
 import RR from '../../assets/images/RR.png'
+import UserNotification from '../../modals/UserNotification';
  
-function UserHome() {
+function UserHome({setNotification,showModal,notification,setShowModal}) {
   const dispatch=useDispatch();
+
 
   const user=useSelector((state)=>{
     return state.user.detials
 
   });
+  console.log("ns="+notification)
 
   const id=user._id
 
-  useEffect(() => {
-    const fetchAppointments = async () => {
-      try {
-        const {data} = await axios.get('/user/appointments/'+id);
-        const today = new Date().toISOString().split('T')[0];
-        const todayAppointments = data.filter(appointment => new Date(appointment.dateOfService).toISOString().split('T')[0]==today);
-        console.log(today)
-        todayAppointments.forEach(appointment => {
-          if ('Notification' in window) {
-            Notification.requestPermission().then(permission => {
-              if (permission === 'granted') {
-                new Notification('Booking  Reminder', {
-                  body: `You have an vehicle  have service on  today ${appointment.serviceCenterName} service center`,
-                });
-              }
-            });
-          }
-        });
-      } catch (error) {
-        console.error('Error fetching appointments:', error);
-      }
-    };
-
-    fetchAppointments();
-  }, []);  
-  
   return (
     <div className='app'>
     <div className="userBanner">
     
     <UserBanner/>
     </div>
-
+{
+  showModal &&<UserNotification notification={notification} setShowModal={setShowModal}/>
+}
     <section className='userSection'>
     <h1>Our services</h1>
  
