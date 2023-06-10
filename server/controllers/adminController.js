@@ -204,7 +204,7 @@ export async function getAdminDashboard(req, res) {
         const totalBooking = await BookingModel.find().countDocuments()
         const users = await UserModel.find().limit(5).sort({ _id: -1 })
         const serviceCenters = await ServiceCenterModel.find().limit(5).sort({ _id: -1 })
-        const booking = await BookingModel.find().lean().limit(5).sort({ id: -1 })
+        const booking = await BookingModel.find().lean().sort({ id: -1 })
         const monthlyDataArray = await BookingModel.aggregate([{ $group: { _id: { $month: "$dateOfService" }, totalRevenue: { $sum: "$amount" } } }])
         let monthlyDataObject = {}
         monthlyDataArray.map(item => {

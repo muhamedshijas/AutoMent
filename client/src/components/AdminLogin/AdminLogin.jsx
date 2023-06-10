@@ -2,12 +2,17 @@ import axios from 'axios';
 import React,{useState} from 'react'
 import { useDispatch } from 'react-redux';
 import { loginImage } from '../images/Images'
+import { ClipLoader } from 'react-spinners';
+
 import './adminLogin.css';
 function AdminLogin() {
 const [email,setEmail]=useState("");
 const [password,setPassword]=useState("");
 const [errMessage,setErrmessage]=useState("");
 const dispatch=useDispatch();
+const [loading, setLoading] = useState({
+        submit: false
+    })
 function validationErr(){
   if(email.replaceAll(' ', "")==="" || password.replaceAll(' ',"")===""){
     console.log("hiii")
@@ -18,7 +23,8 @@ function validationErr(){
 async function handleSubmit(e){
   console.log("hii")
   e.preventDefault();
-  if(!validationErr()){
+  setLoading({ ...loading, submit: true })
+  
     let {data}=await axios.post('/admin/auth/login',{email,password})
     console.log(data);
     if(!data.error){
@@ -27,7 +33,7 @@ async function handleSubmit(e){
     }else{
       setErrmessage(data.message)
     }
-  }
+    setLoading({ ...loading, submit: false })
 }
 
   return (
@@ -49,7 +55,9 @@ async function handleSubmit(e){
     <label htmlFor=""><p> Password</p></label>
     <input type="password"  value={password} onChange={(e)=>setPassword(e.target.value)} />
     </div>
-    <button type='submit' disabled={validationErr()}   className='loginSubmit'>Login</button>
+    <button type='submit' disabled={validationErr()}   className='loginSubmit'>Login
+    <ClipLoader size={20} color="white" loading={loading.submit} />
+    </button>
 
     </form>
     </div>

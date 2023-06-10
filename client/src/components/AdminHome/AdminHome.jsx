@@ -12,6 +12,7 @@ import AdminGraphs from '../AdminGraphs/BookingGraphs';
 import BookingGraphs from '../AdminGraphs/BookingGraphs';
 import ByPackageGraph from '../AdminGraphs/ByPackageGraph';
 import WeeklyGraph from '../AdminGraphs/WeeklyGraph';
+import ReactLoading from 'react-loading';
 
 function AdminHome() {
   const dispatch=useDispatch();
@@ -31,11 +32,15 @@ function AdminHome() {
   const [currentPage, setCurrentPage] = useState(1);
   const [appointmentsPerPage] = useState(4);
 
+  const [isLoading, setIsLoading] = useState(true);
+
 
   React.useEffect(()=>{
+    setIsLoading(true);
     (
         async function(){
             try{
+
                 const {data}=await axios.get("/admin/dashboard")
                 if(!data.err){
                  setUserCount(data.userCount)
@@ -52,6 +57,8 @@ function AdminHome() {
             }
             catch(err){   
                 console.log(err)
+        } finally {
+          setIsLoading(false); // Set loading to false after fetching data
         }
         }
     )()
@@ -59,16 +66,20 @@ function AdminHome() {
   const indexOfLastAppointment = currentPage * appointmentsPerPage;
   const indexOfFirstAppointment = indexOfLastAppointment - appointmentsPerPage;
   const currentAppointments = bookings.slice(indexOfFirstAppointment, indexOfLastAppointment);
+  console.log("appointments"+currentAppointments)
   const startingNumber=(currentPage-1)*appointmentsPerPage;
   const calculateSiNo=(index)=>startingNumber+index;
 
   const handlePaginationClick = (pageNumber) => {
-    setCurrentPage(pageNumber);
+    setCurrentPage(pageNumber); 
   };
 
   return (
+
     <div className="app">
-    <div className="admin-home">
+
+    {
+      isLoading?<div className="admin-loading"> <ReactLoading type="spinningBubbles" color="#2C457E" height={80} width={80} /></div>:<div className="admin-home">
     <AdminSideBar/>
     <div className="admin-body">
     <div className="counts">
@@ -242,7 +253,7 @@ function AdminHome() {
           </div>
     </div>
     </div>
-    
+                }
     </div>
   ) 
 }
