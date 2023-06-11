@@ -46,7 +46,17 @@
     justify-content: space-around;
     height: 100%;
 }
-
+.userProfile .pagination{
+    display:flex;
+    width:100%;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+.userProfile .pagination button{
+    height: 40px;
+    width: 80px;
+}
 .card{
     height: 180px;
     width: 800px;

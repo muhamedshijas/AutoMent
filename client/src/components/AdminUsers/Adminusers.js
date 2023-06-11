@@ -3,12 +3,15 @@ import React, { useState } from 'react'
 import AdminSideBar from '../AdminSideBar/AdminSideBar'
 import './AdminUsers.css'
 import Swal from 'sweetalert2'
+import ReactLoading from 'react-loading';
+
 
 function Adminusers() {
 
   const [usersList, setUsersList] = useState([""])
   const [refresh, setRefresh] = useState(false)
   const [name, setName] = useState("")
+  const [isLoading, setIsLoading] = useState(true);
 
   React.useEffect(()=>{
     (
@@ -23,6 +26,8 @@ function Adminusers() {
             }
             catch(err){   
                 console.log(err)
+        }finally {
+          setIsLoading(false); // Set loading to false after fetching data
         }
         }
     )()
@@ -65,7 +70,9 @@ function Adminusers() {
   
   
   return (
-    <div className="app d-flex">
+    <div className="app">
+    {
+      isLoading?<div className="admin-loading"> <ReactLoading type="spinningBubbles" color="#2C457E" height={80} width={80} /></div>:<div className="app d-flex">
     <AdminSideBar/>
 
     <div className="section container">
@@ -98,6 +105,10 @@ function Adminusers() {
 </table>
     </div>
     </div>
+  }
+
+    </div>
+
   )
 }
 

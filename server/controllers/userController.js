@@ -226,7 +226,9 @@ export async function userBookService(req,res){
 export async function getUserBookings(req,res){
   try{
     const id=req.params.id
-    const bookings=await BookingModel.find({userId:id}).lean()
+    const bookings=await BookingModel.find({userId:id}).lean().sort({ _id: -1 })
+    const booking=await BookingModel.find({userId:id}).lean().sort({ _id: -1 }).countDocuments()
+    console.log(booking)
 
     res.json({error:false,bookings})
   }catch(err){
@@ -311,7 +313,6 @@ export async function resetUserPassword(req, res) {
 export async function getUserServiceHistory(req,res){
   const id=req.params
   const service=await BookingModel.findById(req.params.id).populate('worker')
-  console.log(service)
   res.json(service)
 }  
 
