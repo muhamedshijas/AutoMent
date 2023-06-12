@@ -80,7 +80,8 @@ function AdminHome() {
 
     {
       isLoading?<div className="admin-loading"> <ReactLoading type="spinningBubbles" color="#2C457E" height={80} width={80} /></div>:<div className="admin-home">
-    <AdminSideBar/>
+   
+      <AdminSideBar/>
     <div className="admin-body">
     <div className="counts">
     <div className="user-card">

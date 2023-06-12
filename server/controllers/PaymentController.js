@@ -4,8 +4,8 @@ import BookingModel from '../models/BookingModel.js'
 
 
 let instance=new Razorpay({
-    key_id:"rzp_test_XwdQoSEsOiDbSW",
-    key_secret:"qC9DmFjrY8ChbJ5lotzxNg68",
+    key_id:process.env.RAZORPAY_ID,
+    key_secret:process.env.RAZORPAY_SECRET_ID,
 })
 
 export async function paymentOrder(req,res){

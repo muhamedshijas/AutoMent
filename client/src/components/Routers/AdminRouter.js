@@ -13,8 +13,7 @@ import ViewServiceCenterPage from '../../pages/admin/ViewServiceCenterPage';
 import PageNotFound from '../../pages/PageNotFound';
 
 function AdminRouter() {
-    axios.defaults.withCredentials = true;
-    axios.defaults.baseURL = "http://localhost:5000/"
+   
     const { admin, refresh } = useSelector((state) => {
         return state;
     });
@@ -25,7 +24,7 @@ function AdminRouter() {
         (async function () {
             let { data: adminData } = await axios.get("/admin/auth/check")
             dispatch({ type: "admin", payload: { login: adminData.loggedIn, detials: adminData.admin } })
-            let { data: serviceCenterData } = await axios.get("/serviceCenter/auth/check");
+            
         })()
     }, [refresh])
     return (

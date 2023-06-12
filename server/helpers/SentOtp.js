@@ -1,5 +1,4 @@
 import nodemailer from 'nodemailer'
-
 export default function sentOTP(email, otp){
     return new Promise((resolve, reject)=>{
         let transporter = nodemailer.createTransport({
@@ -7,8 +6,8 @@ export default function sentOTP(email, otp){
             port: 465,
             secure: true,
             auth: {
-              user: "muhamedshijasm@gmail.com",
-              pass: "vgrarunraaribljd",
+              user: process.env.EMAIL,
+              pass: process.env.PASSWORD,
             },
           });
       
@@ -17,8 +16,8 @@ export default function sentOTP(email, otp){
               to: email,
               subject: "AutoMent Email verification",
               html: `
-              <h1>Verify Your Email For DocOnline</h1>
-                <h3>use this code in E-cart to verify your email</h3>
+              <h1>Verify Your Email For Automent</h1>
+                <h3>use this code in Automent to verify your email</h3>
                 <h2>${otp}</h2>
               `,
             }

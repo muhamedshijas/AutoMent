@@ -1,6 +1,7 @@
 import express from 'express'
+import 'dotenv/config'
 import dbConnect from './config/dbConnect.js';
-const app = express();
+
 import cors from 'cors'
 import cookieParser from 'cookie-parser';
 import path from 'path'
@@ -16,7 +17,7 @@ import verifyServiceCenter from './middlewares/verifyServiceStation.js';
 import verifyUser from './middlewares/verifyUser.js';
 import verifyWorker from './middlewares/verifyWorker.js';
 import verifyAdmin from './middlewares/verifyAdmin.js';
-
+const app = express();
 
 app.use(cookieParser())
 app.use(express.urlencoded({extended:true}))
