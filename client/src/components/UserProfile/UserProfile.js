@@ -60,8 +60,7 @@ function UserProfile() {
           </Link>
           <button onClick={handleLogout}>Logout</button>
         </div>
-
-        <div className="serviceHistory">
+      {  currentBookings[0]?<div className="serviceHistory">
           <h4>Service History</h4>
           {
             currentBookings.map((item, index) => {
@@ -93,7 +92,11 @@ function UserProfile() {
               Next
             </button>
           </div>
+        </div>: <div className="text-center">
+        <b>No bookings avaiable</b>
         </div>
+      }
+        
       </div>
     </div>
   )
