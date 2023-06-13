@@ -42,7 +42,7 @@ export const checkWorkerLoggedIn=async(req,res)=>{
   try{
     const token=req.cookies.workerToken;
     if(!token){
-      return res.json({loggedIn:false,error:true,message:"no fgfdjk"})
+      return res.json({loggedIn:false,error:true,message:"no worker token"})
     }
     const verifiedJWT=jwt.verify(token,"myjwtsecretkey")
     const worker=await WorkerModel.findById(verifiedJWT.id,{password:0});

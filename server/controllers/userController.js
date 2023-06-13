@@ -120,7 +120,7 @@ export const checkUserLoggedIn=async(req,res)=>{
   try{
     const token=req.cookies.userToken;
     if(!token){
-      return res.json({loggedIn:false,error:true,message:"no fgfdjk"})
+      return res.json({loggedIn:false,error:true,message:"no User Token"})
     }
     const verifiedJWT=jwt.verify(token,"myjwtsecretkey")
     const user=await UserModel.findById(verifiedJWT.id,{password:0});

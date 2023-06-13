@@ -82,7 +82,7 @@ export async function serviceCenterSignUp(req,res){
         try{
             const token=req.cookies.serviceCenterToken
             if(!token){
-                return res.json({err:true,message:"No token",loggedIn:false})
+                return res.json({err:true,message:"No Service center token",loggedIn:false})
             }
             const verifiedJWT=jwt.verify(token,"myjwtsecretkey") 
             const serviceCenter=await ServiceCenterModel.findById(verifiedJWT.id,{password:0})

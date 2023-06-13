@@ -54,7 +54,7 @@ export async function checkAdminLoggedIn(req, res) {
     try {
         const token = req.cookies.adminToken;
         if (!token) {
-            return res.json({ loggedIn: false, error: true, message: "No  Admin Token" })
+            return res.json({ loggedIn: false, error: true, message: "No Admin Token" })
         }
         const verifiedJWT = jwt.verify(token, "myjwtsecretkey")
         const admin = await AdminModel.findById(verifiedJWT.id, { password: 0 })
