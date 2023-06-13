@@ -1,6 +1,6 @@
 import express from 'express';
 import { paymentOrder, verifyPayment } from '../controllers/PaymentController.js';
-import { addServiceCenterFeedback, getAppoiments, getServiceCenter, getUserBookings, getUserProfileEdit, getUserServiceCenterList, getUserServiceHistory, userBookService, userEditProfile } from '../controllers/userController.js';
+import { addServiceCenterFeedback, getAppoiments, getServiceCenter, getUserBookings, getUserProfileEdit, getUserServiceCenterList, getUserServiceHistory, getUserServices, userBookService, userEditProfile } from '../controllers/userController.js';
 
 const router=express.Router();
 
@@ -14,5 +14,6 @@ router.get('/profile/:id',getUserBookings)
 router.get('/servicehistory/:id',getUserServiceHistory)
 router.post('/feedback/servicecenter',addServiceCenterFeedback)
 router.get('/appointments/:id',getAppoiments)
+router.get('/getservice',getUserServices)
 
 export default router                 

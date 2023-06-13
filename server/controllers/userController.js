@@ -7,6 +7,7 @@ import ServiceCenterModel from '../models/ServiceCenterModel.js';
 import sentOTP from '../helpers/SentOtp.js';
 import BookingModel from '../models/BookingModel.js';
 import FeedbackModel from '../models/FeedBackModel.js'
+import ServiceModel from "../models/ServiceModel.js";
 
 var salt=bcrypt.genSaltSync(10);
 
@@ -338,4 +339,17 @@ export async function getAppoiments(req,res){
 
   const appoiments=await BookingModel.find({userId:id}).lean()
   res.json(appoiments)
+}
+
+export async function getUserServices(req, res) {
+
+try {
+  
+    let services = await ServiceModel.find().lean()
+    console.log(services)
+    res.json(services)
+}
+catch (err) {
+    console.log(err)
+}
 }

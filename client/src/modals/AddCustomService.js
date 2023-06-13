@@ -13,7 +13,7 @@ function AddCustomService({setShowModal, setRefresh,addService,refresh}) {
     (
         async function(){
             try{
-                const {data}=await axios.get("/admin/service?name")
+                const {data}=await axios.get("user/getservice")
                 console.log(data)
                 if(!data.err){
                     setServiceList(data)

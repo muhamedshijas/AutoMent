@@ -57,3 +57,29 @@ margin-top: 5px;
 .nt-cards .nt-card-detials .nt-card-header p{
     font-size: 12px;
 }
+
+@media(max-width:800px){
+    .notifications .nt-cards{
+
+        height :100%;
+        width:100%;
+    }
+    .nt-main{
+        padding:20px;
+    }
+    
+    .nt-cards .nt-card-content  p{
+        font-size: 9px;
+    }
+
+    .notifications .nt-head h3{
+        font-size: 15px;
+    }
+    .nt-cards .nt-card-image img{
+        height: 30px;
+        width: 30px;
+    }
+    .nt-cards .nt-card-header b{
+        font-size: 10px;
+    }
+}

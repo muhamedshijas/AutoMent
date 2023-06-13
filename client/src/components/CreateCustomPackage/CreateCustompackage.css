@@ -17,3 +17,9 @@ button{
     align-items: center;
     justify-content: center;
 }
+
+@media(max-width:800px){
+.add-service-button{
+    width: 90%;
+}
+} 
