@@ -26,7 +26,7 @@ app.use(express.static(path.resolve()+"/public"))
 app.use(
   cors({
     origin: [
-      "http://localhost:3000", 
+      "https://automent.netlify.app/", 
     ],
     credentials: true,
   })

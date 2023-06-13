@@ -13,7 +13,7 @@ import WorkerRouter from './components/Routers/WorkerRouter.js';
 
 function App() {
   axios.defaults.withCredentials = true;
-  axios.defaults.baseURL = "http://localhost:5000/"
+  axios.defaults.baseURL = "https://automent.homekart.store/"
   const { user, admin, refresh, serviceCenter, worker } = useSelector((state) => {
     return state;
   });
