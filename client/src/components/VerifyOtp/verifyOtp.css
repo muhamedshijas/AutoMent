@@ -51,3 +51,9 @@ form button{
 form h3{
     color:#2C457E
 }
+@media(max-width:800px){
+  section{
+    display: flex;
+    flex-direction: column;
+  }
+}
