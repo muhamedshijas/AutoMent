@@ -16,8 +16,9 @@ export async function userSignup(req,res){
       const { email } = req.body;
         const user = await UserModel.findOne({ email });
         if (user) {
-            return res.json({ err: true, message: "User Already Exist" })
+            return res.json({ error: true, message: "User Already Exist" })
         }
+
         let otp = Math.ceil(Math.random() * 1000000)
         console.log(otp)
     let otpSent = await sentOTP(email, otp)

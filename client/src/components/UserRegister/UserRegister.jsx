@@ -30,11 +30,12 @@ function UserRegister() {
             console.log("hjuiuu");
             let { data } = await axios.post("/user/auth/signUp", { email })
             console.log(data);
-            if (!data.error) {
+            if (data.error) {
+                setErrmessage(data.message)
+            } else {
+                
                 dispatch({ type: "refresh" })
                 setShowOtpPage(true)
-            } else {
-                setErrmessage(data.message)
             }
         }
     }
