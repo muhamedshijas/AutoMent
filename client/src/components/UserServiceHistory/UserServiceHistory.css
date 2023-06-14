@@ -116,14 +116,14 @@
         margin-top: 10px;
         display: flex;
         gap:20px !important;
-        justify-content: center;
+        justify-content: normal;
     }
     .service-history .history-card .service-history-owner{
         gap:5px !important;
         height: 100px !important;
         padding: 10px;
         font-size: 12px;
-        width: 180px;
+        width: 150px;
     }
     .service-history .history-card .service-history-vehicle{
         font-size: 12px;
@@ -165,4 +165,10 @@
         justify-content: center;
         align-items: center;
     }
-}
+    .service-history .history-card .add-review label{
+        font-size: 13px;
+    }
+    .service-history .history-card .add-review .dr-profile-rating{
+        margin: 0px !important;
+    }
+ }
