@@ -33,8 +33,9 @@ function AdminAddServices() {
         }
       }
     return (
-    <div>AdminAddServices
+    <div className="add-service-page">
     
+   
     <form action="" onSubmit={handleSubmit}>
     <h5>Add Services</h5>
     <div className="addService">

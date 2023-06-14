@@ -1,0 +1,9 @@
+.add-service-page{
+    width: 100vw;
+    height: 100vw;
+    left: 0px;
+    top: 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
