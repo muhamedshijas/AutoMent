@@ -18,20 +18,20 @@ import verifyUser from './middlewares/verifyUser.js';
 import verifyWorker from './middlewares/verifyWorker.js';
 import verifyAdmin from './middlewares/verifyAdmin.js';
 const app = express();
-
-app.use(cookieParser())
-app.use(express.urlencoded({extended:true}))
-app.use(express.json({limit: '50mb'}))
-app.use(express.static(path.resolve()+"/public"))
 app.use(
   cors({
     origin: [
-      "https://automent.netlify.app/", 
+      "https://automent.netlify.app", 
     ],
     credentials: true,
   })
 );
 dbConnect() 
+app.use(cookieParser())
+app.use(express.urlencoded({extended:true}))
+app.use(express.json({limit: '50mb'}))
+app.use(express.static(path.resolve()+"/public"))
+
 
 app.use("/admin/auth/",adminAuthRouter)
 app.use("/admin",verifyAdmin,adminRouter)
