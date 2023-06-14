@@ -226,7 +226,6 @@ export async function getAdminDashboard(req, res) {
         for (let i = 1; i <= 7; i++) {
             weeklyData[i - 1] = weeklyDataObject[i] ?? 0
         }
-        console.log(weeklyData)
         res.json({ userCount, serviceCenterCount, workerCount, totalBooking, users, serviceCenters, booking,monthlyData,byPackage,weeklyData})
     } catch (err) {
         console.log(err)

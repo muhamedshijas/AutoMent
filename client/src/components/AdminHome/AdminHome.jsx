@@ -89,16 +89,6 @@ function AdminHome() {
     <FaUsers className='icons'/>
     </div>
     <div className="user-card-counts">
-    <h5> Revenue</h5>
-   RS 100
-    </div>
-    </div>
-
-    <div className="user-card">
-    <div className="user-card-icon">
-    <FaUsers className='icons'/>
-    </div>
-    <div className="user-card-counts">
     <h5> Users</h5>
     {userCount}
     </div>
@@ -235,13 +225,7 @@ function AdminHome() {
                 ))}
               </div>
                 </div>
-          </div>
-          <div className="weekly-graph">
-          <div className="admin-weekly-graph">
-          <h5 className='text-center'>Weekly Data</h5>
-          <WeeklyGraph weeklyData={weeklyData}/>
-          </div>
-          </div>
+          
           <div className="admin-graphs">
           <div className="admin-revenue-graph">
           <h5 className='text-center'>Revenue per Month</h5>
@@ -250,6 +234,14 @@ function AdminHome() {
           <div className="admin-package-graph">
           <h5 className='text-center'>Package Choosen</h5>
           <ByPackageGraph byPackage={byCategory}/>
+          </div>
+          </div>
+
+          </div>
+          <div className="weekly-graph">
+          <div className="admin-weekly-graph">
+          <h5 className='text-center'>Weekly Data</h5>
+          <WeeklyGraph weeklyData={weeklyData}/>
           </div>
           </div>
     </div>
