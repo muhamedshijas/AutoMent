@@ -1,9 +1,13 @@
 .add-service-page{
     width: 100vw;
-    height: 100vw;
+    height: 180px;
+
     left: 0px;
     top: 0px;
     display: flex;
     justify-content: center;
     align-items: center;
+}
+.add-service-page form button{
+    margin-top: 10px;
 }
