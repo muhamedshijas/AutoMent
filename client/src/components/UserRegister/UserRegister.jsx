@@ -48,7 +48,7 @@ function UserRegister() {
                         <div className="image col-md-7">
                             <h3>User SignUp </h3>
                             <img src={loginImage} alt="" srcset="" />
-                        </div>git 
+                        </div>
                         <form onSubmit={handleSubmit} className="form col-md-4">
                             <label className="form-label text-danger" htmlFor="form2Example27">
                                 {errMessage && errMessage}
