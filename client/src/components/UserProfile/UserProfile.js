@@ -92,7 +92,9 @@ function UserProfile() {
           </Link>
           <button onClick={handleLogout}>Logout</button>
         </div>
-        <h4>Service History</h4>
+        {currentBookings[0] ? <div className="serviceHistory">
+
+          <h4>Service History</h4>
           <div className="history-filter">
           <label htmlFor="filter">Filter by status:</label>
           <select id="filter" value={filterStatus} onChange={handleFilterChange}>
@@ -101,9 +103,6 @@ function UserProfile() {
             <option value="completed">Completed</option>
           </select>
           </div>
-        {currentBookings[0] ? <div className="serviceHistory">
-
-         
           {
             currentBookings.map((item, index) => {
               return <div className="card">
