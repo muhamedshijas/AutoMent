@@ -64,9 +64,9 @@ function ServiceCenterHome() {
             setByCategory(data.byPackage)
           }
         }
-        catch (err) { 
+        catch (err) {
           console.log(err)
-        }finally {
+        } finally {
           setIsLoading(false); // Set loading to false after fetching data
         }
       }
@@ -93,175 +93,176 @@ function ServiceCenterHome() {
   const handlePaginationClick = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
-  let totalAmount=0
-  const orders=bookings.filter((item)=>{
-    totalAmount=totalAmount+item.amount
+  let totalAmount = 0
+  const orders = bookings.filter((item) => {
+    totalAmount = totalAmount + item.amount
   })
   return (
     <div className="app">
-    {
-      isLoading?<div className="admin-loading"> <ReactLoading type="spinningBubbles" color="#2C457E" height={80} width={80} /></div>:<div className="service-center-home">
-        <ServiceCenterSideBar />
-        <div className="service-center-body">
-          <div className="counts">
-            <div className="service-card">
-              <div className="service-card-icon">
-                <GrMoney className='icons' />
+      {
+        isLoading ? <div className="admin-loading"> <ReactLoading type="spinningBubbles" color="#2C457E" height={80} width={80} /></div> : <div className="service-center-home">
+          <ServiceCenterSideBar />
+          <div className="service-center-body">
+            <div className="counts">
+              <div className="service-card">
+                <div className="service-card-icon">
+                  <GrMoney className='icons' />
+                </div>
+                <div className="service-card-counts">
+                  <h5> Revenue</h5>
+                  {totalAmount}
+                </div>
               </div>
-              <div className="service-card-counts">
-                <h5> Revenue</h5>
-                {totalAmount}
+
+              <div className="service-card">
+                <div className="service-card-icon">
+                  <HiOutlineClipboardList className='icons' />
+                </div>
+                <div className="service-card-counts">
+                  <h5>Total Booking</h5>
+                  {totalBooking}
+                </div>
+              </div>
+              <div className="service-card">
+                <div className="service-card-icon">
+                  <GiMechanicGarage className='icons' />
+                </div>
+                <div className="service-card-counts">
+                  <h5> Upcoming</h5>
+                  {upcoming}
+                </div>
+              </div>
+
+              <div className="service-card">
+                <div className="service-card-icon">
+                  <AiOutlineCheckCircle className='icons' />
+                </div>
+                <div className="service-card-counts">
+                  <h5>Completed</h5>
+                  {completed}
+                </div>
+              </div>
+
+              <div className="service-card">
+                <div className="service-card-icon">
+                  <RiShieldUserLine className='icons' />
+                </div>
+                <div className="service-card-counts">
+                  <h5> workers</h5>
+                  {worker}
+                </div>
               </div>
             </div>
 
-            <div className="service-card">
-              <div className="service-card-icon">
-                <HiOutlineClipboardList className='icons' />
+            <div className="booking-table">
+              <div className='filter-bookings'>
+                <label htmlFor="filter">Filter by status:</label>
+                <select id="filter" value={filterStatus} onChange={handleFilterChange}>
+                  <option value="all">All</option>
+                  <option value="ongoing">On Going</option>
+                  <option value="upcoming">Upcoming</option>
+                  <option value="completed">Completed</option>
+                </select>
               </div>
-              <div className="service-card-counts">
-                <h5>Total Booking</h5>
-                {totalBooking}
+              <h4 className='text-center'>Rececnt Bookings</h4>
+              <table class="table striped mt-5" >
+                <thead className="thead-dark">
+                  <tr className="table-head">
+                    <th scope="col">SI No</th>
+                    <th scope="col">Owner Name</th>
+                    <th scope="col">Vehicle</th>
+                    <th scope="col">Reg No</th>
+                    <th scope="col">Worker</th>
+                    <th scope="col">Package Choosen </th>
+                    <th scope="col">Status </th>
+
+                  </tr>
+
+
+                </thead>
+                <tbody>
+                  {
+                    currentAppointments.map((item, index) => {
+                      return <tr>
+                        <td>{calculateSiNo(index + 1)}</td>
+                        <td>{item.ownerName}</td>
+                        <td>{item.vehicleBrand}  {item.vehicleModel}</td>
+                        <td>{item.vehicleNo}</td>
+                        <td>{item.worker ? item.worker.name : "Not Assigned"}</td>
+                        <td>{item.packageChoosen}</td>
+                        <td className={item.status == "completed" ? "complete" : ""}>{item.status}</td>
+                      </tr>
+                    })
+                  }
+                </tbody>
+              </table>
+              <div className='pagination'>
+                {Array.from(Array(Math.ceil(totalBooking / appointmentsPerPage)).keys()).map((pageNumber) => (
+                  <button
+                    key={pageNumber}
+                    onClick={() => handlePaginationClick(pageNumber + 1)}
+                    disabled={currentPage === pageNumber + 1}
+                  >
+                    {pageNumber + 1}
+                  </button>
+                ))}
               </div>
             </div>
-            <div className="service-card">
-              <div className="service-card-icon">
-                <GiMechanicGarage className='icons' />
-              </div>
-              <div className="service-card-counts">
-                <h5> Upcoming</h5>
-                {upcoming}
-              </div>
-            </div>
+            {
+              reviews && <div className="review-sec">
+                <h4>Review and Ratings</h4>
 
-            <div className="service-card">
-              <div className="service-card-icon">
-                <AiOutlineCheckCircle className='icons' />
-              </div>
-              <div className="service-card-counts">
-                <h5>Completed</h5>
-                {completed}
-              </div>
-            </div>
-
-            <div className="service-card">
-              <div className="service-card-icon">
-                <RiShieldUserLine className='icons' />
-              </div>
-              <div className="service-card-counts">
-                <h5> workers</h5>
-                {worker}
-              </div>
-            </div>
-          </div>
-
-          <div className="booking-table">
-            <div className='filter-bookings'>
-              <label htmlFor="filter">Filter by status:</label>
-              <select id="filter" value={filterStatus} onChange={handleFilterChange}>
-                <option value="all">All</option>
-                <option value="ongoing">On Going</option>
-                <option value="upcoming">Upcoming</option>
-                <option value="completed">Completed</option>
-              </select>
-            </div>
-            <h4 className='text-center'>Rececnt Bookings</h4>
-            <table class="table striped mt-5" >
-              <thead className="thead-dark">
-                <tr className="table-head">
-                  <th scope="col">SI No</th>
-                  <th scope="col">Owner Name</th>
-                  <th scope="col">Vehicle</th>
-                  <th scope="col">Reg No</th>
-                  <th scope="col">Worker</th>
-                  <th scope="col">Package Choosen </th>
-                  <th scope="col">Status </th>
-
-                </tr>
-
-
-              </thead>
-              <tbody>
-                {
-                  currentAppointments.map((item, index) => {
-                    return <tr>
-                      <td>{calculateSiNo(index + 1)}</td>
-                      <td>{item.ownerName}</td>
-                      <td>{item.vehicleBrand}  {item.vehicleModel}</td>
-                      <td>{item.vehicleNo}</td>
-                      <td>{item.worker ? item.worker.name : "Not Assigned"}</td>
-                      <td>{item.packageChoosen}</td>
-                      <td className={item.status == "completed" ? "complete" : ""}>{item.status}</td>
-                    </tr>
-                  })
-                }
-              </tbody>
-            </table>
-            <div className='pagination'>
-              {Array.from(Array(Math.ceil(totalBooking / appointmentsPerPage)).keys()).map((pageNumber) => (
-                <button
-                  key={pageNumber}
-                  onClick={() => handlePaginationClick(pageNumber + 1)}
-                  disabled={currentPage === pageNumber + 1}
-                >
-                  {pageNumber + 1}
-                </button>
-              ))}
-            </div>
-          </div>
-
-          <div className="review-sec">
-            <h4>Review and Ratings</h4>
-
-            <div className="review-and-rating">
-              {
-                reviews &&
-                reviews.map((item, index) => {
-                  return <div className="servicecenter-review">
-                    <div className="head-sec">
-                      <div className="user-detials">
-                        <Avatar
-                          alt="Remy Sharp"
-                          src="/static/images/avatar/1.jpg"
-                          sx={{ width: 32, height: 32 }}
-                        />
-                        <b>{item.userId.name}</b>
+                <div className="review-and-rating">
+                  {
+                    
+                    reviews.map((item, index) => {
+                      return <div className="servicecenter-review">
+                        <div className="head-sec">
+                          <div className="user-detials">
+                            <Avatar
+                              alt="Remy Sharp"
+                              src="/static/images/avatar/1.jpg"
+                              sx={{ width: 32, height: 32 }}
+                            />
+                            <b>{item.userId.name}</b>
+                          </div>
+                          <p>{new Date(item.updatedAt).toLocaleDateString()}</p>
+                        </div>
+                        <p className="servicecenter-review-desc">
+                          <Rating value={item.rating}
+                            readOnly
+                            size="small" />
+                          {item.review}
+                        </p>
                       </div>
-                      <p>{new Date(item.updatedAt).toLocaleDateString()}</p>
-                    </div>
-                    <p className="servicecenter-review-desc">
-                      <Rating value={item.rating}
-                        readOnly
-                        size="small" />
-                      {item.review}
-                    </p>
-                  </div>
-                })
-              }
-            </div>
-          </div>
-
-          <div className="service-center-graphs">
-            <div className="service-monthly-graph">
-              <h5 className='text-center'>Revenue per Month</h5>
-              <BookingGraphs monthlyData={monthlyBooking} />
-            </div>
-
-            <div className="service-weekly-graph">
-              <h5 className='text-center'>Revenue per Week</h5>
-              <WeeklyGraph weeklyData={weeklyData} />
-            </div>
-          </div>
-
-          <div className="service-center-graphs">
-            <div className="service-package-graph">
-              <h5 className='text-center'>Package Choosen</h5>
-              <ByPackageGraph byPackage={byCategory} />
-            </div>
-          </div>
-        </div>
-
-      </div>
+                    })
+                  }
+                </div>
+              </div>
             }
+
+            <div className="service-center-graphs">
+              <div className="service-monthly-graph">
+                <h5 className='text-center'>Revenue per Month</h5>
+                <BookingGraphs monthlyData={monthlyBooking} />
+              </div>
+
+              <div className="service-weekly-graph">
+                <h5 className='text-center'>Revenue per Week</h5>
+                <WeeklyGraph weeklyData={weeklyData} />
+              </div>
+            </div>
+
+            <div className="service-center-graphs">
+              <div className="service-package-graph">
+                <h5 className='text-center'>Package Choosen</h5>
+                <ByPackageGraph byPackage={byCategory} />
+              </div>
+            </div>
+          </div>
+
+        </div>
+      }
     </div>
   )
 }
