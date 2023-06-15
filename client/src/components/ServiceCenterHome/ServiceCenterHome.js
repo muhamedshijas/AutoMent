@@ -28,7 +28,6 @@ function ServiceCenterHome() {
   const [bookings, setBookings] = useState([])
   const [workers, setWorkers] = useState([""])
   const [reviews, setReviews] = useState([])
-  const [revenue,setRevenue]=useState()
 
 
   const [currentPage, setCurrentPage] = useState(1);
@@ -58,7 +57,6 @@ function ServiceCenterHome() {
             setMonthlyBooking(data.monthlyData)
             setWeeklyData(data.weeklyData)
             setByCategory(data.byPackage)
-            setRevenue(data.toalRevenue)
           }
         }
         catch (err) { 
@@ -88,7 +86,10 @@ function ServiceCenterHome() {
   const handlePaginationClick = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
-
+  let totalAmount=0
+  const orders=bookings.filter((item)=>{
+    totalAmount=totalAmount+item.amount
+  })
   return (
     <div className="app">
       <div className="service-center-home">
@@ -101,7 +102,7 @@ function ServiceCenterHome() {
               </div>
               <div className="service-card-counts">
                 <h5> Revenue</h5>
-                {revenue}
+                {totalAmount}
               </div>
             </div>
 
