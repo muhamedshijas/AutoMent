@@ -212,7 +212,13 @@ export async function getServiceCenterDashboard(req,res){
         const completed=await BookingModel.find({serviceCenterId:id,status:"completed"}).countDocuments()
         const totalBooking=await BookingModel.find({serviceCenterId:id}).countDocuments()
         const reviews = await FeedbackModel.find({serviceCenterId:id}).populate('userId').lean()
-        const revenue=await BookingModel.find({})
+        const completedBooking=await BookingModel.find({serviceCenterId:id,status:"completed"}).lean()
+       
+       let totalRevenue=0;
+        let Orders = completedBooking.filter(item => {
+            totalRevenue = totalRevenue + item.amount
+        })
+        
         const monthlyDataArray = await BookingModel.aggregate([{$match:{serviceCenterId:id}},{ $group: { _id: { $month: "$dateOfService" }, totalRevenue: { $sum: "$amount" } } }])
         let monthlyDataObject = {}
         monthlyDataArray.map(item => {
@@ -236,7 +242,7 @@ export async function getServiceCenterDashboard(req,res){
         }
          let byPackage = await BookingModel.aggregate([{$match:{serviceCenterId:id}},{ $group: { _id: "$packageChoosen", count: { $sum: 1 }, price: { $sum: "$amount" } } }])
         console.log(byPackage)
-        res.json({workers,bookings,upcoming,completed,totalBooking,worker,reviews,monthlyData,weeklyData,byPackage,error:false})
+        res.json({workers,bookings,upcoming,completed,totalBooking,worker,reviews,monthlyData,weeklyData,byPackage,totalRevenue,error:false})
 
     }catch(err){
         console.log(err) 
