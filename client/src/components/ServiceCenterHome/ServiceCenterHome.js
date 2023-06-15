@@ -13,6 +13,7 @@ import './ServiceCenterHome.css'
 import BookingGraphs from '../AdminGraphs/BookingGraphs';
 import WeeklyGraph from '../AdminGraphs/WeeklyGraph';
 import ByPackageGraph from '../AdminGraphs/ByPackageGraph';
+import ReactLoading from 'react-loading';
 
 function ServiceCenterHome() {
   const dispatch = useDispatch()
@@ -40,7 +41,11 @@ function ServiceCenterHome() {
   const [weeklyData, setWeeklyData] = useState([])
   const [byCategory, setByCategory] = useState([])
 
+
+  const [isLoading, setIsLoading] = useState(true);
+
   React.useEffect(() => {
+    setIsLoading(true);
     (
       async function () {
         try {
@@ -61,6 +66,8 @@ function ServiceCenterHome() {
         }
         catch (err) { 
           console.log(err)
+        }finally {
+          setIsLoading(false); // Set loading to false after fetching data
         }
       }
     )()
@@ -92,7 +99,8 @@ function ServiceCenterHome() {
   })
   return (
     <div className="app">
-      <div className="service-center-home">
+    {
+      isLoading?<div className="admin-loading"> <ReactLoading type="spinningBubbles" color="#2C457E" height={80} width={80} /></div>:<div className="service-center-home">
         <ServiceCenterSideBar />
         <div className="service-center-body">
           <div className="counts">
@@ -253,6 +261,7 @@ function ServiceCenterHome() {
         </div>
 
       </div>
+            }
     </div>
   )
 }
