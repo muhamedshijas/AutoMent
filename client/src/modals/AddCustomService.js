@@ -4,6 +4,7 @@ import './AddCustomService.css'
 import { RiCloseLine } from "react-icons/ri";
 function AddCustomService({setShowModal, setRefresh,addService,refresh}) {
   const [name,setName]=useState("")
+  const [errMessage,setErrMessage]=useState("");
   const [serviceList,setServiceList]=useState([""])
 
   async function handleClose(){
@@ -27,8 +28,13 @@ function AddCustomService({setShowModal, setRefresh,addService,refresh}) {
   },[refresh])
 
    async function handleSubmit(){
-    addService(name)
+    if(name==null){
+      setErrMessage("select aservice")
+    }else{
+      addService(name)
         setShowModal(false)
+    }
+   
     }
   return (
    
@@ -39,6 +45,9 @@ function AddCustomService({setShowModal, setRefresh,addService,refresh}) {
  <RiCloseLine onClick={handleClose}/>
  </div>
  <h5>Add a Services</h5>
+ <label className="form-label text-danger" htmlFor="form2Example27">
+    {errMessage && errMessage}
+  </label>
      <select name="" id="" onChange={(e)=>setName(e.target.value)}>
      <option value="">Choose One</option>
     {
