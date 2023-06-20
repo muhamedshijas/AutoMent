@@ -61,6 +61,7 @@ function UserRouter() {
           <Route path='/edit-profile/:id' element={<Navigate to='/login'/>}/>
           <Route path='/chooseservicecenter'element={<Navigate to='/login'/>}/>
           <Route path='/createcustompackage'element={<Navigate to='/login'/>}/>
+          <Route path='/createcustompackage/:id' element={<Navigate to='/login'/>}/>
           <Route path='/forgetpassword' element={<ForgetPage/>}/>
      
           </>
