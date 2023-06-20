@@ -61,9 +61,13 @@ function UserRouter() {
           <Route path='/edit-profile/:id' element={<Navigate to='/login'/>}/>
           <Route path='/chooseservicecenter'element={<Navigate to='/login'/>}/>
           <Route path='/createcustompackage'element={<Navigate to='/login'/>}/>
-          <Route path='/createcustompackage/:id' element={<Navigate to='/login'/>}/>
+          <Route path='/choosepackage/:id' element={<Navigate to='/login'/>}/>
+          <Route path='/createcustompackage/:id'element={<Navigate to='/login'/>}}/>
+          <Route path='/bookservice' element={<Navigate to='/login'/>}/>
+          <Route path='/servicehistory/:id' element={<Navigate to='/login'/>}/>
+          <Route path='/mapbox' element={<Navigate to='/login'/>}/>
           <Route path='/forgetpassword' element={<ForgetPage/>}/>
-     
+          
           </>
         }
     
