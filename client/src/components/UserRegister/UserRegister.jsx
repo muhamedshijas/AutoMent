@@ -60,7 +60,7 @@ function UserRegister() {
                             </div>
                             <div className="email">
                                 <label htmlFor=""><p> Email</p></label>
-                                <input type="text" value={email} onChange={(e) => setEmail(e.target.value)} />
+                                <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
                             </div>
                             <div className="phone">
                                 <label htmlFor=""><p className='text-left'> Phone No</p></label>

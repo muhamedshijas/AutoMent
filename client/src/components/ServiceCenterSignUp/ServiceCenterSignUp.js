@@ -107,7 +107,7 @@ const [placeName, setPlaceName] = useState('');
           <div className="first-row">
             <div className="email">
               <label htmlFor="">Email</label>
-              <input type="text" value={email} onChange={(e) => setEmail(e.target.value)} />
+              <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
             </div>
             <div className="name">
               <label htmlFor="">Service center Name</label>

@@ -29,7 +29,7 @@ function AddCustomService({setShowModal, setRefresh,addService,refresh}) {
 
    async function handleSubmit(){
     if(name==""){
-      setErrMessage("select aservice")
+      setErrMessage("select a service")
     }else{
       addService(name)
         setShowModal(false)

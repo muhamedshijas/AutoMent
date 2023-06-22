@@ -44,7 +44,7 @@ async function handleSubmit(e){
   </label>
     <div className="email">
     <label htmlFor=""><p> Email</p></label>
-    <input type="text"  value={email} onChange={(e)=>setEmail(e.target.value)}/>
+    <input type="email"  value={email} onChange={(e)=>setEmail(e.target.value)}/>
     </div>
     <div className="password">
     <label htmlFor=""><p> Password</p></label>
