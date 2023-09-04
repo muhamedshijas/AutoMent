@@ -15,7 +15,7 @@ export async function adminLogin(req, res) {
     try {
         console.log(req.body)
         const { email, password } = req.body;
-        const admin = await AdminModel.findOne({ email });
+        const admin = await AdminModel.findOne({ email }).lean();
         if (!admin) {
             return res.json({ error: true, message: "no access to this page" })
         }
