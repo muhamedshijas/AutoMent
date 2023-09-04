@@ -35,9 +35,9 @@ export async function adminLogin(req, res) {
             sameSite: "none",
         }).json({ error: false })
     }
-    catch {
-        res.json({ message: "server error", error: err })
+    catch(err) {
         console.log(err)
+        res.json({ message: "server error", error: err })
     }
 }
 export async function adminLogout(req, res) {
