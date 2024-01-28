@@ -21,8 +21,8 @@ const app = express();
 app.use(
   cors({
     origin: [
-      "https://automent.netlify.app", 
-    ],
+      "http://localhost:3000", 
+    ], 
     credentials: true,
   })
 );
